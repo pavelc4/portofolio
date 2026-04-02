@@ -1,22 +1,21 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
 import Navbar from '../components/Navbar.astro';
 import '../styles/global.css';
 
 interface Props {
-  title: string;
-  description?: string;
+  title?: string;
 }
-
-const {
-  title,
-  description = 'Dimas Dwi Ariyanto — Backend engineer, open source dev, Linux kernel enjoyer.',
-} = Astro.props;
+const { title = 'pavelc4' } = Astro.props;
 ---
 <!doctype html>
 <html lang="id">
   <head>
-    <BaseHead title={title} description={description} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Caveat:wght@700&display=swap" rel="stylesheet">
   </head>
   <body>
     <Navbar />

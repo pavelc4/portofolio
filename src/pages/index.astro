@@ -1,21 +1,8 @@
 ---
-import Navbar from '../components/Navbar.astro';
-import '../styles/global.css';
+import Layout from '../layout/Layout.astro';
+import Hero from '../components/Hero.astro';
 ---
-<!doctype html>
-<html lang="id">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>pavelc4</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <Navbar />
-    <main>
-      <slot />
-    </main>
-  </body>
-</html>
+
+<Layout title="pavelc4 — Dimas Dwi Ariyanto">
+  <Hero />
+</Layout>
