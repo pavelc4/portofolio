@@ -173,3 +173,13 @@ a, button, [role="button"] {
   padding: 0; margin: -1px; overflow: hidden;
   clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
 }
+
+.bocchi-box {
+  border: 2px solid var(--bocchi-pink);
+  background: var(--bocchi-pink-alpha);
+  transition: all var(--duration-normal) var(--ease-spring);
+}
+.bocchi-box:hover {
+  background: var(--bocchi-pink);
+  transform: scale(1.02) rotate(-1deg);
+}
