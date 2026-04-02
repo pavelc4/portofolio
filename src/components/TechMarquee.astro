@@ -1,0 +1,91 @@
+---
+const stackRow1 = [
+  { name: 'Rust',       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg',           tag: 'SYSTEM' },
+  { name: 'C / C++',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg',                 tag: 'CORE' },
+  { name: 'Golang',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg',      tag: 'BACKEND' },
+  { name: 'Docker',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',       tag: 'INFRA' },
+  { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', tag: 'DATABASE' },
+  { name: 'Linux',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg',         tag: 'OS' },
+];
+
+const stackRow2 = [
+  { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', tag: 'LANG' },
+  { name: 'Bun',        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bun/bun-original.svg',              tag: 'RUNTIME' },
+  { name: 'Elysia.js',  icon: null, letter: 'E', tag: 'FRAMEWORK' },
+  { name: 'Hono.js',    icon: null, letter: 'H', tag: 'EDGE FW' },
+  { name: 'Svelte',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg',        tag: 'FRONTEND' },
+  { name: 'Astro',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg',          tag: 'SSG' },
+];
+
+const row1 = [...stackRow1, ...stackRow1];
+const row2 = [...stackRow2, ...stackRow2];
+---
+
+<section id="skills" class="py-16 md:py-24 bg-bocchi-cream border-y-4 border-gray-900 overflow-hidden relative">
+
+  <div class="max-w-5xl mx-auto text-center px-6 md:px-12 mb-8 md:mb-12 reveal">
+    <p class="font-jp text-gray-500 font-bold tracking-widest text-xs md:text-sm mb-2 md:mb-4">
+      きた いくよ • Arsenal
+    </p>
+    <h2 class="font-oswald text-4xl md:text-6xl lg:text-7xl text-red-600 uppercase tracking-tighter">
+      Tech Stack.
+    </h2>
+  </div>
+
+  <div class="w-full overflow-hidden flex whitespace-nowrap mask-edges py-2">
+    <div
+      class="flex items-center gap-4 md:gap-6 px-2 md:px-4 w-[200%]"
+      style="animation: marquee 25s linear infinite;"
+      onmouseenter="this.style.animationPlayState='paused'"
+      onmouseleave="this.style.animationPlayState='running'"
+    >
+      {row1.map(item => (
+        <div class="flex-shrink-0 flex items-center gap-2 md:gap-4 bg-white border-2 border-gray-900 px-4 md:px-6 py-2 md:py-3 shadow-brutalist-sm md:shadow-brutalist transition-transform hover:-translate-y-1 cursor-default group">
+          {item.icon
+            ? <img src={item.icon} alt={item.name} width="32" height="32" loading="lazy" decoding="async" class="w-5 h-5 md:w-8 md:h-8 grayscale group-hover:grayscale-0 transition-all" />
+            : <span class="font-bold text-gray-900 text-xl md:text-3xl w-5 md:w-8 text-center">{item.letter}</span>
+          }
+          <span class="font-oswald text-lg md:text-2xl font-bold uppercase tracking-tight text-gray-900">
+            {item.name}
+          </span>
+          <span class="font-mono text-[8px] md:text-[10px] text-bocchi-pink font-bold border-l-2 border-gray-900 pl-2 md:pl-4 ml-1 md:ml-2 opacity-50 group-hover:opacity-100">
+            {item.tag}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="w-full overflow-hidden flex whitespace-nowrap mask-edges py-2 mt-1 md:mt-2">
+    <div
+      class="flex items-center gap-4 md:gap-6 px-2 md:px-4 w-[200%]"
+      style="animation: marquee-reverse 25s linear infinite;"
+      onmouseenter="this.style.animationPlayState='paused'"
+      onmouseleave="this.style.animationPlayState='running'"
+    >
+      {row2.map(item => (
+        <div class="flex-shrink-0 flex items-center gap-2 md:gap-4 bg-[#1a1a1a] border-2 border-gray-900 px-4 md:px-6 py-2 md:py-3 transition-transform hover:-translate-y-1 cursor-default group"
+          style="box-shadow: 4px 4px 0 0 #FF4D8D;"
+        >
+          {item.icon
+            ? <img src={item.icon} alt={item.name} width="32" height="32" loading="lazy" decoding="async" class="w-5 h-5 md:w-8 md:h-8 grayscale group-hover:grayscale-0 transition-all" />
+            : <span class="font-bold text-white text-xl md:text-3xl w-5 md:w-8 text-center group-hover:text-bocchi-pink transition-colors">{item.letter}</span>
+          }
+          <span class="font-oswald text-lg md:text-2xl font-bold uppercase tracking-tight text-white">
+            {item.name}
+          </span>
+          <span class="font-mono text-[8px] md:text-[10px] text-gray-400 font-bold border-l-2 border-gray-700 pl-2 md:pl-4 ml-1 md:ml-2 group-hover:text-white transition-colors">
+            {item.tag}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="mt-8 md:mt-12 flex justify-center relative z-10">
+    <div class="border-2 border-gray-400 px-3 md:px-4 py-1 rounded-full flex gap-3 md:gap-4 text-[10px] md:text-xs font-mono text-gray-500 bg-white/50 backdrop-blur-sm">
+      <span>WAIFU OF THE DAY: 09 ↗</span>
+      <span>CODE: 9367 ↗</span>
+    </div>
+  </div>
+</section>
