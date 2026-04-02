@@ -1,0 +1,112 @@
+---
+const navLinks = [
+  { href: '#hero',     label: 'home' },
+  { href: '#about',    label: 'about' },
+  { href: '#projects', label: 'works' },
+  { href: '#life',     label: 'logs' },
+];
+---
+
+<header>
+  <nav
+    class="fixed w-full top-0 z-50 flex justify-between items-center px-4 py-4 md:px-12 md:py-6 mix-blend-difference"
+    aria-label="Main navigation"
+  >
+    <a
+      href="#hero"
+      class="text-white font-oswald text-lg md:text-2xl tracking-tighter font-bold hover:text-bocchi-pink transition-colors"
+      aria-label="pavelc4 — back to top"
+    >
+      pavelc4.
+    </a>
+
+    <ul class="hidden sm:flex gap-4 md:gap-8" role="list">
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            class="text-white font-bold tracking-wide text-[10px] md:text-sm lowercase hover:text-bocchi-pink transition-colors"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <button
+      id="nav-toggle"
+      class="sm:hidden text-white p-2 -mr-2"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg id="icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <line x1="3" y1="6"  x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+      <svg id="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" class="hidden">
+        <line x1="18" y1="6"  x2="6" y2="18"/>
+        <line x1="6"  y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-40 bg-dark flex flex-col items-center justify-center gap-8 sm:hidden
+         opacity-0 pointer-events-none transition-opacity duration-300"
+  aria-hidden="true"
+>
+  <ul class="flex flex-col items-center gap-6" role="list">
+    {navLinks.map(link => (
+      <li>
+        <a
+          href={link.href}
+          class="nav-mobile-link text-white font-oswald text-4xl uppercase tracking-widest hover:text-bocchi-pink transition-colors"
+        >
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<script>
+  const toggle   = document.getElementById('nav-toggle')!;
+  const menu     = document.getElementById('mobile-menu')!;
+  const iconOpen  = document.getElementById('icon-open')!;
+  const iconClose = document.getElementById('icon-close')!;
+  const links    = document.querySelectorAll('.nav-mobile-link');
+
+  let isOpen = false;
+
+  function openMenu() {
+    isOpen = true;
+    menu.classList.remove('opacity-0', 'pointer-events-none');
+    menu.setAttribute('aria-hidden', 'false');
+    toggle.setAttribute('aria-expanded', 'true');
+    iconOpen.classList.add('hidden');
+    iconClose.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    menu.classList.add('opacity-0', 'pointer-events-none');
+    menu.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  toggle.addEventListener('click', () => isOpen ? closeMenu() : openMenu());
+
+  links.forEach(link => link.addEventListener('click', closeMenu));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && isOpen) closeMenu();
+  });
+</script>

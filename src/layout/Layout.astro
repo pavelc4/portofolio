@@ -1,0 +1,27 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Navbar from '../components/Navbar.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Dimas Dwi Ariyanto — Backend engineer, open source dev, Linux kernel enjoyer.',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="id">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body>
+    <Navbar />
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
