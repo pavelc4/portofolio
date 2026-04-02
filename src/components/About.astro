@@ -1,0 +1,106 @@
+---
+const education = [
+  {
+    period: '2023 — now',
+    school: 'Universitas Widyatama',
+    major: 'Teknik Informatika',
+    location: 'Bandung, ID',
+  },
+];
+
+const facts = [
+  { label: 'Focus', value: 'System Programming' },
+  { label: 'OS', value: 'Arch Linux + Hyprland' },
+  { label: 'Editor', value: 'Neovim' },
+  { label: 'Status', value: 'Open to collab' },
+];
+---
+
+<section id="about" class="py-16 md:py-24 px-6 md:px-12 bg-white overflow-hidden border-t-8 border-gray-100 relative">
+
+  <div class="absolute inset-0 flex justify-center items-center pointer-events-none overflow-hidden" aria-hidden="true">
+    <span class="font-oswald text-[20vw] leading-none font-bold text-gray-100 select-none whitespace-nowrap">ABOUT</span>
+  </div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+
+    <div class="w-full flex justify-end mb-6 md:mb-8">
+      <p class="font-oswald text-2xl sm:text-4xl opacity-40 leading-none text-ryo-blue" aria-hidden="true">02 ↗</p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row items-start gap-8 lg:gap-16">
+
+      <div class="w-full lg:w-1/2 reveal-left">
+        <p class="text-ryo-blue font-bold tracking-widest uppercase text-xs md:text-sm mb-2">
+          星街すいせい — Hi... World~
+        </p>
+        <h2 class="font-oswald text-5xl md:text-7xl lg:text-8xl text-ryo-blue leading-none tracking-tighter mb-6">
+          SYSTEM<br>ENGINEER.
+        </h2>
+
+        <div class="flex gap-2 font-mono text-[10px] md:text-xs uppercase text-ryo-blue font-bold mb-8 flex-wrap">
+          <span class="border border-ryo-blue/40 px-3 py-1 rounded-full hover:bg-ryo-blue hover:text-white transition-colors cursor-default">
+            Universitas Widyatama
+          </span>
+          <span class="border border-ryo-blue/40 px-3 py-1 rounded-full hover:bg-ryo-blue hover:text-white transition-colors cursor-default">
+            Teknik Informatika
+          </span>
+          <span class="border border-ryo-blue/40 px-3 py-1 rounded-full hover:bg-ryo-blue hover:text-white transition-colors cursor-default">
+            Open Source
+          </span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          {facts.map(fact => (
+            <div class="border border-gray-200 p-3 md:p-4 hover:border-ryo-blue transition-colors group">
+              <p class="font-mono text-[9px] md:text-[10px] text-gray-400 uppercase tracking-widest mb-1">{fact.label}</p>
+              <p class="font-oswald text-sm md:text-base font-bold text-gray-900 group-hover:text-ryo-blue transition-colors">{fact.value}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="w-full lg:w-1/2 space-y-4 md:space-y-6 reveal" style="--delay: 0.1s">
+
+        <p class="text-base md:text-lg lg:text-xl font-light leading-relaxed text-gray-700">
+          Halo, saya <strong class="text-ryo-blue font-semibold">Dimas Dwi Ariyanto</strong>.
+          Mahasiswa Teknik Informatika di Universitas Widyatama dan penggiat
+          <em>Open Source</em> yang berdedikasi.
+        </p>
+
+        <p class="text-sm md:text-base font-light leading-relaxed text-gray-600">
+          Sangat tertarik dengan pemrograman tingkat sistem, optimalisasi kernel,
+          dan pengembangan backend latensi rendah. Bagi saya, kode bukan sekadar instruksi —
+          melainkan seni arsitektur digital.
+        </p>
+
+        <blockquote class="border-l-4 border-ryo-blue bg-blue-50 p-4 md:p-6 mt-6">
+          <p class="font-mono text-xs md:text-sm text-blue-900 leading-relaxed">
+            "I hated going to meetings, but missing one hour was enough to make my code base disappear from my mind."
+          </p>
+        </blockquote>
+
+        <div class="pt-4">
+          <p class="font-mono text-[10px] md:text-xs uppercase tracking-widest text-gray-400 mb-4">Education</p>
+          {education.map(edu => (
+            <div class="flex items-start justify-between gap-4 py-4 border-t border-gray-100 group">
+              <div>
+                <p class="font-oswald text-lg md:text-xl font-bold text-gray-900 group-hover:text-ryo-blue transition-colors">
+                  {edu.school}
+                </p>
+                <p class="font-mono text-[10px] md:text-xs text-gray-500 uppercase tracking-wider mt-1">
+                  {edu.major}
+                </p>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <p class="font-mono text-[10px] md:text-xs text-gray-400">{edu.period}</p>
+                <p class="font-mono text-[9px] text-gray-300 mt-1">{edu.location}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
