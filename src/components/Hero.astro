@@ -72,7 +72,7 @@ import { Image } from "astro:assets";
           <text
             class="text-[8.5px] md:text-[9.5px] font-mono font-bold tracking-widest uppercase"
             ><textPath href="#circlePath"
-              >/// Hidup Jokowi /// Mbg /// My bini gweh ///</textPath
+              >/// Hidup Jokowi /// My bini gw///</textPath
             ></text
           >
         </svg>
@@ -85,34 +85,42 @@ import { Image } from "astro:assets";
       </div>
 
       <div
-        class="absolute top-[12%] md:top-[15%] lg:top-[18%] left-[45%] md:left-[40%] lg:left-[45%] text-white font-caveat text-3xl sm:text-4xl md:text-6xl opacity-70 z-20 -rotate-12 drop-shadow-sm select-none"
+        class="hidden sm:flex absolute left- sm:left-10 md:left-12 top-[97%] -translate-y-1/2 -rotate-90 origin-bottom-left text-white/90 font-mono text-xs sm:text-sm md:text-base sl:text-lg tracking-[0.4em] font-bold mix-blend-overlay whitespace-nowrap z-10 select-none"
         aria-hidden="true"
       >
-        pavelc4!
+        --INFORMATICS ENGINEERING//WIDYATAMA--
       </div>
 
       <div
-        class="hidden lg:flex absolute left-8 top-1/2 -translate-y-1/2 -rotate-90 origin-bottom-left text-white/60 font-mono text-[10px] xl:text-xs tracking-[0.5em] mix-blend-overlay whitespace-nowrap z-10 select-none"
+        class="absolute top-[30%] right-[5%] md:right-[15%] text-white/10 font-oswald text-7xl md:text-9xl font-bold -rotate-90 origin-bottom-right z-0 pointer-events-none select-none"
         aria-hidden="true"
       >
-        // INFORMATICS ENGINEERING // WIDYATAMA UNIVERSITY //
+        SYS.REQ
       </div>
 
       <div
-        class="hidden lg:flex absolute bottom-12 left-14 flex-col gap-1 z-10 pointer-events-none opacity-80"
+        class="flex absolute bottom-24 sm:bottom-12 md:bottom-16 left-4 sm:left-6 md:left-14 flex-col gap-1 z-10 pointer-events-none opacity-80"
         aria-hidden="true"
       >
-        <div class="flex h-12 xl:h-16 w-48 xl:w-64 bg-white tech-barcode"></div>
-        <p
-          class="font-mono text-[10px] xl:text-xs text-white tracking-[0.3em] mt-1 font-bold"
+        <div
+          class="flex h-8 sm:h-10 md:h-12 xl:h-16 w-32 sm:w-40 md:w-48 xl:w-64 bg-white tech-barcode mix-blend-overlay"
         >
-          UID:1999-X-DEV
+        </div>
+        <p
+          class="font-mono text-[8px] sm:text-[9px] md:text-[10px] xl:text-xs text-white tracking-[0.2em] md:tracking-[0.3em] mt-1 font-bold mix-blend-overlay"
+        >
+          UID:1999-X-DEV // SYSTEM ACTIVE
         </p>
       </div>
 
       <div
         class="peer absolute bottom-0 right-[5%] md:right-[8%] lg:right-[10%] group z-30 cursor-pointer"
       >
+        <div
+          class="absolute -top-9 -right-4 sm:-top-10 sm:-right-6 md:-top-16 md:-right-12 text-white font-caveat text-5xl sm:text-6xl md:text-8xl lg:text-[7rem] opacity-90 z-30 -rotate-6 drop-shadow-md select-none whitespace-nowrap pointer-events-none"
+        >
+          pavelc4
+        </div>
         <div
           class="w-[130px] h-[130px] sm:w-[180px] sm:h-[180px] md:w-[320px] md:h-[320px] lg:w-[450px] lg:h-[450px] xl:w-[500px] xl:h-[500px] bg-gray-900 border-t-[3px] border-x-[3px] md:border-t-[10px] md:border-x-[10px] border-bocchi-cream overflow-hidden shadow-2xl relative z-20 transform translate-y-[2px] transition-transform duration-500 group-hover:-translate-y-2 group-active:-translate-y-2"
         >
@@ -158,15 +166,16 @@ import { Image } from "astro:assets";
         </div>
       </div>
 
-      <div class="w-[65%] sm:w-[55%] md:w-[50%] lg:w-[40%] xl:w-[35%]">
+      <div class="w-[60%] sm:w-[50%] lg:w-[45%] xl:w-[40%] pr-2 md:pr-4">
         <p
-          class="text-[8px] sm:text-[10px] md:text-sm lg:text-base text-gray-800 leading-snug md:leading-relaxed font-medium text-justify"
+          class="text-[9px] sm:text-[10px] md:text-xs xl:text-sm text-gray-800 leading-tight md:leading-normal font-medium text-left"
         >
-          Dimas Dwi Ariyanto. pavelc4. Informatics Engineering student at
-          Widyatama University. Focused on system programming, low-latency
-          backends, and open-source contributions. Known for exploring Linux
-          internals, patching kernels, and writing efficient code. This terminal
-          life suits me.
+          <strong class="text-bocchi-pink font-bold inline-block mb-1">Dimas Dwi Ariyanto (pavelc4)</strong>
+          Informatics Engineering student at Widyatama University focused on backend
+          engineering and performance-critical systems. Combines backend development
+          with a deep understanding of Linux internals, enabling efficient, low-latency
+          services. Enjoys optimizing systems, handling concurrency, and pushing
+          performance to its limits.
         </p>
       </div>
       <div
