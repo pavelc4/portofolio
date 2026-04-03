@@ -1,107 +1,110 @@
 ---
 const logs = [
   {
-    id: '01',
-    category: 'Daily',
-    title: 'makan tidur kuliah maen game',
-    desc: 'The cycle continues. Kadang nulis kode di tengah malam, kadang malah nonton anime.',
-    tag: 'LIFESTYLE',
+    id: "01",
+    category: "Daily",
+    title: "Study",
+    desc: "bohong aslinya dia sering Tipsen",
+    tag: "Study",
   },
   {
-    id: '02',
-    category: 'Gaming',
-    title: 'FC25 & Mobile MOBA',
-    desc: 'Stress relief setelah debug kernel 4 jam. Win rate lumayan, tapi tetap kalah sama deadline.',
-    tag: 'GAMING',
+    id: "02",
+    category: "Gaming",
+    title: "Mobile Legends",
+    desc: "Btw btw mayan jago ni bocah maen roam hehe ",
+    tag: "GAMING",
   },
   {
-    id: '03',
-    category: 'Anime',
-    title: 'JJK / Chainsaw Man / AOT',
-    desc: 'Tontonan wajib. Gojo best character, fight me.',
-    tag: 'ENTERTAINMENT',
+    id: "03",
+    category: "Manga",
+    title: "Berserk",
+    desc: "Griffit Anjeng",
+    tag: "ENTERTAINMENT",
   },
   {
-    id: '04',
-    category: 'Hardware',
-    title: 'Motorcycle Modding',
-    desc: 'Tuning motor sama kayak tuning kernel — sedikit tweak, beda banget hasilnya.',
-    tag: 'IRL',
-  },
-  {
-    id: '05',
-    category: 'Open Source',
-    title: 'Late Night Commits',
-    desc: 'Majority of my commits timestamp: 00:00 — 03:00 WIB. Arch Linux + Hyprland never sleeps.',
-    tag: 'DEV',
-  },
-  {
-    id: '06',
-    category: 'Music',
-    title: '星街すいせい on repeat',
-    desc: 'Coding soundtrack. Suisei carried my productivity lebih dari coffee.',
-    tag: 'MUSIC',
+    id: "04",
+    category: "Music",
+    title: "Engine No. 9 ",
+    desc: "My fav Song By Deftones",
+    tag: "MUSIC",
   },
 ];
 ---
 
-<section id="life" class="py-16 md:py-24 px-6 md:px-12 bg-bocchi-cream border-t-4 border-gray-900 overflow-hidden relative">
-
-  <!-- Watermark -->
-  <div class="absolute inset-0 flex justify-center items-center pointer-events-none overflow-hidden" aria-hidden="true">
-    <span class="font-oswald text-[15vw] leading-none font-bold text-gray-200 select-none whitespace-nowrap">LIFE LOGS</span>
+<section
+  id="life"
+  class="py-16 md:py-24 px-6 md:px-12 bg-bocchi-cream border-t-4 border-gray-900 overflow-hidden relative"
+>
+  <div
+    class="absolute inset-0 flex justify-center items-center pointer-events-none overflow-hidden"
+    aria-hidden="true"
+  >
+    <span
+      class="font-oswald text-[15vw] leading-none font-bold text-gray-200 select-none whitespace-nowrap"
+      >LIFE LOGS</span
+    >
   </div>
 
   <div class="max-w-7xl mx-auto relative z-10">
-
-    <!-- Header -->
     <div class="mb-12 md:mb-16 reveal">
       <div class="w-full flex justify-end mb-4">
-        <p class="font-oswald text-2xl sm:text-4xl opacity-40 leading-none text-bocchi-pink" aria-hidden="true">04 ↗</p>
+        <p
+          class="font-oswald text-2xl sm:text-4xl opacity-40 leading-none text-bocchi-pink"
+          aria-hidden="true"
+        >
+          04 ↗
+        </p>
       </div>
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <p class="font-mono text-gray-400 text-xs uppercase tracking-widest mb-2">Beyond the terminal</p>
-          <h2 class="font-oswald text-5xl md:text-7xl lg:text-8xl text-gray-900 leading-none tracking-tighter uppercase">
-            Life.<br><span class="text-bocchi-pink">Logs.</span>
+          <p
+            class="font-mono text-gray-400 text-xs uppercase tracking-widest mb-2"
+          >
+            Beyond the code
+          </p>
+          <h2
+            class="font-oswald text-5xl md:text-7xl lg:text-8xl text-gray-900 leading-none tracking-tighter uppercase"
+          >
+            Life.<br /><span class="text-bocchi-pink">Logs.</span>
           </h2>
         </div>
         <p class="font-mono text-xs text-gray-400 max-w-xs leading-relaxed">
-          Hal-hal yang terjadi di luar layar. Karena developer juga manusia (katanya).
+          Ceritanya hobi si papel kan nolep wibu lagi (jomblo lagi)
         </p>
       </div>
     </div>
 
-    <!-- Logs grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-      {logs.map((log, i) => (
-        <div
-          class="reveal bocchi-box group relative p-5 md:p-6 cursor-default"
-          style={`--delay: ${i * 0.07}s`}
-        >
-          <!-- Number -->
-          <div class="flex items-start justify-between mb-4">
-            <span class="font-mono text-[10px] text-bocchi-pink font-bold uppercase tracking-widest border border-bocchi-pink px-2 py-0.5">
-              {log.tag}
-            </span>
-            <span class="font-oswald text-3xl text-bocchi-pink/20 font-bold leading-none group-hover:text-white/30 transition-colors" aria-hidden="true">
-              {log.id}
-            </span>
+      {
+        logs.map((log, i) => (
+          <div
+            class="reveal bocchi-box group relative p-5 md:p-6 cursor-default"
+            style={`--delay: ${i * 0.07}s`}
+          >
+            <div class="flex items-start justify-between mb-4">
+              <span class="font-mono text-[10px] text-bocchi-pink font-bold uppercase tracking-widest border border-bocchi-pink px-2 py-0.5">
+                {log.tag}
+              </span>
+              <span
+                class="font-oswald text-3xl text-bocchi-pink/20 font-bold leading-none group-hover:text-white/30 transition-colors"
+                aria-hidden="true"
+              >
+                {log.id}
+              </span>
+            </div>
+
+            <p class="font-mono text-[9px] md:text-[10px] text-bocchi-pink/60 uppercase tracking-widest mb-2 group-hover:text-white/60 transition-colors">
+              {log.category}
+            </p>
+            <h3 class="font-oswald text-xl md:text-2xl font-bold uppercase tracking-tight text-gray-900 mb-3 group-hover:text-white transition-colors">
+              {log.title}
+            </h3>
+            <p class="text-xs md:text-sm text-gray-500 leading-relaxed group-hover:text-white/80 transition-colors">
+              {log.desc}
+            </p>
           </div>
-
-          <!-- Content -->
-          <p class="font-mono text-[9px] md:text-[10px] text-bocchi-pink/60 uppercase tracking-widest mb-2 group-hover:text-white/60 transition-colors">
-            {log.category}
-          </p>
-          <h3 class="font-oswald text-xl md:text-2xl font-bold uppercase tracking-tight text-gray-900 mb-3 group-hover:text-white transition-colors">
-            {log.title}
-          </h3>
-          <p class="text-xs md:text-sm text-gray-500 leading-relaxed group-hover:text-white/80 transition-colors">
-            {log.desc}
-          </p>
-        </div>
-      ))}
+        ))
+      }
     </div>
-
   </div>
 </section>
