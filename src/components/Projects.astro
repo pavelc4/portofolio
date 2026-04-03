@@ -1,47 +1,68 @@
 ---
 const projects = [
   {
-    id: '01',
-    name: 'Auriya',
-    slug: 'auriya',
-    badge: 'Magisk / KernelSU',
-    badgeColor: 'bg-red-500',
-    description: 'Modul optimasi performa open-source untuk Android. Dilengkapi penjadwalan frame adaptif. Ditulis murni dalam Rust untuk menjamin keamanan memori.',
-    tags: ['RUST', 'ANDROID OS'],
-    github: 'https://github.com/pavelc4/auriya',
-    accent: 'text-red-500',
-    span: 'lg:col-span-1',
+    id: "01",
+    name: "Auriya",
+    slug: "auriya",
+    badge: "Magisk / KernelSU",
+    badgeColor: "bg-orange-500",
+    description:
+      "An open-source Android performance optimization module built in Rust, designed for Magisk and KernelSU. Provides adaptive frame-aware scheduling, per-app refresh rate control, and system-level CPU and memory tuning to improve gaming and overall performance.",
+    tags: ["RUST", "ANDROID OS"],
+    github: "https://github.com/pavelc4/auriya",
+    accent: "text-orange-500",
+    span: "lg:col-span-1",
   },
   {
-    id: '02',
-    name: 'Tateru',
-    slug: 'tateru',
-    badge: 'CLI Tool',
-    badgeColor: 'bg-blue-500',
-    description: 'Kernel build tool automation yang ditulis dalam Go. Menyederhanakan proses kompilasi kernel Android dari awal hingga akhir.',
-    tags: ['GO', 'CLI', 'ANDROID'],
-    github: 'https://github.com/pavelc4/tateru',
-    accent: 'text-blue-500',
-    span: 'lg:col-span-1',
+    id: "02",
+    name: "Rin",
+    slug: "Rin",
+    badge: "Apps / Terminal",
+    badgeColor: "bg-orange-500",
+    description:
+      "A modern Android terminal emulator built with Kotlin and Jetpack Compose, featuring a native pacman-style package manager written in Rust. Designed for Android 10+, it enables seamless terminal access and efficient package management by bypassing modern execution restrictions. Focused on performance, minimal overhead, and a clean user experience.",
+    tags: ["KOTLIN", "ANDROID", "APPS"],
+    github: "https://github.com/pavelc4/Rin",
+    accent: "text-orange-500",
+    span: "lg:col-span-1",
   },
   {
-    id: '03',
-    name: 'ADB Tools',
-    slug: 'adb-tools',
-    badge: 'Utility',
-    badgeColor: 'bg-green-600',
-    description: 'Kumpulan ADB helper tools untuk mempercepat workflow development Android. Automate flashing, logcat filtering, dan device management.',
-    tags: ['BASH', 'ADB', 'ANDROID'],
-    github: 'https://github.com/pavelc4',
-    accent: 'text-green-600',
-    span: 'lg:col-span-1',
+    id: "03",
+    name: "Aether",
+    slug: "aether",
+    badge: "Telegram Bot",
+    badgeColor: "bg-sky-500",
+    description:
+      "A high-performance Telegram bot that streams media directly without intermediate storage. Built with a zero-disk streaming architecture, leveraging MTProto for fast uploads, concurrent chunk processing, and efficient memory usage.",
+    tags: ["GO", "MTProto", "STREAMING", "CONCURRENCY"],
+    github: "https://github.com/pavelc4/aether-bot",
+    accent: "text-sky-500",
+    span: "lg:col-span-1",
+  },
+  {
+    id: "04",
+    name: "Xtra Kernel Manager",
+    slug: "xtra-kernel-manager",
+    badge: "Android App",
+    badgeColor: "bg-purple-600",
+    description:
+      "A modern Android app for monitoring and tuning kernel performance on rooted devices. Built with Kotlin and Jetpack Compose, it provides real-time CPU metrics, thermal insights, and dynamic governor control with a focus on responsiveness and efficiency.",
+    tags: ["KOTLIN", "ANDROID", "PERFORMANCE"],
+    github: "https://github.com/Xtra-Manager-Software/Xtra-Kernel-Manager.git",
+    accent: "text-purple-600",
+    span: "lg:col-span-1",
   },
 ];
 ---
 
-<section id="projects" class="py-16 md:py-32 bg-gray-900 text-white overflow-hidden relative">
-
-  <div class="absolute inset-0 flex justify-center items-center opacity-5 pointer-events-none overflow-hidden" aria-hidden="true">
+<section
+  id="projects"
+  class="py-16 md:py-32 bg-gray-900 text-white overflow-hidden relative"
+>
+  <div
+    class="absolute inset-0 flex justify-center items-center opacity-5 pointer-events-none overflow-hidden"
+    aria-hidden="true"
+  >
     <span
       class="font-oswald text-[20vw] leading-none uppercase text-transparent whitespace-nowrap select-none"
       style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);"
@@ -51,82 +72,97 @@ const projects = [
   </div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
-
     <div class="mb-16 md:mb-24 relative flex flex-col items-end reveal">
-      <div class="w-full border-l-[6px] md:border-l-[12px] border-red-500 pl-4 sm:pl-6 md:pl-10">
-        <h2 class="font-oswald text-[11.5vw] sm:text-[5.5rem] md:text-[7.5rem] lg:text-[9.5rem] font-bold uppercase tracking-tighter leading-[0.85]">
+      <div
+        class="w-full border-l-[6px] md:border-l-[12px] border-red-500 pl-4 sm:pl-6 md:pl-10"
+      >
+        <h2
+          class="font-oswald text-[11.5vw] sm:text-[5.5rem] md:text-[7.5rem] lg:text-[9.5rem] font-bold uppercase tracking-tighter leading-[0.85]"
+        >
           <span class="block text-white">CODE FOR THE</span>
           <span class="block text-white">
-            BEST <span class="text-red-500 text-[0.8em] align-middle leading-none relative -top-1 md:-top-4">*</span> AND <span class="text-red-500">↗</span>
+            BEST <span
+              class="text-red-500 text-[0.8em] align-middle leading-none relative -top-1 md:-top-4"
+              >*</span
+            > AND <span class="text-red-500">↗</span>
           </span>
           <span class="block text-gray-500">DEBUG FOR</span>
           <span class="block text-gray-500">THE WORST.</span>
         </h2>
-        <p class="font-mono text-gray-400 text-[10px] md:text-sm max-w-xl uppercase tracking-widest mt-6 md:mt-10">
-          Selected open-source works. Built with optimism, prepared for kernel panics.
+        <p
+          class="font-mono text-gray-400 text-[10px] md:text-sm max-w-xl uppercase tracking-widest mt-6 md:mt-10"
+        >
+          Selected projects. A collection of work I’ve built.
         </p>
       </div>
       <div class="mt-8 md:mt-4 w-full text-right">
-        <p class="font-oswald text-4xl sm:text-5xl md:text-6xl lg:text-7xl opacity-40 leading-none text-red-500" aria-hidden="true">03 ↗</p>
+        <p
+          class="font-oswald text-4xl sm:text-5xl md:text-6xl lg:text-7xl opacity-40 leading-none text-red-500"
+          aria-hidden="true"
+        >
+          03 ↗
+        </p>
       </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-      {projects.map((project, i) => (
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          class={`reveal block bg-white text-gray-900 p-6 md:p-8 border-4 border-white relative overflow-hidden group transition-transform hover:-translate-y-2 shadow-xl flex flex-col justify-between ${project.span}`}
-          style={`--delay: ${i * 0.1}s`}
-        >
-          <div
-            class="absolute -right-4 -bottom-8 text-[8rem] md:text-[10rem] text-gray-100 font-oswald font-bold transition-transform group-hover:scale-110 z-0 leading-none tracking-tighter select-none"
-            aria-hidden="true"
+      {
+        projects.map((project, i) => (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`reveal block bg-white text-gray-900 p-6 md:p-8 border-4 border-white relative overflow-hidden group transition-transform hover:-translate-y-2 shadow-xl flex flex-col justify-between ${project.span}`}
+            style={`--delay: ${i * 0.1}s`}
           >
-            {project.id}
-          </div>
-
-          <div class="relative z-10">
-            <span class={`inline-block px-2 py-1 ${project.badgeColor} text-white text-[8px] md:text-[10px] font-bold uppercase tracking-wider mb-4`}>
-              {project.badge}
-            </span>
-            <h3 class="font-oswald text-3xl md:text-4xl mb-3 md:mb-4 tracking-tight uppercase">
-              {project.name}.
-            </h3>
-            <p class="text-xs md:text-sm font-medium leading-relaxed text-gray-600">
-              {project.description}
-            </p>
-          </div>
-
-          <div class="mt-6 pt-4 border-t-2 border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10">
-            <div class="flex flex-wrap gap-2 font-mono text-[9px] md:text-[10px] font-bold">
-              {project.tags.map(tag => (
-                <span class="bg-gray-100 px-2 py-1">{tag}</span>
-              ))}
+            <div
+              class="absolute -right-4 -bottom-8 text-[8rem] md:text-[10rem] text-gray-100 font-oswald font-bold transition-transform group-hover:scale-110 z-0 leading-none tracking-tighter select-none"
+              aria-hidden="true"
+            >
+              {project.id}
             </div>
-            <div class={`flex items-center gap-1.5 font-oswald text-[10px] md:text-xs uppercase tracking-widest font-bold ${project.accent} transition-colors`}>
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
-              </svg>
-              VIEW REPO
+
+            <div class="relative z-10">
+              <span
+                class={`inline-block px-2 py-1 ${project.badgeColor} text-white text-[8px] md:text-[10px] font-bold uppercase tracking-wider mb-4`}
+              >
+                {project.badge}
+              </span>
+              <h3 class="font-oswald text-3xl md:text-4xl mb-3 md:mb-4 tracking-tight uppercase">
+                {project.name}.
+              </h3>
+              <p class="text-xs md:text-sm font-medium leading-relaxed text-gray-600">
+                {project.description}
+              </p>
             </div>
-          </div>
-        </a>
-      ))}
-    </div>
 
-    <div class="mt-16 md:mt-24 flex justify-center reveal">
-      <a
-        href="https://github.com/pavelc4"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group flex items-center gap-4 border-2 border-white/20 px-8 py-4 font-oswald uppercase tracking-widest text-sm hover:border-white transition-colors"
-      >
-        <span>More on GitHub</span>
-        <span class="transition-transform group-hover:translate-x-1">↗</span>
-      </a>
+            <div class="mt-6 pt-4 border-t-2 border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10">
+              <div class="flex flex-wrap gap-2 font-mono text-[9px] md:text-[10px] font-bold">
+                {project.tags.map((tag) => (
+                  <span class="bg-gray-100 px-2 py-1">{tag}</span>
+                ))}
+              </div>
+              <div
+                class={`flex items-center gap-1.5 font-oswald text-[10px] md:text-xs uppercase tracking-widest font-bold ${project.accent} transition-colors`}
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                VIEW REPO
+              </div>
+            </div>
+          </a>
+        ))
+      }
     </div>
-
   </div>
 </section>
