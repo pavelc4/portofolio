@@ -1,0 +1,238 @@
+---
+// src/components/PetTerrarium.astro
+---
+
+<div
+    class="mt-8 border border-gray-200 p-2 group hover:border-ryo-blue transition-colors bg-white reveal"
+>
+    <p
+        class="font-mono text-[9px] md:text-[10px] text-gray-400 uppercase tracking-widest mb-2 px-1"
+    >
+        Pet Terrarium
+    </p>
+
+    <pet-terrarium>
+        <div
+            id="pet-terrarium-container"
+            class="relative overflow-hidden bg-[#2D2D2D] h-48 md:h-64 w-full rounded"
+            style="background-image: url('/pets/background_castle.png'); background-size: cover; background-position: bottom; image-rendering: pixelated; touch-action: none;"
+        >
+            <div
+                class="pet-container group"
+                data-speed="40"
+                data-direction="-1"
+            >
+                <div class="speech-bubble">Yip yip!</div>
+                <span class="pet-name">agus kopo</span>
+                <img
+                    src="/pets/dog_walk.gif"
+                    class="pixelated face-left"
+                    alt="Dog"
+                    draggable="false"
+                />
+            </div>
+            <div class="pet-container group" data-speed="25" data-direction="1">
+                <div class="speech-bubble">Snip snap!</div>
+                <span class="pet-name">feris</span>
+                <img
+                    src="/pets/crab_walk.gif"
+                    class="pixelated face-right"
+                    alt="Crab"
+                    draggable="false"
+                />
+            </div>
+            <div
+                class="pet-container group"
+                data-speed="15"
+                data-direction="-1"
+            >
+                <div class="speech-bubble">...</div>
+                <span class="pet-name opacity-0">totoro</span>
+                <img
+                    src="/pets/totoro_walk.gif"
+                    class="pixelated face-left"
+                    alt="Totoro"
+                    draggable="false"
+                />
+            </div>
+            <div class="pet-container group" data-speed="35" data-direction="1">
+                <div class="speech-bubble">Ring-ding-ding!</div>
+                <span class="pet-name">yaya kopiling</span>
+                <img
+                    src="/pets/fox_walk.gif"
+                    class="pixelated face-right"
+                    alt="Fox"
+                    draggable="false"
+                />
+            </div>
+        </div>
+    </pet-terrarium>
+</div>
+
+<script>
+    class PetTerrariumComponent extends HTMLElement {
+        constructor() {
+            super();
+            this.animate = this.animate.bind(this);
+            this.state = [];
+            this.rafId = null;
+            this.terrariumElement = null;
+            this.lastTime = 0;
+        }
+
+        connectedCallback() {
+            this.terrariumElement = this.querySelector(
+                "#pet-terrarium-container",
+            );
+            if (!this.terrariumElement) return;
+
+            const pets = this.querySelectorAll(".pet-container");
+
+            pets.forEach((pet, index) => {
+                const speedAttr = pet.getAttribute("data-speed");
+                const dirAttr = pet.getAttribute("data-direction");
+                const speed = parseFloat(speedAttr || "25");
+                let dir = parseInt(dirAttr || "1");
+
+                // Random start position within safe bounds
+                let startWidth = this.terrariumElement.clientWidth || 400; // fallback just in case
+                let x = Math.random() * (startWidth - 60);
+
+                const img = pet.querySelector("img");
+                if (!img) return;
+
+                this.state[index] = {
+                    el: pet,
+                    x: x,
+                    y: 0,
+                    speed: speed,
+                    dir: dir,
+                    isDragging: false,
+                    isYapping: false,
+                    img: img,
+                };
+
+                pet.style.left = `${x}px`;
+
+                let startDragX = 0;
+                let wasDragged = false;
+
+                pet.addEventListener("pointerdown", (e) => {
+                    this.state[index].isDragging = true;
+                    wasDragged = false;
+                    startDragX = e.clientX;
+                    pet.classList.add("dragging");
+                    pet.setPointerCapture(e.pointerId);
+                });
+
+                pet.addEventListener("pointermove", (e) => {
+                    if (!this.state[index].isDragging) return;
+
+                    if (Math.abs(e.clientX - startDragX) > 3) wasDragged = true;
+
+                    const rect = this.terrariumElement.getBoundingClientRect();
+                    let newX = e.clientX - rect.left - pet.clientWidth / 2;
+                    let newY = rect.bottom - e.clientY - pet.clientHeight / 2;
+
+                    newX = Math.max(-50, Math.min(newX, rect.width + 50));
+
+                    this.state[index].x = newX;
+
+                    pet.style.left = `${newX}px`;
+                    pet.style.bottom = `${newY}px`;
+
+                    if (e.movementX > 0) {
+                        this.state[index].dir = 1;
+                    } else if (e.movementX < 0) {
+                        this.state[index].dir = -1;
+                    }
+
+                    this.updateFace(this.state[index]);
+                });
+
+                pet.addEventListener("pointerup", (e) => {
+                    this.state[index].isDragging = false;
+                    pet.classList.remove("dragging");
+                    pet.releasePointerCapture(e.pointerId);
+                    pet.style.bottom = "12%";
+
+                    if (!wasDragged) {
+                        this.yap(index);
+                    }
+                });
+            });
+
+            this.lastTime = performance.now();
+            this.rafId = requestAnimationFrame(this.animate);
+        }
+
+        disconnectedCallback() {
+            if (this.rafId) {
+                cancelAnimationFrame(this.rafId);
+            }
+        }
+
+        updateFace(petState) {
+            if (
+                petState.dir === 1 &&
+                !petState.img.classList.contains("face-right")
+            ) {
+                petState.img.className = "pixelated face-right";
+            } else if (
+                petState.dir === -1 &&
+                !petState.img.classList.contains("face-left")
+            ) {
+                petState.img.className = "pixelated face-left";
+            }
+        }
+
+        yap(index) {
+            const petState = this.state[index];
+            if (!petState || petState.isYapping) return;
+
+            petState.isYapping = true;
+            petState.el.classList.add("yapping");
+
+            setTimeout(() => {
+                petState.el.classList.remove("yapping");
+                petState.isYapping = false;
+            }, 2500);
+        }
+
+        animate(time) {
+            if (!this.terrariumElement) return;
+
+            const dt = (time - this.lastTime) / 1000;
+            this.lastTime = time;
+
+            // Failsafe dt constraint to prevent huge jumps
+            const safeDt = Math.min(dt, 0.1);
+
+            // Always fetch actual clientWidth dynamically to handle resizes properly and avoid 0 width jumps
+            const containerWidth =
+                this.terrariumElement.clientWidth || window.innerWidth;
+
+            this.state.forEach((petState) => {
+                if (!petState || petState.isDragging || !petState.el) return;
+
+                petState.x += petState.speed * petState.dir * safeDt;
+
+                // Make sure to bounce or wrap cleanly
+                if (petState.x > containerWidth + 60) {
+                    petState.x = -60;
+                } else if (petState.x < -100) {
+                    petState.x = containerWidth + 50;
+                }
+
+                petState.el.style.left = `${petState.x}px`;
+                this.updateFace(petState);
+            });
+
+            this.rafId = requestAnimationFrame(this.animate);
+        }
+    }
+
+    if (!customElements.get("pet-terrarium")) {
+        customElements.define("pet-terrarium", PetTerrariumComponent);
+    }
+</script>

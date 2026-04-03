@@ -265,3 +265,116 @@ button,
   white-space: nowrap;
   border-width: 0;
 }
+
+
+.pixelated {
+  image-rendering: pixelated;
+  height: 48px;
+}
+
+.pet-name {
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  margin-bottom: 2px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.pet-container:hover .pet-name,
+.pet-container.dragging .pet-name {
+  opacity: 1;
+}
+
+.pet-name.opacity-0 {
+  display: none !important;
+}
+
+.face-left {
+  transform: scaleX(-1);
+}
+
+.face-right {
+  transform: scaleX(1);
+}
+
+.pet-container {
+  position: absolute;
+  bottom: 12%;
+  opacity: 0.95;
+  cursor: grab;
+  transform: translateZ(0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  will-change: left, bottom;
+}
+
+.pet-container.dragging {
+  cursor: grabbing;
+  opacity: 1;
+  z-index: 50;
+}
+
+.speech-bubble {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(0px) scale(0);
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-family: ui-monospace, monospace;
+  color: #333;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  transform-origin: bottom center;
+}
+
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+}
+
+.speech-bubble::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -7px;
+  border-width: 7px;
+  border-style: solid;
+  border-color: #ddd transparent transparent transparent;
+  z-index: -1;
+}
+
+.pet-container.yapping .speech-bubble {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px) scale(1);
+}
+
+.pet-totoro img {
+  height: 64px;
+}
