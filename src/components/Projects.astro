@@ -11,7 +11,7 @@ const projects = [
     tags: ["RUST", "ANDROID OS"],
     github: "https://github.com/pavelc4/auriya",
     accent: "text-orange-500",
-    span: "lg:col-span-1",
+    span: "md:col-span-2 lg:col-span-2",
   },
   {
     id: "02",
@@ -24,7 +24,7 @@ const projects = [
     tags: ["KOTLIN", "ANDROID", "APPS"],
     github: "https://github.com/pavelc4/Rin",
     accent: "text-orange-500",
-    span: "lg:col-span-1",
+    span: "md:col-span-1 lg:col-span-1",
   },
   {
     id: "03",
@@ -37,7 +37,7 @@ const projects = [
     tags: ["GO", "MTProto", "STREAMING", "CONCURRENCY"],
     github: "https://github.com/pavelc4/aether-bot",
     accent: "text-sky-500",
-    span: "lg:col-span-1",
+    span: "md:col-span-1 lg:col-span-1 lg:row-span-2",
   },
   {
     id: "04",
@@ -50,7 +50,7 @@ const projects = [
     tags: ["KOTLIN", "ANDROID", "PERFORMANCE"],
     github: "https://github.com/Xtra-Manager-Software/Xtra-Kernel-Manager.git",
     accent: "text-purple-600",
-    span: "lg:col-span-1",
+    span: "md:col-span-2 lg:col-span-2",
   },
 ];
 ---
@@ -105,14 +105,14 @@ const projects = [
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
       {
         projects.map((project, i) => (
           <a
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            class={`reveal block bg-white text-gray-900 p-6 md:p-8 border-4 border-white relative overflow-hidden group transition-transform hover:-translate-y-2 shadow-xl flex flex-col justify-between ${project.span}`}
+            class="reveal block bg-white h-full text-gray-900 p-6 md:p-8 border-4 border-white rounded-3xl relative overflow-hidden group transition-transform hover:-translate-y-2 shadow-xl flex flex-col justify-between"
             style={`--delay: ${i * 0.1}s`}
           >
             <div
@@ -143,7 +143,7 @@ const projects = [
                 ))}
               </div>
               <div
-                class={`flex items-center gap-1.5 font-oswald text-[10px] md:text-xs uppercase tracking-widest font-bold ${project.accent} transition-colors`}
+                class={`flex items-center whitespace-nowrap min-w-max gap-1.5 font-oswald text-[10px] md:text-xs uppercase tracking-widest font-bold ${project.accent} transition-colors`}
               >
                 <svg
                   class="w-4 h-4"
