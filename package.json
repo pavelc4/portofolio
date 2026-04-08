@@ -26,6 +26,6 @@
     "@iconify-json/devicon": "^1.2.62",
     "@iconify-json/logos": "^1.2.11",
     "@iconify-json/skill-icons": "^1.2.4",
-    "@playform/compress": "^0.2.2"
+    "@playform/compress": "^0.2.3"
   }
 }
