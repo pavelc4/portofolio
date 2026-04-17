@@ -20,7 +20,7 @@
     "astro-icon": "^1.1.5",
     "svelte": "^5.55.1",
     "tailwindcss": "^4.2.2",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
     "@iconify-json/devicon": "^1.2.62",
