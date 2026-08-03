@@ -113,14 +113,9 @@ const projects = [
             projects.map((proj, idx) => (
               <div class={`bg-white border-2 border-gray-950 ${proj.borderTop} rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[14px_14px_0px_0px_rgba(0,0,0,1)] ${proj.tilt} hover:rotate-0 transition-transform duration-300 flex flex-col justify-between relative overflow-visible group ${proj.span}`}>
                 
-                {/* ANIMATED PET GIF FOR RUST PROJECT: CRAB WALKING WITH INTERACTIVE SPEECH BUBBLE */}
+                {/* ANIMATED PET GIF FOR RUST PROJECT: CRAB WALKING */}
                 {idx === 0 && (
-                  <div class="absolute -top-7 left-8 z-30 flex items-center gap-1.5 group/crab cursor-pointer">
-                    <img src="/portofolio/pets/crab_walk.gif" alt="Rust Crab Walking" class="w-8 h-8 group-hover/crab:scale-125 transition-transform" />
-                    <span class="font-mono text-[8.5px] font-black uppercase bg-[#FF4D8D] text-white border border-gray-950 px-2 py-0.5 rounded-md shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] opacity-90 group-hover/crab:opacity-100 transition-opacity">
-                      FERRIS RUST CRAB! 🦀
-                    </span>
-                  </div>
+                  <img src="/portofolio/pets/crab_walk.gif" alt="Rust Crab Walking" class="w-8 h-8 absolute -top-5 left-8 z-30 hover:scale-125 transition-transform cursor-pointer" />
                 )}
 
                 <!-- HALFTONE DOT MATRIX ACCENT -->
