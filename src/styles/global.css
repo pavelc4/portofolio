@@ -110,3 +110,26 @@
 .marquee-row:hover .animate-marquee-right {
   animation-play-state: paused !important;
 }
+
+/* ANIMATED WALKING PETS ANIMATIONS */
+@keyframes walk-across {
+  0% { transform: translateX(-10%); }
+  50% { transform: translateX(100vw); }
+  50.01% { transform: translateX(100vw) scaleX(-1); }
+  100% { transform: translateX(-10%) scaleX(-1); }
+}
+
+@keyframes walk-reverse {
+  0% { transform: translateX(100vw) scaleX(-1); }
+  50% { transform: translateX(-10%) scaleX(-1); }
+  50.01% { transform: translateX(-10%); }
+  100% { transform: translateX(100vw); }
+}
+
+.animate-walk-across {
+  animation: walk-across 35s linear infinite;
+}
+
+.animate-walk-reverse {
+  animation: walk-reverse 40s linear infinite;
+}
