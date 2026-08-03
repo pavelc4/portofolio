@@ -133,18 +133,6 @@ const qrDataUrl = await QRCode.toDataURL("https://github.com/pavelc4", { margin:
           </div>
         </div>
 
-        <!-- RETRO AUTO-PLAY GAME CARD (below commits badge) -->
-        <div class="bg-[#0E1116] text-white border-2 border-gray-950 rounded-xl p-2.5 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-          <div class="flex items-center justify-between mb-1.5 px-0.5">
-            <div class="flex items-center gap-1.5">
-              <span class="w-2 h-2 bg-[#FF5500] border border-gray-950 rounded-full animate-ping"></span>
-              <span class="font-mono text-[8px] font-black uppercase text-gray-200">P4-GAME // AUTO-PLAY</span>
-            </div>
-            <span class="font-mono text-[8px] font-black bg-[#FACC15] text-gray-950 px-1.5 py-0.5 rounded">8-BIT</span>
-          </div>
-          <canvas id="p4-game" class="w-full h-[90px] block" width="280" height="90"></canvas>
-        </div>
-
       </div>
 
 
@@ -246,7 +234,5 @@ const qrDataUrl = await QRCode.toDataURL("https://github.com/pavelc4", { margin:
 
 <script>
   import { initHeroRotator } from "../scripts/hero-rotator";
-  import { initMarioGame } from "../scripts/mario-run";
   initHeroRotator();
-  initMarioGame("p4-game");
 </script>
