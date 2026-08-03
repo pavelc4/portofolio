@@ -38,3 +38,36 @@ export function initNeoBrutalistInteractions(): void {
     });
   });
 }
+
+export function initDynamicScrollbar(): void {
+  const sectionColors: Record<string, string> = {
+    hero: "#FACC15",     // Yellow
+    about: "#FF4D8D",    // Hot Pink
+    projects: "#0038FF", // Electric Blue
+    skills: "#22C55E",   // Emerald Green
+    lifelogs: "#FF5500", // Electric Orange
+    footer: "#FF5500"    // Electric Orange
+  };
+
+  const sections = Object.keys(sectionColors)
+    .map((id) => document.getElementById(id))
+    .filter((el): el is HTMLElement => el !== null);
+
+  if (!sections.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const color = sectionColors[entry.target.id];
+          if (color) {
+            document.documentElement.style.setProperty("--scrollbar-thumb-color", color);
+          }
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  sections.forEach((sec) => observer.observe(sec));
+}

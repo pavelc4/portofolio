@@ -19,10 +19,15 @@
   }
 }
 
-/* FULL NEO-BRUTALIST Y2K CUSTOM SCROLLBAR */
+/* FULL NEO-BRUTALIST Y2K CUSTOM SCROLLBAR WITH DYNAMIC SECTION COLORS */
+:root {
+  --scrollbar-thumb-color: #FACC15;
+}
+
 html {
+  scroll-behavior: smooth;
   scrollbar-width: auto;
-  scrollbar-color: #FACC15 #FAFAFA;
+  scrollbar-color: var(--scrollbar-thumb-color, #FACC15) #FAFAFA;
 }
 
 ::-webkit-scrollbar {
@@ -36,14 +41,15 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #FACC15;
+  background: var(--scrollbar-thumb-color, #FACC15);
   border: 2px solid #09090B;
   border-radius: 4px;
   box-shadow: inset -2px -2px 0px 0px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.4s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF4D8D;
+  filter: brightness(1.15) contrast(1.1);
 }
 
 ::-webkit-scrollbar-thumb:active {

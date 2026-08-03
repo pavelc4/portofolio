@@ -35,12 +35,14 @@ const { title = 'pavelc4' } = Astro.props;
     </main>
 
     <script>
-      import { initNeoBrutalistInteractions, initScrollReveal } from "../scripts/neo-brutalist";
+      import { initNeoBrutalistInteractions, initScrollReveal, initDynamicScrollbar } from "../scripts/neo-brutalist";
 
       initNeoBrutalistInteractions();
       initScrollReveal();
+      initDynamicScrollbar();
       document.addEventListener("astro:page-load", initNeoBrutalistInteractions);
       document.addEventListener("astro:page-load", initScrollReveal);
+      document.addEventListener("astro:page-load", initDynamicScrollbar);
     </script>
   </body>
 </html>
