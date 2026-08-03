@@ -1,6 +1,6 @@
 ---
 import QRCode from "qrcode";
-import anuImg from "../assets/pets/anu.jpg";
+import anuWebp from "../assets/pets/anu.webp";
 import dogWalkGif from "../assets/pets/dog_walk.gif";
 
 const qrDataUrl = await QRCode.toDataURL("https://github.com/pavelc4", { margin: 1, width: 140 });
@@ -50,7 +50,7 @@ const qrDataUrl = await QRCode.toDataURL("https://github.com/pavelc4", { margin:
         <div class="relative w-full h-[220px] sm:h-[260px] md:h-[270px] bg-gray-950 rounded-2xl p-2.5 border-3 border-gray-950 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group">
           
           <!-- ANIMATED PET GIF: WALKING DOG STANDING ON TOP OF CARD LEDGE -->
-          <img src={dogWalkGif.src} alt="Dog Walking" class="w-8 h-8 absolute -top-[44px] left-10 z-50 hover:scale-125 transition-transform cursor-pointer drop-shadow-md" />
+          <img src={dogWalkGif.src} alt="Dog Walking" width="32" height="32" class="w-8 h-8 absolute -top-[44px] left-10 z-50 hover:scale-125 transition-transform cursor-pointer drop-shadow-md" />
 
           <!-- HALFTONE ACCENT INSIDE MEDIA CARD -->
           <div class="absolute right-2 top-2 w-20 h-20 halftone-dots opacity-30 z-10 pointer-events-none"></div>
@@ -73,10 +73,13 @@ const qrDataUrl = await QRCode.toDataURL("https://github.com/pavelc4", { margin:
           <!-- KOTAK INNER IMAGE WRAPPER -->
           <div class="relative w-full h-full rounded-xl overflow-hidden bg-gray-900 flex items-center justify-center">
             <img
-              src={anuImg.src}
+              src={anuWebp.src}
               alt="Dimas Dwi Ariyanto (pavelc4) Profile"
               loading="eager"
+              fetchpriority="high"
               decoding="async"
+              width="400"
+              height="400"
               class="w-full h-full object-cover object-center grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none"></div>
