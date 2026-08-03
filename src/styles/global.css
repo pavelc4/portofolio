@@ -6,6 +6,7 @@
     color: #111111;
     font-family: 'Space Mono', monospace;
     overflow-x: hidden;
+    cursor: crosshair;
   }
 }
 
@@ -125,22 +126,27 @@
   border-color: #111111 !important;
 }
 
-/* GLITCH RETRO ANIMATION */
-@keyframes glitch-anim {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
+/* GLITCH & NEON PULSE TEXT HOVER EFFECT */
+@keyframes neon-pulse-glitch {
+  0% { text-shadow: 3px 3px 0px #FF4D8D, -2px -2px 0px #FACC15; transform: translate(0); }
+  25% { text-shadow: -3px 2px 0px #0038FF, 3px -2px 0px #FF4D8D; transform: translate(-2px, 1px); }
+  50% { text-shadow: 3px -3px 0px #FACC15, -3px 3px 0px #22C55E; transform: translate(2px, -1px); }
+  75% { text-shadow: -2px -3px 0px #FF5500, 2px 3px 0px #0038FF; transform: translate(-1px, 2px); }
+  100% { text-shadow: 3px 3px 0px #FF4D8D, -2px -2px 0px #FACC15; transform: translate(0); }
 }
 
-.neo-glitch:hover {
-  animation: glitch-anim 0.2s steps(2) infinite;
+.neo-neon-glitch:hover {
+  animation: neon-pulse-glitch 0.25s steps(2) infinite;
+  cursor: pointer;
 }
 
 /* RIGID STAGGER REVEAL INITIAL STATE */
 .rigid-reveal {
   opacity: 0;
   transform: translateY(24px) scale(0.97);
+}
+
+/* INTERACTIVE 3D SHADOW PARALLAX CONTAINER */
+.neo-parallax-card {
+  transition: box-shadow 0.15s ease-out, transform 0.15s ease-out;
 }

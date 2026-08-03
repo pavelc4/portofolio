@@ -17,14 +17,58 @@ const { title = 'pavelc4' } = Astro.props;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Caveat:wght@700&display=swap" rel="stylesheet">
   </head>
-  <body class="relative">
+  <body class="relative bg-[#FAFAFA] text-gray-950 overflow-x-hidden">
+    
+    <!-- RETRO PIXEL TARGET BOX CURSOR TRAILER -->
     <div 
-      class="fixed inset-0 z-50 pointer-events-none opacity-[0.04]"
+      id="neo-cursor-target" 
+      class="fixed top-0 left-0 w-6 h-6 border-2 border-gray-950 bg-[#FACC15] pointer-events-none z-50 transition-transform duration-75 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center font-mono text-[8px] font-black text-gray-950 select-none opacity-0 md:opacity-100"
+      aria-hidden="true"
+    >┼</div>
+
+    <div 
+      class="fixed inset-0 z-40 pointer-events-none opacity-[0.04]"
       style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E&quot;);"
     ></div>
+    
     <Navbar />
-    <main class="w-full">
+    
+    <main class="w-full relative">
       <slot />
     </main>
+
+    <script>
+      function initNeoBrutalistInteractions() {
+        const targetBox = document.getElementById("neo-cursor-target");
+        
+        // 1. RETRO TARGET BOX CURSOR TRAILER
+        if (targetBox && window.innerWidth >= 768) {
+          window.addEventListener("mousemove", (e) => {
+            targetBox.style.transform = `translate3d(${e.clientX - 12}px, ${e.clientY - 12}px, 0)`;
+          });
+        }
+
+        // 2. INTERACTIVE 3D SHADOW MOUSE PARALLAX ON CARDS
+        const cards = document.querySelectorAll<HTMLElement>(".neo-parallax-card");
+        cards.forEach((card) => {
+          card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            
+            const shadowX = Math.round(12 + x * 10);
+            const shadowY = Math.round(12 + y * 10);
+            card.style.boxShadow = `${shadowX}px ${shadowY}px 0px 0px rgba(0,0,0,0.95)`;
+          });
+
+          card.addEventListener("mouseleave", () => {
+            card.style.boxShadow = "12px 12px 0px 0px rgba(0,0,0,0.95)";
+          });
+        });
+      }
+
+      initNeoBrutalistInteractions();
+      document.addEventListener("astro:page-load", initNeoBrutalistInteractions);
+    </script>
   </body>
 </html>
