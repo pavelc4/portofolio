@@ -201,10 +201,10 @@ export function initDinoRunner(): void {
       }
     }
 
-    ctx.font = "bold 16px monospace";
-    ctx.fillStyle = isDark ? "#D0D0D0" : "#535353";
+    ctx.font = 'bold 13px "Space Mono", monospace';
+    ctx.fillStyle = isDark ? "#FFFFFF" : "#111111";
     ctx.textAlign = "right";
-    ctx.fillText(`HI ${String(highScore).padStart(5, "0")}  ${String(score).padStart(5, "0")}`, width - 12, 20);
+    ctx.fillText(`HI ${String(highScore).padStart(5, "0")}  ${String(score).padStart(5, "0")}`, width - 16, 22);
 
     update();
     requestAnimationFrame(draw);
