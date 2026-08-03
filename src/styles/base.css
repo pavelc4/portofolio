@@ -19,17 +19,38 @@
   }
 }
 
-/* Custom Scrollbar */
+/* FULL NEO-BRUTALIST Y2K CUSTOM SCROLLBAR */
+html {
+  scrollbar-width: auto;
+  scrollbar-color: #FACC15 #FAFAFA;
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 14px;
+  height: 14px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #FAFAFA;
+  background: #F4F2EB;
+  border-left: 2px solid #09090B;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #111111;
-  border-radius: 0px;
+  background: #FACC15;
+  border: 2px solid #09090B;
+  border-radius: 4px;
+  box-shadow: inset -2px -2px 0px 0px rgba(0, 0, 0, 0.3);
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #0038FF;
+  background: #FF4D8D;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #FF5500;
+}
+
+::-webkit-scrollbar-corner {
+  background: #F4F2EB;
+  border: 2px solid #09090B;
 }
