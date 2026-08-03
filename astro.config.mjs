@@ -7,7 +7,7 @@ import icon from 'astro-icon';
 
 export default defineConfig({
   site: 'https://pavelc4.github.io',
-  base: '/',
+  base: '/portofolio',
   integrations: [svelte(), sitemap(), icon()],
   vite: {
     plugins: [tailwindcss()],
