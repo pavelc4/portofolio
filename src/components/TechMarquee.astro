@@ -2,115 +2,128 @@
 import { Icon } from 'astro-icon/components';
 
 const stackRow1 = [
-    { name: "Rust", icon: "skill-icons:rust", tag: "SYSTEM" },
+    { name: "Golang", icon: "skill-icons:golang", tag: "PRIMARY" },
+    { name: "TypeScript", icon: "skill-icons:typescript", tag: "PRIMARY" },
+    { name: "Rust", icon: "skill-icons:rust", tag: "SIDE" },
     { name: "C / C++", icon: "skill-icons:cpp", tag: "CORE" },
-    { name: "Golang", icon: "skill-icons:golang", tag: "BACKEND" },
     { name: "Docker", icon: "skill-icons:docker", tag: "INFRA" },
     { name: "PostgreSQL", icon: "skill-icons:postgresql-dark", tag: "DATABASE" },
     { name: "MongoDB", icon: "skill-icons:mongodb", tag: "NOSQL" },
-    { name: "SQL", icon: "skill-icons:mysql-dark", tag: "DATABASE" },
     { name: "Linux", icon: "skill-icons:linux-dark", tag: "OS" },
+    { name: "Arch Linux", icon: "skill-icons:arch-dark", tag: "SYS ADMIN" },
     { name: "AWS", icon: "skill-icons:aws-dark", tag: "CLOUD" },
-    { name: "Cloudflare", icon: "skill-icons:cloudflare-dark", tag: "CDN" },
-    { name: "GitHub", icon: "skill-icons:github-dark", tag: "VCS" },
 ];
 
 const stackRow2 = [
-    { name: "TypeScript", icon: "skill-icons:typescript", tag: "LANG" },
     { name: "Bun", icon: "skill-icons:bun-dark", tag: "RUNTIME" },
+    { name: "Node.js", icon: "skill-icons:nodejs-dark", tag: "RUNTIME" },
+    { name: "Next.js", icon: "skill-icons:nextjs-dark", tag: "FRAMEWORK" },
+    { name: "Astro", icon: "skill-icons:astro", tag: "SSG" },
     { name: "Elysia.js", icon: "skill-icons:elysia-dark", tag: "FRAMEWORK" },
     { name: "Hono.js", icon: "logos:hono", tag: "EDGE FW" },
-    { name: "Svelte", icon: "skill-icons:svelte", tag: "FRONTEND" },
-    { name: "Astro", icon: "skill-icons:astro", tag: "SSG" },
-    { name: "Kotlin", icon: "skill-icons:kotlin-dark", tag: "MOBILE" },
-    { name: "YAML", icon: "devicon:yaml", tag: "CONFIG" },
-    { name: "TOML", icon: "logos:toml", tag: "CONFIG" },
+    { name: "Tailwind", icon: "skill-icons:tailwindcss-dark", tag: "CSS" },
+    { name: "Git & GitHub", icon: "skill-icons:github-dark", tag: "VCS" },
 ];
 
-const row1 = [...stackRow1, ...stackRow1];
-const row2 = [...stackRow2, ...stackRow2];
+const row1 = [...stackRow1, ...stackRow1, ...stackRow1];
+const row2 = [...stackRow2, ...stackRow2, ...stackRow2];
 ---
 
 <section
     id="skills"
-    class="py-16 md:py-24 bg-bocchi-cream border-y-4 border-gray-900 overflow-hidden relative"
+    class="py-16 md:py-24 bg-[#FAFAFA] border-t-2 border-gray-950 overflow-hidden relative grid-blueprint-bg"
 >
-    <div
-        class="max-w-5xl mx-auto text-center px-6 md:px-12 mb-8 md:mb-12 reveal"
-    >
-        <p
-            class="font-jp text-gray-500 font-bold tracking-widest text-xs md:text-sm mb-2 md:mb-4"
-        >
-            きた いくよ • Arsenal
-        </p>
-        <h2
-            class="font-oswald text-4xl md:text-6xl lg:text-7xl text-red-600 uppercase tracking-tighter"
-        >
-            Tech Stack.
-        </h2>
-    </div>
+    <div class="max-w-[98%] xl:max-w-[1500px] 2xl:max-w-[1700px] mx-auto px-2 sm:px-6 relative z-10">
+        
+        <!-- MAIN POSTER FRAME CONTAINER (MATCHING HERO & ABOUT POSTER CARD STYLE) -->
+        <div class="relative w-full bg-white border-2 border-gray-950 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.95)] p-5 sm:p-8 md:p-12 flex flex-col justify-between overflow-hidden noise-overlay select-none">
+            
+            <!-- TOP HEADER GRID METADATA BAR -->
+            <div class="w-full pb-4 sm:pb-6 border-b-2 border-gray-950 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 font-mono text-xs uppercase font-black text-gray-950">
+                <div class="flex items-center gap-3">
+                    <span class="bg-gray-950 text-white px-2.5 py-1 border border-gray-950 font-mono text-xs font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                        003 // TECH ARSENAL
+                    </span>
+                </div>
 
-    <div class="w-full overflow-hidden flex whitespace-nowrap mask-edges py-2">
-        <div
-            class="flex items-center gap-4 md:gap-6 pr-4 md:pr-6 w-max animate-marquee"
-            onmouseenter="this.style.animationPlayState='paused'"
-            onmouseleave="this.style.animationPlayState='running'"
-        >
-            {
-                row1.map((item) => (
-                    <div class="flex-shrink-0 flex items-center gap-2 md:gap-4 bg-white border-2 border-gray-900 px-4 md:px-6 py-2 md:py-3 shadow-brutalist-sm md:shadow-brutalist transition-transform hover:-translate-y-1 cursor-default group">
-                        <Icon 
-                            name={item.icon} 
-                            class="w-5 h-5 md:w-8 md:h-8 grayscale group-hover:grayscale-0 transition-all" 
-                        />
-                        <span class="font-oswald text-lg md:text-2xl font-bold uppercase tracking-tight text-gray-900">
-                            {item.name}
-                        </span>
-                        <span class="font-mono text-[8px] md:text-[10px] text-bocchi-pink font-bold border-l-2 border-gray-900 pl-2 md:pl-4 ml-1 md:ml-2 opacity-50 group-hover:opacity-100">
-                            {item.tag}
-                        </span>
+                <div class="text-left sm:text-right">
+                    <span class="bg-[#FACC15] text-gray-950 border border-gray-950 px-2.5 py-1 text-[9.5px] font-black uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rotate-1 inline-block">
+                        LANGUAGES & RUNTIMES
+                    </span>
+                </div>
+            </div>
+
+            <!-- TITLE & MARQUEE SECTION -->
+            <div class="w-full my-6 sm:my-10 space-y-8">
+                
+                <!-- SECTION TITLE -->
+                <div>
+                    <h2 class="font-oswald text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-tight text-gray-950 leading-none">
+                        TECH STACK<span class="text-[#0038FF]">.</span>
+                    </h2>
+                    <p class="font-mono text-xs sm:text-sm text-gray-600 font-medium mt-2">
+                        Hover pada icon untuk pause animasi & melihat warna asli stack.
+                    </p>
+                </div>
+
+                <!-- MARQUEE STREAMS CONTAINER WITH HOVER PAUSE -->
+                <div class="space-y-4 py-2 overflow-hidden border-2 border-gray-950 bg-[#F4F2EB] p-4 sm:p-6 rounded-3xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                    
+                    <!-- MARQUEE ROW 1 (SCROLLING LEFT -> HOVER TO PAUSE) -->
+                    <div class="w-full overflow-hidden flex whitespace-nowrap py-1 marquee-row">
+                        <div class="flex items-center gap-4 md:gap-6 pr-4 md:pr-6 w-max animate-marquee-left">
+                            {
+                                row1.map((item) => (
+                                    <div class="flex-shrink-0 flex items-center gap-3 bg-white border-2 border-gray-950 px-5 py-3 rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:border-[#0038FF] hover:shadow-[6px_6px_0px_0px_rgba(0,56,255,1)] hover:-translate-y-1 transition-all cursor-pointer group">
+                                        <Icon 
+                                            name={item.icon} 
+                                            class="w-6 h-6 md:w-8 md:h-8 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300" 
+                                        />
+                                        <span class="font-oswald text-xl md:text-2xl font-bold uppercase tracking-tight text-gray-950 group-hover:text-[#0038FF] transition-colors">
+                                            {item.name}
+                                        </span>
+                                        <span class="font-mono text-[9px] text-[#FF5500] font-extrabold border-l-2 border-gray-950 pl-3 ml-2">
+                                            {item.tag}
+                                        </span>
+                                    </div>
+                                ))
+                            }
+                        </div>
                     </div>
-                ))
-            }
-        </div>
-    </div>
 
-    <div
-        class="w-full overflow-hidden flex whitespace-nowrap mask-edges py-2 mt-1 md:mt-2"
-    >
-        <div
-            class="flex items-center gap-4 md:gap-6 pr-4 md:pr-6 w-max animate-marquee-reverse"
-            onmouseenter="this.style.animationPlayState='paused'"
-            onmouseleave="this.style.animationPlayState='running'"
-        >
-            {
-                row2.map((item) => (
-                    <div
-                        class="flex-shrink-0 flex items-center gap-2 md:gap-4 bg-[#1a1a1a] border-2 border-gray-900 px-4 md:px-6 py-2 md:py-3 transition-transform hover:-translate-y-1 cursor-default group"
-                        style="box-shadow: 4px 4px 0 0 #FF4D8D;"
-                    >
-                        <Icon 
-                            name={item.icon} 
-                            class="w-5 h-5 md:w-8 md:h-8 grayscale group-hover:grayscale-0 transition-all" 
-                        />
-                        <span class="font-oswald text-lg md:text-2xl font-bold uppercase tracking-tight text-white">
-                            {item.name}
-                        </span>
-                        <span class="font-mono text-[8px] md:text-[10px] text-gray-400 font-bold border-l-2 border-gray-700 pl-2 md:pl-4 ml-1 md:ml-2 group-hover:text-white transition-colors">
-                            {item.tag}
-                        </span>
+                    <!-- MARQUEE ROW 2 (SCROLLING RIGHT -> HOVER TO PAUSE) -->
+                    <div class="w-full overflow-hidden flex whitespace-nowrap py-1 marquee-row">
+                        <div class="flex items-center gap-4 md:gap-6 pr-4 md:pr-6 w-max animate-marquee-right">
+                            {
+                                row2.map((item) => (
+                                    <div class="flex-shrink-0 flex items-center gap-3 bg-gray-950 border-2 border-gray-950 px-5 py-3 rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:border-[#FF5500] hover:shadow-[6px_6px_0px_0px_rgba(255,85,0,1)] hover:-translate-y-1 transition-all cursor-pointer group">
+                                        <Icon 
+                                            name={item.icon} 
+                                            class="w-6 h-6 md:w-8 md:h-8 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300" 
+                                        />
+                                        <span class="font-oswald text-xl md:text-2xl font-bold uppercase tracking-tight text-white group-hover:text-[#FF5500] transition-colors">
+                                            {item.name}
+                                        </span>
+                                        <span class="font-mono text-[9px] text-[#0038FF] font-extrabold border-l-2 border-gray-700 pl-3 ml-2">
+                                            {item.tag}
+                                        </span>
+                                    </div>
+                                ))
+                            }
+                        </div>
                     </div>
-                ))
-            }
-        </div>
-    </div>
 
-    <div class="mt-8 md:mt-12 flex justify-center relative z-10">
-        <div
-            class="border-2 border-gray-400 px-3 md:px-4 py-1 rounded-full flex gap-3 md:gap-4 text-[10px] md:text-xs font-mono text-gray-500 bg-white/50 backdrop-blur-sm"
-        >
-            <span>WAIFU OF THE DAY: 09 ↗</span>
-            <span>CODE: 9367 ↗</span>
+                </div>
+
+            </div>
+
+            <!-- BOTTOM METADATA BAR -->
+            <div class="w-full pt-4 border-t-2 border-gray-950 flex flex-col sm:flex-row justify-between items-center gap-4 font-mono text-[10px] sm:text-xs font-black uppercase text-gray-950">
+                <span class="bg-gray-950 text-white px-2.5 py-0.5 border border-gray-950">003 // TECH ARSENAL</span>
+                <span>PRIMARY: GOLANG & TYPESCRIPT</span>
+            </div>
+
         </div>
+
     </div>
 </section>

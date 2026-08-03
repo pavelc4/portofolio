@@ -1,165 +1,145 @@
 ---
-import PetTerrarium from "./PetTerrarium.astro";
-
-const education = [
-    {
-        period: "2024 — now",
-        school: "Universitas Widyatama",
-        major: "Informatics Engineering",
-        location: "Bandung, ID",
-    },
-    {
-        period: "2021 — 2024",
-        school: "SMK Prakarya Internasional",
-        major: "Rekayasa Perangkat Lunak",
-        location: "Bandung, ID",
-    },
-];
-
-const facts = [
-    { label: "Focus", value: "Backend Engineer" },
-    { label: "OS", value: "Arch Linux + Hyprland" },
-    { label: "Editor", value: "Vscode + Neovim" },
-    { label: "Status", value: "unemployment Pliss Give me a job " },
-];
+import DinoGame from "./DinoGame.astro";
+import GitHubMatrix from "./GitHubMatrix.astro";
 ---
 
 <section
     id="about"
-    class="py-16 md:py-24 px-6 md:px-12 bg-white border-t-8 border-gray-100 relative"
+    class="py-16 md:py-24 bg-[#FAFAFA] border-t-2 border-gray-950 relative overflow-hidden grid-blueprint-bg"
 >
-    <div
-        class="absolute inset-0 flex justify-center items-center pointer-events-none overflow-hidden"
-        aria-hidden="true"
-    >
-        <span
-            class="font-oswald text-[20vw] leading-none font-bold text-gray-100 select-none whitespace-nowrap"
-            >ABOUT</span
-        >
-    </div>
-
-    <div class="max-w-7xl mx-auto relative z-10">
-        <div class="w-full flex justify-end mb-6 md:mb-8">
-            <p
-                class="font-oswald text-2xl sm:text-4xl opacity-40 leading-none text-ryo-blue"
-                aria-hidden="true"
-            >
-                02 ↗
-            </p>
-        </div>
-
-        <div class="flex flex-col lg:flex-row items-start gap-8 lg:gap-16">
-            <div class="w-full lg:w-1/2 reveal-left">
-                <p
-                    class="text-ryo-blue font-bold tracking-widest uppercase text-xs md:text-sm mb-2"
-                >
-                    星街すいせい — Hi... World~
-                </p>
-                <h2
-                    class="font-oswald text-5xl md:text-7xl lg:text-8xl text-ryo-blue leading-none tracking-tighter mb-6"
-                >
-                    Beginner Backend<br />Developer.
-                </h2>
-
-                <div
-                    class="flex gap-2 font-mono text-[10px] md:text-xs uppercase text-ryo-blue font-bold mb-8 flex-wrap"
-                >
-                    <span
-                        class="border border-ryo-blue/40 px-3 py-1 rounded-full hover:bg-ryo-blue hover:text-white transition-colors cursor-default"
-                    >
-                        University Widyatama
-                    </span>
-                    <span
-                        class="border border-ryo-blue/40 px-3 py-1 rounded-full hover:bg-ryo-blue hover:text-white transition-colors cursor-default"
-                    >
-                        Informatics Engineering
+    <div class="max-w-[98%] xl:max-w-[1500px] 2xl:max-w-[1700px] mx-auto px-2 sm:px-6 relative z-10">
+        
+        <!-- MAIN POSTER FRAME CONTAINER -->
+        <div class="relative w-full bg-white border-2 border-gray-950 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.95)] p-5 sm:p-8 md:p-12 flex flex-col justify-between overflow-hidden noise-overlay select-none">
+            
+            <!-- TOP HEADER GRID METADATA BAR -->
+            <div class="w-full pb-4 sm:pb-6 border-b-2 border-gray-950 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 font-mono text-xs uppercase font-black text-gray-950">
+                <div class="flex items-center gap-3">
+                    <span class="bg-gray-950 text-white px-2.5 py-1 border border-gray-950 font-mono text-xs font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                        SYSTEM // OVERVIEW
                     </span>
                 </div>
 
-                <div class="grid grid-cols-2 gap-3">
-                    {
-                        facts.map((fact) => (
-                            <div class="border border-gray-200 p-3 md:p-4 hover:border-ryo-blue transition-colors group">
-                                <p class="font-mono text-[9px] md:text-[10px] text-gray-400 uppercase tracking-widest mb-1">
-                                    {fact.label}
-                                </p>
-                                <p class="font-oswald text-sm md:text-base font-bold text-gray-900 group-hover:text-ryo-blue transition-colors">
-                                    {fact.value}
-                                </p>
-                            </div>
-                        ))
-                    }
+                <div class="text-left sm:text-right">
+                    <span class="bg-[#FACC15] text-gray-950 border border-gray-950 px-2.5 py-1 text-[9.5px] font-black uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rotate-1 inline-block">
+                        PROFILE & EXPERIMENTS
+                    </span>
                 </div>
-
-                <PetTerrarium />
             </div>
 
-            <div
-                class="w-full lg:w-1/2 space-y-4 md:space-y-6 reveal"
-                style="--delay: 0.1s"
-            >
-                    <p
-                        class="text-base md:text-lg lg:text-xl font-light leading-relaxed text-gray-700"
-                    >
-                        Hi, I'm <strong class="text-ryo-blue font-semibold"
-                            >Dimas Dwi Ariyanto</strong
-                        ><br />
-                        an Informatics Engineering student at Widyatama University
-                        focused on backend engineering. Experienced in building REST
-                        APIs, authentication systems, and designing efficient database
-                        structures.
-                    </p>
+            <!-- COLLAGE: 1 TOP FULL BANNER + MIDDLE DINO & PINK CALLOUT + BOTTOM FULL GITHUB MATRIX -->
+            <div class="w-full my-6 sm:my-10 space-y-6 sm:space-y-8">
+                
+                <!-- TOP FULL-WIDTH HERO BIO BANNER -->
+                <div class="w-full bg-[#F4F2EB] border-2 border-gray-950 border-l-8 border-l-[#FACC15] rounded-3xl p-6 sm:p-10 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[14px_14px_0px_0px_rgba(0,0,0,1)] transition-all relative overflow-hidden group">
+                    
+                    <!-- HALFTONE DOT MATRIX ACCENT -->
+                    <div class="absolute right-4 top-4 w-32 h-32 halftone-dots opacity-20 pointer-events-none"></div>
 
-                    <p
-                        class="text-sm md:text-base font-light leading-relaxed text-gray-600"
-                    >
-                        I’m interested in developing scalable and
-                        high-performance backend systems, with a focus on
-                        performance optimization through caching and effective
-                        concurrency handling. I enjoy building reliable,
-                        efficient services that are ready for real-world use.
-                    </p>
+                    <div class="space-y-4 relative z-10">
+                        
+                        <!-- BIO BADGES -->
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span class="font-mono text-[9px] font-black uppercase tracking-widest bg-black text-white px-2.5 py-0.5 border border-gray-950">
+                                DEVELOPER PROFILE
+                            </span>
+                            <span class="bg-[#FACC15] text-gray-950 font-mono text-[9.5px] font-black uppercase px-3 py-1 border-1.5 border-gray-950 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] -rotate-1">
+                                INFORMATICS STUDENT
+                            </span>
+                        </div>
 
-                    <blockquote
-                        class="border-l-4 border-ryo-blue bg-blue-50 p-4 md:p-6 mt-6"
-                    >
-                        <p
-                            class="font-mono text-xs md:text-sm text-blue-900 leading-relaxed"
-                        >
-                            "Kenok Siko"
+                        <!-- TITLE -->
+                        <h3 class="font-oswald text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-tight text-gray-950 leading-none">
+                            DIMAS DWI ARIYANTO <span class="font-mono text-xl sm:text-2xl text-gray-600 font-medium">(pavelc4)</span>
+                        </h3>
+                        
+                        <!-- PARAGRAPH BIO -->
+                        <p class="font-mono text-xs sm:text-sm text-gray-900 leading-relaxed font-medium max-w-4xl">
+                            Halo! Saya Dimas Dwi Ariyanto (dikenal sebagai <strong class="bg-[#A7F3D0] border border-gray-950 px-1 text-gray-950 font-bold">pavelc4</strong>), mahasiswa Teknik Informatika di Universitas Widyatama, Bandung. Fokus utama saya di <strong class="text-[#0038FF]">Golang</strong> dan <strong class="text-[#0038FF]">TypeScript</strong> untuk backend & web services, dengan <strong class="text-[#FF5500]">Rust</strong> sebagai eksplorasi sampingan serta pengulikan Arch Linux.
                         </p>
-                    </blockquote>
 
-                    <div class="pt-4">
-                        <p
-                            class="font-mono text-[10px] md:text-xs uppercase tracking-widest text-gray-400 mb-4"
-                        >
-                            Education
-                        </p>
-                        {
-                            education.map((edu) => (
-                                <div class="flex items-start justify-between gap-4 py-4 border-t border-gray-100 group">
-                                    <div>
-                                        <p class="font-oswald text-lg md:text-xl font-bold text-gray-900 group-hover:text-ryo-blue transition-colors">
-                                            {edu.school}
-                                        </p>
-                                        <p class="font-mono text-[10px] md:text-xs text-gray-500 uppercase tracking-wider mt-1">
-                                            {edu.major}
-                                        </p>
-                                    </div>
-                                    <div class="text-right flex-shrink-0">
-                                        <p class="font-mono text-[10px] md:text-xs text-gray-400">
-                                            {edu.period}
-                                        </p>
-                                        <p class="font-mono text-[9px] text-gray-300 mt-1">
-                                            {edu.location}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))
-                        }
                     </div>
+                </div>
+
+                <!-- MIDDLE ROW: DINO GAME (SPAN 5) + PINK CALLOUT CARD (SPAN 7 - MOVED UP) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+                    
+                    <!-- PANEL 1: CHROME DINO RUNNER (SPAN 5) -->
+                    <div class="lg:col-span-5 bg-white border-2 border-gray-950 border-t-4 border-t-[#22C55E] rounded-3xl p-5 sm:p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[14px_14px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between border-b-2 border-gray-900 pb-2 mb-3">
+                                <span class="font-mono text-[9px] font-black text-gray-950 uppercase">
+                                    [01] DINO_GAME.EXE
+                                </span>
+                                <span class="font-mono text-[9px] font-bold text-gray-500">
+                                    AUTOPLAY
+                                </span>
+                            </div>
+                            <DinoGame />
+                        </div>
+                    </div>
+
+                    <!-- PANEL 2: PINK CALLOUT CARD (SPAN 7 - MOVED UP NEXT TO DINO) -->
+                    <div class="lg:col-span-7 bg-[#FF4D8D] text-white border-2 border-gray-950 rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[14px_14px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all flex flex-col justify-between relative overflow-hidden">
+                        
+                        <!-- HALFTONE ACCENT -->
+                        <div class="absolute right-2 top-2 w-28 h-28 halftone-dots opacity-20 pointer-events-none"></div>
+
+                        <!-- STARBURST BADGE -->
+                        <div class="absolute top-4 right-4 bg-[#FACC15] text-gray-950 font-oswald text-xs font-black uppercase px-3 py-1 border-1.5 border-gray-950 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] rotate-6">
+                            GROW WITH ME!
+                        </div>
+
+                        <div>
+                            <span class="font-mono text-[9px] font-black uppercase tracking-widest bg-black text-white px-2.5 py-0.5 border border-white/30">
+                                STATUS // OPPORTUNITIES
+                            </span>
+
+                            <h4 class="font-oswald text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight mt-4 mb-3 pr-12">
+                                OPEN FOR INTERNSHIPS & JUNIOR ROLES
+                            </h4>
+                            <p class="font-mono text-xs sm:text-sm text-white/90 leading-relaxed font-medium max-w-xl">
+                                Terbuka untuk magang, junior backend role, atau kolaborasi project open-source. Mari kembangkan solusi software berkinerja tinggi bersama!
+                            </p>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t-2 border-white/30 flex items-center justify-between">
+                            <span class="font-mono text-xs font-bold uppercase tracking-wider">AVAILABLE FOR HIRE</span>
+                            <a
+                                href="#footer"
+                                class="font-mono text-xs sm:text-sm font-bold bg-white text-gray-950 border-2 border-gray-950 px-6 py-2.5 rounded-full shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-black hover:text-white transition-all inline-flex items-center gap-2"
+                            >
+                                <span>LET'S CONNECT</span>
+                                <span>[->]</span>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- BOTTOM FULL-WIDTH ROW: GITHUB SNAKE EATER MATRIX (SPAN 12 - FULL & EXPANDED) -->
+                <div class="w-full bg-white border-2 border-gray-950 border-t-4 border-t-[#0038FF] rounded-3xl p-5 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[14px_14px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all">
+                    <div class="flex items-center justify-between border-b-2 border-gray-900 pb-3 mb-4">
+                        <span class="font-mono text-[10px] font-black text-gray-950 uppercase tracking-widest">
+                            [02] GITHUB_ACTIVITY_MATRIX // 52_WEEKS_CONTRIBUTIONS
+                        </span>
+                        <span class="font-mono text-[9px] font-bold bg-[#0038FF] text-white px-2 py-0.5 border border-gray-950">
+                            FULL_GRID
+                        </span>
+                    </div>
+                    <GitHubMatrix />
+                </div>
+
             </div>
+
+            <!-- BOTTOM METADATA BAR -->
+            <div class="w-full pt-4 border-t-2 border-gray-950 flex flex-col sm:flex-row justify-between items-center gap-4 font-mono text-[10px] sm:text-xs font-black uppercase text-gray-950">
+                <span class="bg-gray-950 text-white px-2.5 py-0.5 border border-gray-950">002 // ABOUT SPEC</span>
+                <span>BANDUNG, INDONESIA</span>
+            </div>
+
         </div>
+
     </div>
 </section>

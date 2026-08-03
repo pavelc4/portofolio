@@ -1,0 +1,155 @@
+---
+---
+
+<div class="bg-white border-2 border-gray-900 p-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] select-none relative overflow-hidden">
+  <!-- WIDGET HEADER (MATCHING DINO CARD HEADER) -->
+  <div class="flex justify-between items-center border-b-2 border-gray-900 pb-2 mb-3 font-mono text-[10px] font-black uppercase">
+    <div class="flex items-center gap-2">
+      <span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
+      <span class="text-gray-950">GITHUB.MATRIX // SNAKE_EATER</span>
+    </div>
+    <span id="snake-status-badge" class="bg-gray-950 text-white px-2 py-0.5 text-[8.5px] font-bold tracking-wider">
+      EATING_DOTS
+    </span>
+  </div>
+
+  <!-- MATRIX CONTAINER (FULL-WIDTH PERFECT FIT GRID WRAPPER - NO SCROLLBAR) -->
+  <div class="relative w-full border-2 border-gray-900 p-2.5 sm:p-4 bg-[#F4F2EB] overflow-hidden flex justify-center items-center transition-colors duration-700" id="matrix-wrapper">
+    <div id="github-matrix-grid" class="inline-grid grid-rows-7 grid-flow-col gap-1 sm:gap-1.5 md:gap-2 text-[0px] relative">
+      <!-- JS dynamically populates tiles & animates Snake eating dots -->
+    </div>
+  </div>
+
+  <!-- WIDGET FOOTER (MATCHING DINO CARD FOOTER) -->
+  <div class="mt-3 flex justify-between items-center font-mono text-[9px] text-gray-900 font-bold uppercase border-t border-gray-300 pt-2">
+    <div class="flex items-center gap-1 text-[8px]">
+      <span class="text-gray-600">EATEN:</span>
+      <span id="eaten-counter" class="text-emerald-700 font-black">000 DOTS</span>
+    </div>
+    <span class="bg-[#22C55E] text-gray-950 px-2 py-0.5 font-black border border-gray-900">
+      GITHUB//CONTRIBUTIONS
+    </span>
+  </div>
+</div>
+
+<script>
+  function initGitHubSnakeEater() {
+    const grid = document.getElementById("github-matrix-grid");
+    const eatenCounter = document.getElementById("eaten-counter");
+    if (!grid) return;
+
+    grid.innerHTML = "";
+
+    // Green Activity Colors (Matching GitHub) & Empty Eaten Color
+    const greenLevels = [
+      "bg-[#D1D5DB]", // 0 = Eaten / Empty tile
+      "bg-[#86EFAC]", // 1 = Low activity green
+      "bg-[#4ADE80]", // 2 = Med activity green
+      "bg-[#22C55E]", // 3 = High activity green
+      "bg-[#15803D]", // 4 = Max activity green
+      "bg-[#FF4D8D]"  // 5 = Special Pink streak
+    ];
+
+    const totalCols = 52;
+    const totalRows = 7;
+    const tiles: HTMLDivElement[] = [];
+    let eatenCount = 0;
+
+    const tileBaseClass = "w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 lg:w-4.5 lg:h-4.5 xl:w-[17px] xl:h-[17px] rounded-xs sm:rounded-sm transition-colors duration-200 border border-gray-950/20";
+
+    function populateGrid() {
+      grid.innerHTML = "";
+      tiles.length = 0;
+
+      for (let i = 0; i < totalCols * totalRows; i++) {
+        const square = document.createElement("div");
+        square.className = tileBaseClass;
+        
+        const rand = Math.random();
+        let level = 1;
+
+        if (i >= 280 && i <= 286) {
+          level = 5; // Pink streak
+        } else if (rand > 0.8) {
+          level = 4;
+        } else if (rand > 0.6) {
+          level = 3;
+        } else if (rand > 0.35) {
+          level = 2;
+        } else {
+          level = 1;
+        }
+
+        square.classList.add(...greenLevels[level].split(" "));
+        square.dataset.level = String(level);
+        square.dataset.eaten = "false";
+        grid.appendChild(square);
+        tiles.push(square);
+      }
+    }
+
+    populateGrid();
+
+    // Snake Eating Motion Logic
+    let col = 0;
+    let row = 0;
+    let dir = 1; // 1 = down, -1 = up
+
+    function eatStep() {
+      const currentIndex = col * totalRows + row;
+      const currentTile = tiles[currentIndex];
+
+      if (currentTile) {
+        // If tile was not eaten yet, EAT IT!
+        if (currentTile.dataset.eaten === "false") {
+          currentTile.dataset.eaten = "true";
+          eatenCount++;
+          if (eatenCounter) {
+            eatenCounter.textContent = `${String(eatenCount).padStart(3, "0")} DOTS`;
+          }
+        }
+
+        // Snake Head Glowing Yellow
+        currentTile.className = `${tileBaseClass} bg-[#FACC15] border-2 border-gray-950 scale-110 z-10 shadow-md`;
+
+        // Tail trail clears to Empty Tile `#D1D5DB` WITHOUT changing size!
+        setTimeout(() => {
+          if (currentTile) {
+            currentTile.className = `${tileBaseClass} bg-[#D1D5DB] opacity-35`;
+          }
+        }, 180);
+      }
+
+      // Move Snake in S-curve grid pattern
+      row += dir;
+      if (row >= totalRows) {
+        row = totalRows - 1;
+        col++;
+        dir = -1;
+      } else if (row < 0) {
+        row = 0;
+        col++;
+        dir = 1;
+      }
+
+      if (col >= totalCols) {
+        col = 0;
+        row = 0;
+        dir = 1;
+        eatenCount = 0;
+        if (eatenCounter) eatenCounter.textContent = "000 DOTS";
+        populateGrid();
+      }
+    }
+
+    // Run Snake eater loop every 120ms
+    const interval = setInterval(eatStep, 120);
+
+    // Cleanup interval on DOM removal
+    document.addEventListener("astro:unmount", () => clearInterval(interval), { once: true });
+  }
+
+  // Initialize on page load and Astro view transitions
+  initGitHubSnakeEater();
+  document.addEventListener("astro:page-load", initGitHubSnakeEater);
+</script>

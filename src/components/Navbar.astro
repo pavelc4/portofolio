@@ -1,12 +1,43 @@
 ---
 ---
 
-<nav class="fixed w-full top-0 flex justify-between items-center p-4 md:p-6 md:px-12 z-50 mix-blend-difference text-white font-bold tracking-wide">
-  <a href="#hero" class="text-lg md:text-2xl tracking-tighter">pavelc4.</a>
-  <ul class="flex gap-4 md:gap-8 text-[10px] sm:text-xs md:text-sm lowercase">
-    <li><a href="#hero"     class="hover:opacity-60 transition-opacity">home</a></li>
-    <li><a href="#about"    class="hover:opacity-60 transition-opacity">about</a></li>
-    <li><a href="#projects" class="hover:opacity-60 transition-opacity">works</a></li>
-    <li><a href="#life"     class="hover:opacity-60 transition-opacity">logs</a></li>
-  </ul>
+<nav class="fixed w-full top-0 z-50 px-4 sm:px-8 py-3 bg-[#FAFAFA]/90 backdrop-blur-md border-b-2 border-gray-900">
+  <div class="max-w-[98%] xl:max-w-[1500px] 2xl:max-w-[1700px] mx-auto flex justify-between items-center">
+    
+    <!-- BRAND / LOGO -->
+    <a href="#hero" class="flex items-center gap-2 font-oswald text-xl sm:text-2xl font-bold tracking-tighter text-gray-950 hover:text-[#FF4D8D] transition-colors">
+      <span class="w-3 h-3 bg-[#FF4D8D] border border-gray-900 inline-block"></span>
+      pavelc4<span class="text-[#5076FF]">.</span>
+    </a>
+
+    <!-- NAV LINKS -->
+    <ul class="flex items-center gap-3 sm:gap-6 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-gray-950">
+      <li>
+        <a href="#hero" class="px-2 py-1 hover:bg-gray-950 hover:text-white transition-all">
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="#about" class="px-2 py-1 hover:bg-[#FF4D8D] hover:text-white transition-all">
+          About
+        </a>
+      </li>
+      <li>
+        <a href="#projects" class="px-2 py-1 hover:bg-[#5076FF] hover:text-white transition-all">
+          Works
+        </a>
+      </li>
+      <li>
+        <a href="#skills" class="hidden xs:inline-block px-2 py-1 hover:bg-gray-950 hover:text-white transition-all">
+          Stack
+        </a>
+      </li>
+      <li>
+        <a href="#life" class="px-2 py-1 hover:bg-gray-950 hover:text-white transition-all">
+          Logs
+        </a>
+      </li>
+    </ul>
+
+  </div>
 </nav>

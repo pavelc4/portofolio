@@ -2,34 +2,47 @@
 const year = new Date().getFullYear();
 
 const links = [
-  { label: "GitHub", href: "https://github.com/pavelc4" },
-  { label: "Telegram", href: "https://t.me/pavellc" },
-  { label: "Email", href: "[EMAIL_ADDRESS]" },
+  { label: "GITHUB", href: "https://github.com/pavelc4", shadow: "shadow-[4px_4px_0px_0px_rgba(250,204,21,1)]", hover: "hover:bg-[#FACC15] hover:text-gray-950 hover:border-[#FACC15]" },
+  { label: "TELEGRAM", href: "https://t.me/pavellc", shadow: "shadow-[4px_4px_0px_0px_rgba(0,56,255,1)]", hover: "hover:bg-[#0038FF] hover:text-white hover:border-[#0038FF]" },
+  { label: "EMAIL", href: "mailto:pavelc4dev@gmail.com", shadow: "shadow-[4px_4px_0px_0px_rgba(255,77,141,1)]", hover: "hover:bg-[#FF4D8D] hover:text-white hover:border-[#FF4D8D]" },
 ];
 ---
 
 <footer
-  class="bg-gray-900 text-white border-t-4 border-bocchi-pink py-12 md:py-16 px-6 md:px-12"
+  id="footer"
+  class="bg-[#111111] text-white border-t-4 border-gray-950 py-8 sm:py-12 px-4 sm:px-6 relative overflow-hidden noise-overlay select-none"
 >
-  <div class="max-w-7xl mx-auto">
-    <div
-      class="flex flex-col md:flex-row justify-between md:items-end gap-6 md:gap-8"
-    >
-      <div>
-        <h2
-          class="font-oswald text-5xl md:text-6xl font-bold tracking-tighter text-white uppercase leading-none mb-2 md:mb-3"
-        >
-          pavelc4.
+  <!-- HALFTONE DOT MATRIX BACKGROUND ACCENT -->
+  <div class="absolute right-4 top-4 w-44 h-44 halftone-dots opacity-15 pointer-events-none"></div>
+
+  <div class="max-w-[98%] xl:max-w-[1500px] 2xl:max-w-[1700px] mx-auto relative z-10 space-y-8">
+    
+    <!-- TOP STATUS & BARCODE HEADER (COMPACT) -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-800 pb-4 gap-4 font-mono text-xs uppercase font-bold text-gray-400">
+      <div class="flex items-center gap-3">
+        <span class="w-2.5 h-2.5 bg-[#22C55E] rounded-full animate-pulse"></span>
+        <span class="text-white font-black">SYSTEM TERMINATED // END OF PAGE</span>
+      </div>
+
+      <div class="h-4 w-36 bg-white/20 tech-barcode"></div>
+    </div>
+
+    <!-- MAIN FOOTER CONTENT (COMPACT GRID) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+      
+      <!-- LEFT BRANDING & DESCRIPTION -->
+      <div class="lg:col-span-6 space-y-2">
+        <h2 class="font-oswald text-5xl sm:text-7xl md:text-8xl font-bold uppercase tracking-tighter text-white leading-none">
+          PAVELC4<span class="text-[#FF4D8D]">.</span>
         </h2>
-        <p
-          class="font-mono text-[10px] md:text-xs text-gray-400 uppercase tracking-widest leading-none"
-        >
-          setiap manusia pernah ngelakuin anu biar gak anu
+        <p class="font-mono text-xs text-gray-400 uppercase tracking-wider font-medium max-w-lg">
+          Dimas Dwi Ariyanto — junior backend developer 
         </p>
       </div>
 
-      <nav aria-label="Social links" class="mb-[-2px] md:mb-[1px]">
-        <ul class="flex flex-wrap gap-4 sm:gap-8" role="list">
+      <!-- RIGHT WHITE BUTTONS WITH COLORED 3D OUTLINE SHADOWS -->
+      <nav aria-label="Social links" class="lg:col-span-6">
+        <ul class="flex flex-wrap gap-4 sm:gap-5 justify-start lg:justify-end" role="list">
           {
             links.map((link) => (
               <li>
@@ -37,30 +50,24 @@ const links = [
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="font-mono uppercase tracking-widest text-xs text-gray-300 hover:text-bocchi-pink transition-colors flex items-center gap-1 group leading-none"
+                  class={`font-mono text-xs sm:text-sm font-black uppercase bg-white text-gray-950 border-2 border-white px-5 py-2.5 rounded-full ${link.shadow} ${link.hover} transition-all inline-flex items-center gap-2 cursor-pointer hover:-translate-y-0.5`}
                 >
-                  {link.label}
-                  <span class="font-oswald text-sm transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                    ↗
-                  </span>
+                  <span>{link.label}</span>
+                  <span class="font-bold">[->]</span>
                 </a>
               </li>
             ))
           }
         </ul>
       </nav>
+
     </div>
 
-    <div
-      class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4"
-    >
-      <p class="font-mono text-[10px] text-gray-400 uppercase tracking-widest">
-        © {year} pavelc4
-      </p>
-
-      <p class="font-mono text-[10px] text-gray-500 uppercase tracking-widest">
-        Built with Astro
-      </p>
+    <!-- BOTTOM COPYRIGHT BAR (COMPACT) -->
+    <div class="pt-4 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-3 font-mono text-[10px] sm:text-xs text-gray-500 font-bold uppercase tracking-widest">
+      <p>© {year} PAVELC4 // DIMAS DWI ARIYANTO</p>
+      <p>BUILD WITH ASTRO</p>
     </div>
+
   </div>
 </footer>

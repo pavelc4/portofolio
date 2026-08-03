@@ -1,380 +1,112 @@
-@import './tokens.css';
 @import "tailwindcss";
 
-@theme {
-  --color-bocchi-pink: #FF4D8D;
-  --color-bocchi-pink-dark: #cc2e6a;
-  --color-bocchi-cream: #F9F6F0;
-  --color-ryo-blue: #6A7BC0;
-  --color-dark: #1a1a1a;
-
-  --font-oswald: 'Oswald', sans-serif;
-  --font-poppins: 'Poppins', sans-serif;
-  --font-mono: 'Space Mono', monospace;
-  --font-caveat: 'Caveat', cursive;
-  --font-jp: 'Noto Sans JP', sans-serif;
-
-  --shadow-brutalist: 4px 4px 0 0 #1a1a1a;
-  --shadow-brutalist-pink: 4px 4px 0 0 #FF4D8D;
-  --shadow-brutalist-sm: 2px 2px 0 0 #1a1a1a;
-  --shadow-brutalist-pink-sm: 2px 2px 0 0 #FF4D8D;
-
-  --animate-marquee: marquee 25s linear infinite;
-  --animate-marquee-reverse: marquee-reverse 25s linear infinite;
-  --animate-spin-slow: spin 20s linear infinite;
-
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-
-    to {
-      transform: translateX(-50%);
-    }
-  }
-
-  @keyframes marquee-reverse {
-    from {
-      transform: translateX(-50%);
-    }
-
-    to {
-      transform: translateX(0);
-    }
+@layer base {
+  body {
+    background-color: #FAFAFA;
+    color: #111111;
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
   }
 }
 
-:root {
-  --bocchi-pink: #FF4D8D;
-  --bocchi-cream: #F9F6F0;
-  --bocchi-pink-dark: #cc2e6a;
-  --bocchi-pink-alpha: rgba(255, 77, 141, 0.05);
-  --ryo-blue: #6A7BC0;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAFAFA;
+}
+::-webkit-scrollbar-thumb {
+  background: #111111;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0038FF;
 }
 
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
-  hanging-punctuation: first last;
+/* Noise overlay */
+.noise-overlay {
+  position: relative;
 }
-
-body {
-  min-height: 100dvh;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-  color: #1a1a1a;
-  background-color: #F9F6F0;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-.noise-overlay::after {
+.noise-overlay::before {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
   z-index: 1;
-  background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-  opacity: 0.15;
-  pointer-events: none;
 }
 
+/* Barcode decoration */
 .tech-barcode {
-  mask-image: repeating-linear-gradient(to right,
-      #000 0, #000 2px, transparent 2px, transparent 4px,
-      #000 4px, #000 6px, transparent 6px, transparent 10px,
-      #000 10px, #000 14px, transparent 14px, transparent 16px);
-  -webkit-mask-image: repeating-linear-gradient(to right,
-      #000 0, #000 2px, transparent 2px, transparent 4px,
-      #000 4px, #000 6px, transparent 6px, transparent 10px,
-      #000 10px, #000 14px, transparent 14px, transparent 16px);
+  background: repeating-linear-gradient(
+    90deg,
+    #111111 0px,
+    #111111 2px,
+    transparent 2px,
+    transparent 4px,
+    #111111 4px,
+    #111111 7px,
+    transparent 7px,
+    transparent 9px
+  );
 }
 
-.mask-edges {
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+/* Halftone dot matrix pattern */
+.halftone-dots {
+  background-image: radial-gradient(#111111 1.2px, transparent 1.2px);
+  background-size: 8px 8px;
 }
 
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-  height: auto;
+/* Jagged Starburst Badge Polygon Clip Path */
+.starburst-badge {
+  clip-path: polygon(
+    50% 0%, 63% 12%, 80% 4%, 82% 22%, 98% 28%,
+    90% 45%, 100% 62%, 84% 72%, 88% 90%, 70% 88%,
+    58% 100%, 44% 88%, 28% 96%, 24% 78%, 6% 74%,
+    16% 56%, 2% 40%, 18% 28%, 14% 10%, 34% 16%
+  );
 }
 
-ul[role="list"],
-ol[role="list"] {
-  list-style: none;
+/* Acid Brutalist Stepped Pixel Containers */
+.filter-pixel-stroke {
+  filter: drop-shadow(2px 0 0 #111) drop-shadow(-2px 0 0 #111) drop-shadow(0 2px 0 #111) drop-shadow(0 -2px 0 #111);
 }
 
-input,
-button,
-textarea,
-select {
-  font: inherit;
-  color: inherit;
+.filter-pixel-stroke-lg {
+  filter: drop-shadow(3px 0 0 #111) drop-shadow(-3px 0 0 #111) drop-shadow(0 3px 0 #111) drop-shadow(0 -3px 0 #111) drop-shadow(6px 6px 0 rgba(0,0,0,0.15));
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  text-wrap: balance;
-  line-height: 1.1;
+/* Crisp White Background with Kanjut Dot Grid Pattern */
+.grid-blueprint-bg {
+  background-size: 18px 18px;
+  background-image: radial-gradient(rgba(17, 17, 17, 0.12) 1.2px, transparent 1.2px);
 }
 
-p,
-li {
-  text-wrap: pretty;
+/* INFINITE MARQUEE ANIMATIONS WITH HOVER PAUSE SUPPORT */
+@keyframes marquee-left {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
 }
 
-button {
-  cursor: pointer;
-  background: none;
-  border: none;
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
 }
 
-::selection {
-  background: #FF4D8D;
-  color: white;
+.animate-marquee-left {
+  animation: marquee-left 30s linear infinite;
 }
 
-:focus-visible {
-  outline: 2px solid #FF4D8D;
-  outline-offset: 3px;
-  border-radius: 2px;
+.animate-marquee-right {
+  animation: marquee-right 30s linear infinite;
 }
 
-@supports (animation-timeline: scroll()) {
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    animation: reveal-up linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 60%;
-    animation-delay: var(--delay, 0s);
-  }
-
-  .reveal-left {
-    opacity: 0;
-    transform: translateX(-32px);
-    animation: reveal-left linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 60%;
-    animation-delay: var(--delay, 0s);
-  }
-}
-
-@keyframes reveal-up {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes reveal-left {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.card-brutalist {
-  border: 2px solid #1a1a1a;
-  box-shadow: 4px 4px 0 0 #1a1a1a;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.card-brutalist:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 0 #1a1a1a;
-}
-
-.card-brutalist-pink {
-  border: 2px solid #FF4D8D;
-  box-shadow: 4px 4px 0 0 #FF4D8D;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.card-brutalist-pink:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 0 #FF4D8D;
-}
-
-.bocchi-box {
-  border: 2px solid #FF4D8D;
-  background: rgba(255, 77, 141, 0.05);
-  transition: all 0.3s ease;
-}
-
-.bocchi-box:hover {
-  background: #FF4D8D;
-  color: white;
-  transform: scale(1.02) rotate(-1deg);
-}
-
-.bocchi-box:hover * {
-  color: white !important;
-}
-
-
-a,
-button,
-[role="button"] {
-  transition: color 0.15s ease, background 0.15s ease,
-    opacity 0.15s ease, transform 0.15s ease;
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-
-.pixelated {
-  image-rendering: pixelated;
-  height: 48px;
-}
-
-.pet-name {
-  font-family:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 10px;
-  font-weight: bold;
-  color: white;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 2px 6px;
-  border-radius: 4px;
-  white-space: nowrap;
-  margin-bottom: 2px;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  pointer-events: none;
-}
-
-.pet-container:hover .pet-name,
-.pet-container.dragging .pet-name {
-  opacity: 1;
-}
-
-.pet-name.opacity-0 {
-  display: none !important;
-}
-
-.face-left {
-  transform: scaleX(-1);
-}
-
-.face-right {
-  transform: scaleX(1);
-}
-
-.pet-container {
-  position: absolute;
-  bottom: 12%;
-  opacity: 0.95;
-  cursor: grab;
-  transform: translateZ(0);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  user-select: none;
-  will-change: left, bottom;
-}
-
-.pet-container.dragging {
-  cursor: grabbing;
-  opacity: 1;
-  z-index: 50;
-}
-
-.speech-bubble {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(0px) scale(0);
-  background: white;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  padding: 4px 8px;
-  font-size: 10px;
-  font-family: ui-monospace, monospace;
-  color: #333;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-  transform-origin: bottom center;
-}
-
-.speech-bubble::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: white transparent transparent transparent;
-}
-
-.speech-bubble::before {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -7px;
-  border-width: 7px;
-  border-style: solid;
-  border-color: #ddd transparent transparent transparent;
-  z-index: -1;
-}
-
-.pet-container.yapping .speech-bubble {
-  opacity: 1;
-  transform: translateX(-50%) translateY(-5px) scale(1);
-}
-
-.pet-totoro img {
-  height: 64px;
+/* PAUSE ANIMATION ON HOVER */
+.marquee-row:hover .animate-marquee-left,
+.marquee-row:hover .animate-marquee-right {
+  animation-play-state: paused !important;
 }

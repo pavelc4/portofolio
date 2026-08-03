@@ -1,0 +1,267 @@
+---
+---
+
+<div class="relative bg-white border-2 border-gray-900 p-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] select-none">
+  <!-- WIDGET HEADER -->
+  <div class="flex justify-between items-center border-b-2 border-gray-900 pb-2 mb-3 font-mono text-[10px] font-black uppercase">
+    <div class="flex items-center gap-2">
+      <span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
+      <span class="text-gray-950">DINO.RUN // BOT_AUTOPLAY</span>
+    </div>
+    <span id="dino-theme-badge" class="bg-gray-950 text-white px-2 py-0.5 text-[8.5px] tracking-wider">
+      DAY_MODE
+    </span>
+  </div>
+
+  <!-- CANVAS CONTAINER FOR DINO RUNNER -->
+  <div class="relative w-full h-40 sm:h-44 border-2 border-gray-900 overflow-hidden bg-[#F4F2EB] transition-colors duration-700" id="dino-canvas-wrapper">
+    <canvas id="dinoCanvas" class="w-full h-full block"></canvas>
+    
+    <div class="absolute bottom-2 left-2 text-gray-700 font-mono text-[8px] font-bold uppercase tracking-widest pointer-events-none" id="dino-status-text">
+      [PRESS SPACE OR CLICK TO MANUAL JUMP]
+    </div>
+  </div>
+
+  <!-- WIDGET FOOTER METRICS -->
+  <div class="mt-3 flex justify-between items-center font-mono text-[9px] text-gray-900 font-bold uppercase border-t border-gray-300 pt-2">
+    <span class="text-gray-600">CHROME T-REX SIMULATION</span>
+    <span class="bg-[#0038FF] text-white px-2 py-0.5 font-black">CHROME://DINO</span>
+  </div>
+</div>
+
+<script>
+  function initDinoRunner() {
+    const canvas = document.getElementById("dinoCanvas") as HTMLCanvasElement;
+    const wrapper = document.getElementById("dino-canvas-wrapper");
+    const themeBadge = document.getElementById("dino-theme-badge");
+    const statusText = document.getElementById("dino-status-text");
+
+    if (!canvas || !wrapper) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let width = (canvas.width = wrapper.clientWidth);
+    let height = (canvas.height = wrapper.clientHeight);
+
+    // Game variables
+    let isDark = false;
+    let score = 0;
+    let highScore = 420;
+    let gameSpeed = 4.5;
+    let gravity = 0.65;
+    let groundY = height - 24;
+
+    // Dino state
+    const dino = {
+      x: 35,
+      y: groundY - 26,
+      w: 22,
+      h: 26,
+      dy: 0,
+      jumpForce: -10.5,
+      isGrounded: true,
+      legState: 0,
+      timer: 0
+    };
+
+    // Obstacles array
+    interface Obstacle {
+      x: number;
+      w: number;
+      h: number;
+      type: "cactus" | "bird";
+      y: number;
+    }
+
+    let obstacles: Obstacle[] = [];
+    let spawnTimer = 0;
+
+    // Handle Resize
+    window.addEventListener("resize", () => {
+      if (!canvas || !wrapper) return;
+      width = canvas.width = wrapper.clientWidth;
+      height = canvas.height = wrapper.clientHeight;
+      groundY = height - 24;
+    });
+
+    function jump() {
+      if (dino.isGrounded) {
+        dino.dy = dino.jumpForce;
+        dino.isGrounded = false;
+      }
+    }
+
+    // Manual Jump Listeners
+    canvas.addEventListener("click", jump);
+    window.addEventListener("keydown", (e) => {
+      if (e.code === "Space" || e.code === "ArrowUp") {
+        jump();
+      }
+    });
+
+    function update() {
+      score++;
+      if (score > highScore) highScore = score;
+
+      // Day / Night cycle every 350 score ticks
+      const cycle = Math.floor(score / 350) % 2;
+      if (cycle === 1 && !isDark) {
+        isDark = true;
+        wrapper?.classList.remove("bg-[#F4F2EB]");
+        wrapper?.classList.add("bg-[#111111]");
+        if (themeBadge) {
+          themeBadge.textContent = "NIGHT_MODE";
+          themeBadge.className = "bg-emerald-500 text-black px-2 py-0.5 text-[8.5px] font-bold tracking-wider";
+        }
+        if (statusText) statusText.className = "absolute bottom-2 left-2 text-gray-300 font-mono text-[8px] font-bold uppercase tracking-widest pointer-events-none";
+      } else if (cycle === 0 && isDark) {
+        isDark = false;
+        wrapper?.classList.remove("bg-[#111111]");
+        wrapper?.classList.add("bg-[#F4F2EB]");
+        if (themeBadge) {
+          themeBadge.textContent = "DAY_MODE";
+          themeBadge.className = "bg-gray-950 text-white px-2 py-0.5 text-[8.5px] tracking-wider";
+        }
+        if (statusText) statusText.className = "absolute bottom-2 left-2 text-gray-700 font-mono text-[8px] font-bold uppercase tracking-widest pointer-events-none";
+      }
+
+      // Physics
+      dino.y += dino.dy;
+      dino.dy += gravity;
+
+      if (dino.y >= groundY - dino.h) {
+        dino.y = groundY - dino.h;
+        dino.dy = 0;
+        dino.isGrounded = true;
+      }
+
+      // Leg animation counter
+      dino.timer++;
+      if (dino.timer % 6 === 0) {
+        dino.legState = dino.legState === 0 ? 1 : 0;
+      }
+
+      // Spawn Obstacles
+      spawnTimer++;
+      if (spawnTimer > Math.max(50, 110 - gameSpeed * 5)) {
+        const type = Math.random() > 0.75 ? "bird" : "cactus";
+        const h = type === "cactus" ? 22 + Math.random() * 12 : 16;
+        const w = type === "cactus" ? 14 + Math.random() * 10 : 20;
+        const y = type === "bird" ? groundY - 35 - Math.random() * 15 : groundY - h;
+
+        obstacles.push({ x: width + 20, w, h, type, y });
+        spawnTimer = 0;
+      }
+
+      // Update Obstacles & Auto-Pilot Bot Logic
+      for (let i = obstacles.length - 1; i >= 0; i--) {
+        const obs = obstacles[i];
+        obs.x -= gameSpeed;
+
+        // Auto-Pilot Jump Trigger
+        const distance = obs.x - dino.x;
+        if (distance > 0 && distance < 75 && dino.isGrounded) {
+          // If cactus or low bird, jump!
+          if (obs.type === "cactus" || (obs.type === "bird" && obs.y > groundY - 38)) {
+            jump();
+          }
+        }
+
+        if (obs.x + obs.w < 0) {
+          obstacles.splice(i, 1);
+        }
+      }
+
+      // Slightly increase game speed over time
+      gameSpeed = 4.5 + Math.min(score / 500, 3);
+    }
+
+    function draw() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, width, height);
+
+      const mainColor = isDark ? "#FFFFFF" : "#111111";
+
+      // 1. Draw Ground Line
+      ctx.strokeStyle = mainColor;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, groundY);
+      ctx.lineTo(width, groundY);
+      ctx.stroke();
+
+      // Ground Dots / Details
+      ctx.fillStyle = mainColor;
+      for (let i = 0; i < width; i += 30) {
+        const dotX = (i - (score * 2) % 30 + width) % width;
+        ctx.fillRect(dotX, groundY + 4, 3, 2);
+        ctx.fillRect((dotX + 15) % width, groundY + 10, 2, 2);
+      }
+
+      // 2. Draw Dino (T-Rex Pixel Style)
+      ctx.fillStyle = mainColor;
+      // Head
+      ctx.fillRect(dino.x + 8, dino.y, 14, 8);
+      ctx.fillRect(dino.x + 14, dino.y + 2, 3, 3); // Eye cutout (opposite color)
+      ctx.fillStyle = isDark ? "#111111" : "#FFFFFF";
+      ctx.fillRect(dino.x + 15, dino.y + 2, 2, 2);
+      ctx.fillStyle = mainColor;
+
+      // Snout & Jaw
+      ctx.fillRect(dino.x + 18, dino.y + 5, 4, 3);
+      // Body
+      ctx.fillRect(dino.x + 4, dino.y + 8, 14, 12);
+      // Arm
+      ctx.fillRect(dino.x + 14, dino.y + 10, 4, 2);
+      // Tail
+      ctx.fillRect(dino.x, dino.y + 8, 4, 6);
+
+      // Legs (Animating)
+      if (dino.isGrounded) {
+        if (dino.legState === 0) {
+          ctx.fillRect(dino.x + 6, dino.y + 20, 3, 6);
+          ctx.fillRect(dino.x + 13, dino.y + 20, 3, 4);
+        } else {
+          ctx.fillRect(dino.x + 6, dino.y + 20, 3, 4);
+          ctx.fillRect(dino.x + 13, dino.y + 20, 3, 6);
+        }
+      } else {
+        ctx.fillRect(dino.x + 6, dino.y + 20, 3, 5);
+        ctx.fillRect(dino.x + 12, dino.y + 20, 3, 5);
+      }
+
+      // 3. Draw Obstacles
+      for (const obs of obstacles) {
+        if (obs.type === "cactus") {
+          // Pixel Cactus
+          ctx.fillRect(obs.x + obs.w * 0.3, obs.y, obs.w * 0.4, obs.h);
+          ctx.fillRect(obs.x, obs.y + obs.h * 0.25, obs.w, obs.h * 0.25);
+        } else {
+          // Pterodactyl Bird
+          ctx.fillRect(obs.x, obs.y + 4, obs.w, 6);
+          ctx.fillRect(obs.x + 4, obs.y, 8, 4); // Wings
+        }
+      }
+
+      // 4. Draw Score HUD
+      ctx.font = "bold 11px monospace";
+      ctx.fillStyle = mainColor;
+      const scoreStr = String(score).padStart(5, "0");
+      const hiStr = String(highScore).padStart(5, "0");
+      ctx.fillText(`HI ${hiStr}  ${scoreStr}`, width - 120, 18);
+
+      update();
+      animationFrameId = requestAnimationFrame(draw);
+    }
+
+    draw();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }
+
+  // Run on mount
+  initDinoRunner();
+</script>
