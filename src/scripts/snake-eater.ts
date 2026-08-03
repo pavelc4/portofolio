@@ -41,9 +41,9 @@ export function initGitHubSnakeEater(): void {
 
   // Tile size dihitung dari lebar container supaya grid selalu pas (resize-friendly)
   function layout(): void {
-    const avail = wrapper.clientWidth - 24 * 2;
-    cols = Math.max(14, Math.floor(avail / 15));
-    tile = Math.floor((avail - (cols - 1) * GAP) / cols);
+    const avail = Math.max(120, wrapper.clientWidth - 12);
+    cols = Math.max(10, Math.floor(avail / 16));
+    tile = Math.max(8, Math.floor((avail - (cols - 1) * GAP) / cols));
     grid.style.gridTemplateColumns = `repeat(${cols}, ${tile}px)`;
     grid.style.gap = `${GAP}px`;
   }
