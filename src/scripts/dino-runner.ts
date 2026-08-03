@@ -1,3 +1,16 @@
+import dinoRunSrc from "../assets/dino/dino-run.png";
+import birdImgSrc from "../assets/dino/enemy-bird.png";
+import groundImgSrc from "../assets/dino/ground.png";
+import cloudImgSrc from "../assets/dino/cloud.png";
+import moonImgSrc from "../assets/dino/moon.png";
+import starsImgSrc from "../assets/dino/stars.png";
+import cSmall1 from "../assets/dino/cactuses_small_1.png";
+import cSmall2 from "../assets/dino/cactuses_small_2.png";
+import cSmall3 from "../assets/dino/cactuses_small_3.png";
+import cBig1 from "../assets/dino/cactuses_big_1.png";
+import cBig2 from "../assets/dino/cactuses_big_2.png";
+import cBig3 from "../assets/dino/cactuses_big_3.png";
+
 interface Obstacle {
   x: number;
   w: number;
@@ -12,7 +25,6 @@ export function initDinoRunner(): void {
   const canvasEl = document.getElementById("dinoCanvas") as HTMLCanvasElement | null;
   const wrapperEl = document.getElementById("dino-canvas-wrapper") as HTMLElement | null;
   const themeBadge = document.getElementById("dino-theme-badge") as HTMLElement | null;
-  const statusText = document.getElementById("dino-status-text") as HTMLElement | null;
 
   if (!canvasEl || !wrapperEl) return;
   const canvas: HTMLCanvasElement = canvasEl;
@@ -31,15 +43,20 @@ export function initDinoRunner(): void {
     i.src = src;
     return i;
   };
-  const dinoRun = img("/portofolio/dino/dino-run.png");
-  const birdImg = img("/portofolio/dino/enemy-bird.png");
-  const groundImg = img("/portofolio/dino/ground.png");
-  const cloudImg = img("/portofolio/dino/cloud.png");
-  const moonImg = img("/portofolio/dino/moon.png");
-  const starsImg = img("/portofolio/dino/stars.png");
-  const cacti = ["1", "2", "3", "1", "2", "3"].map(
-    (n, i) => img(`/portofolio/dino/cactuses_${i < 3 ? "small" : "big"}_${n}.png`)
-  );
+  const dinoRun = img(dinoRunSrc.src);
+  const birdImg = img(birdImgSrc.src);
+  const groundImg = img(groundImgSrc.src);
+  const cloudImg = img(cloudImgSrc.src);
+  const moonImg = img(moonImgSrc.src);
+  const starsImg = img(starsImgSrc.src);
+  const cacti = [
+    img(cSmall1.src),
+    img(cSmall2.src),
+    img(cSmall3.src),
+    img(cBig1.src),
+    img(cBig2.src),
+    img(cBig3.src),
+  ];
   const CACTUS_W = [34, 68, 102, 50, 100, 150];
   const CACTUS_H = [70, 70, 70, 96, 96, 98];
 
