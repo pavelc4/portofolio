@@ -113,9 +113,9 @@ const projects = [
             projects.map((proj, idx) => (
               <div class={`bg-white border-2 border-gray-950 ${proj.borderTop} rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[14px_14px_0px_0px_rgba(0,0,0,1)] ${proj.tilt} hover:rotate-0 transition-transform duration-300 flex flex-col justify-between relative overflow-visible group ${proj.span}`}>
                 
-                {/* ANIMATED PET GIF FOR RUST PROJECT: CRAB WALKING */}
+                {/* ANIMATED PET GIF FOR RUST PROJECT: CRAB WALKING STANDING ON TOP OF CARD LEDGE */}
                 {idx === 0 && (
-                  <img src="/portofolio/pets/crab_walk.gif" alt="Rust Crab Walking" class="w-8 h-8 absolute -top-5 left-8 z-30 hover:scale-125 transition-transform cursor-pointer" />
+                  <img src="/portofolio/pets/crab_walk.gif" alt="Rust Crab Walking" class="w-8 h-8 absolute -top-[30px] left-8 z-30 hover:scale-125 transition-transform cursor-pointer drop-shadow-md" />
                 )}
 
                 <!-- HALFTONE DOT MATRIX ACCENT -->
