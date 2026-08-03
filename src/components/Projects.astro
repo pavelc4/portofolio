@@ -1,11 +1,34 @@
 ---
-const projects = [
+interface ProjectItem {
+  id: string;
+  name: string;
+  phonetic: string;
+  slug: string;
+  badge: string;
+  repoOwner: string;
+  repoName: string;
+  fallbackStars: number;
+  stars?: number;
+  swatches: string[];
+  description: string;
+  tags: string[];
+  github: string;
+  bgAccent: string;
+  borderTop: string;
+  span: string;
+  tilt: string;
+}
+
+const rawProjects: ProjectItem[] = [
   {
     id: "01",
     name: "Auriya",
     phonetic: "(au-ri-ya)",
     slug: "auriya",
     badge: "Magisk / KernelSU",
+    repoOwner: "pavelc4",
+    repoName: "auriya",
+    fallbackStars: 23,
     swatches: ["rust", "kernel", "perf", "core"],
     description:
       "An open-source Android performance optimization module built in Rust, designed for Magisk and KernelSU. Provides adaptive frame-aware scheduling, per-app refresh rate control, and system-level CPU and memory tuning to improve gaming and overall performance.",
@@ -22,6 +45,9 @@ const projects = [
     phonetic: "(rin-term-dev)",
     slug: "Rin",
     badge: "Apps / Terminal",
+    repoOwner: "pavelc4",
+    repoName: "Rin",
+    fallbackStars: 20,
     swatches: ["kotlin", "pacman", "terminal"],
     description:
       "A modern Android terminal emulator built with Kotlin and Jetpack Compose, featuring a native pacman-style package manager written in Rust. Enables seamless terminal access and package management on Android 10+.",
@@ -38,6 +64,9 @@ const projects = [
     phonetic: "(ae-ther-stream)",
     slug: "aether",
     badge: "Telegram Bot",
+    repoOwner: "pavelc4",
+    repoName: "aether-bot",
+    fallbackStars: 11,
     swatches: ["golang", "mtproto", "stream"],
     description:
       "A high-performance Telegram bot that streams media directly without intermediate storage. Built with a zero-disk streaming architecture in Golang, leveraging MTProto for fast uploads and concurrent chunk processing.",
@@ -54,6 +83,9 @@ const projects = [
     phonetic: "(xtra-ker-nel)",
     slug: "xtra-kernel-manager",
     badge: "Android App",
+    repoOwner: "Xtra-Manager-Software",
+    repoName: "Xtra-Kernel-Manager",
+    fallbackStars: 57,
     swatches: ["kotlin", "governor", "tune"],
     description:
       "A modern Android app for monitoring and tuning kernel performance on rooted devices. Built with Kotlin and Jetpack Compose, it provides real-time CPU metrics, thermal insights, and dynamic governor control.",
@@ -65,6 +97,28 @@ const projects = [
     tilt: "-rotate-1",
   },
 ];
+
+// Fetch real-time GitHub stars during build/SSR
+const projects = await Promise.all(
+  rawProjects.map(async (p) => {
+    try {
+      const res = await fetch(`https://api.github.com/repos/${p.repoOwner}/${p.repoName}`, {
+        headers: { "User-Agent": "Astro-Portfolio-Client" },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (typeof data.stargazers_count === "number") {
+          return { ...p, stars: data.stargazers_count };
+        }
+      }
+    } catch (e) {
+      // Fallback
+    }
+    return { ...p, stars: p.fallbackStars };
+  })
+);
+
+const totalStars = projects.reduce((sum, p) => sum + (p.stars || 0), 0);
 ---
 
 <section
@@ -97,31 +151,156 @@ const projects = [
 
       <!-- SECTION TITLE & SUBTITLE -->
       <div class="w-full my-6 sm:my-10 space-y-8">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b-2 border-gray-950 pb-6">
-          <div>
-            <h2 class="neo-neon-glitch font-oswald text-5xl sm:text-7xl md:text-8xl text-gray-950 font-bold uppercase tracking-tighter leading-none inline-block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end border-b-2 border-gray-950 pb-8">
+          
+          <!-- LEFT SIDE: TYPOGRAPHY WITH VERTICAL RED ACCENT BAR & BRUTALIST METRICS -->
+          <div class="lg:col-span-7 border-l-4 sm:border-l-6 border-[#FF5500] pl-4 sm:pl-6 space-y-4">
+            <h2 class="font-oswald text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[0.92]">
+              <span class="text-gray-950">CODE FOR THE</span><br />
+              <span class="text-gray-950">BEST <span class="text-[#FF5500]">*</span> AND <span class="text-[#FF5500] font-mono inline-block transform hover:translate-x-1 hover:-translate-y-1 transition-transform">↗</span></span><br />
+              <span class="text-gray-400">DEBUG FOR</span><br />
+              <span class="text-gray-400">THE WORST.</span>
+            </h2>
+            
+            <p class="font-mono text-xs sm:text-sm font-black tracking-wider text-gray-600 uppercase pt-1">
+              SELECTED PROJECTS. A COLLECTION OF WORK I'VE BUILT.
+            </p>
+
+            <!-- BRUTALIST METRIC BADGES TO FILL SPACE BEAUTIFULLY -->
+            <div class="pt-2 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-xl">
+              <!-- METRIC 1 -->
+              <div class="bg-white border-2 border-gray-950 p-2.5 sm:p-3 rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center gap-3">
+                <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full shrink-0"></span>
+                <div class="space-y-0.5">
+                  <div class="font-oswald text-lg font-bold leading-none text-gray-950">04 REPOS</div>
+                  <div class="font-mono text-[8px] text-gray-500 font-extrabold uppercase tracking-wider">PUBLIC REPOS</div>
+                </div>
+              </div>
+
+              <!-- METRIC 2 -->
+              <div class="bg-white border-2 border-gray-950 p-2.5 sm:p-3 rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center gap-3">
+                <span class="w-2.5 h-2.5 bg-[#FF5500] rounded-full shrink-0"></span>
+                <div class="space-y-0.5">
+                  <div class="font-oswald text-lg font-bold leading-none text-gray-950">1,420+</div>
+                  <div class="font-mono text-[8px] text-gray-500 font-extrabold uppercase tracking-wider">GIT COMMITS</div>
+                </div>
+              </div>
+
+              <!-- METRIC 3 -->
+              <div class="bg-white border-2 border-gray-950 p-2.5 sm:p-3 rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center gap-3">
+                <span class="w-2.5 h-2.5 bg-[#FF4D8D] rounded-full shrink-0"></span>
+                <div class="space-y-0.5">
+                  <div id="total-stars-count" class="font-oswald text-lg font-bold leading-none text-gray-950">{totalStars}</div>
+                  <div class="font-mono text-[8px] text-gray-500 font-extrabold uppercase tracking-wider">TOTAL STARS</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT SIDE: Y2K ASSETS + HEAVY NEO-BRUTALIST HYBRID CARD ON TOP, GIANT PROJECTS TITLE AT BOTTOM -->
+          <div class="lg:col-span-5 flex flex-col justify-between items-start lg:items-end space-y-6">
+            
+            <!-- Y2K PIXEL ASSETS + HEAVY NEO-BRUTALIST CONTAINER CARD -->
+            <div class="w-full max-w-md bg-[#F4F2EB] border-3 border-gray-950 p-5 rounded-2xl shadow-[7px_7px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden group">
+              
+              <!-- HALFTONE PATTERN BACKGROUND OVERLAY -->
+              <div class="absolute right-0 top-0 w-28 h-28 halftone-dots opacity-20 pointer-events-none"></div>
+
+              <!-- PIXEL FLOWER DOODLE STICKER (ROTATING ON HOVER IN TOP RIGHT CORNER) -->
+              <div class="absolute -top-2 -right-2 z-20 pointer-events-none -rotate-6 group-hover:rotate-45 transition-transform duration-700">
+                <div class="bg-white border-2 border-gray-950 p-1.5 rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+                  <svg class="w-8 h-8 text-emerald-500 fill-none stroke-current stroke-2" viewBox="0 0 24 24" shape-rendering="crispEdges">
+                    <circle cx="12" cy="12" r="3" fill="#FACC15" />
+                    <circle cx="12" cy="6" r="3" />
+                    <circle cx="18" cy="12" r="3" />
+                    <circle cx="12" cy="18" r="3" />
+                    <circle cx="6" cy="12" r="3" />
+                  </svg>
+                </div>
+              </div>
+
+              <!-- TOP BRUTALIST BADGES BAR -->
+              <div class="flex flex-wrap items-center gap-2 mb-3.5 z-10 relative">
+                <span class="bg-gray-950 text-white font-mono text-[9px] font-black uppercase px-2.5 py-1 rounded-md border border-gray-950 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full inline-block"></span>
+                  04 SPEC BUILDS
+                </span>
+                <span class="bg-[#FF4D8D] text-gray-950 font-mono text-[9px] font-black uppercase px-2.5 py-1 rounded-md border border-gray-950 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rotate-1">
+                  ★ OPEN SOURCE
+                </span>
+              </div>
+
+              <!-- Y2K PIXEL ART ICON STICKERS ROW (ANDROID, EYE, CLOUD, HEART) -->
+              <div class="grid grid-cols-4 gap-2 mb-4 pb-3 border-b-2 border-gray-950/20 z-10 relative">
+                <!-- 1. PIXEL ANDROID -->
+                <div class="bg-white border-2 border-gray-950 p-2 rounded-xl flex flex-col items-center justify-center text-center shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:border-[#FF4D8D] transition-all cursor-pointer">
+                  <svg class="w-6 h-6 text-[#FF4D8D] fill-current" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <rect x="2" y="6" width="12" height="8" />
+                    <rect x="0" y="4" width="2" height="2" />
+                    <rect x="14" y="4" width="2" height="2" />
+                    <rect x="4" y="8" width="2" height="2" fill="white" />
+                    <rect x="10" y="8" width="2" height="2" fill="white" />
+                  </svg>
+                  <span class="font-mono text-[7.5px] font-black text-gray-950 uppercase mt-1">ANDROID</span>
+                </div>
+
+                <!-- 2. PIXEL EYE -->
+                <div class="bg-white border-2 border-gray-950 p-2 rounded-xl flex flex-col items-center justify-center text-center shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:border-gray-950 transition-all cursor-pointer">
+                  <svg class="w-6 h-6 text-gray-950 fill-current" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <rect x="4" y="4" width="8" height="2" />
+                    <rect x="2" y="6" width="12" height="4" />
+                    <rect x="4" y="10" width="8" height="2" />
+                    <rect x="6" y="6" width="4" height="4" fill="#FF4D8D" />
+                  </svg>
+                  <span class="font-mono text-[7.5px] font-black text-gray-950 uppercase mt-1">VISION</span>
+                </div>
+
+                <!-- 3. PIXEL CLOUD -->
+                <div class="bg-white border-2 border-gray-950 p-2 rounded-xl flex flex-col items-center justify-center text-center shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:border-[#0038FF] transition-all cursor-pointer">
+                  <svg class="w-6 h-6 text-[#0038FF] fill-current" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <rect x="4" y="4" width="6" height="2" />
+                    <rect x="2" y="6" width="12" height="6" />
+                    <rect x="0" y="8" width="16" height="4" />
+                  </svg>
+                  <span class="font-mono text-[7.5px] font-black text-gray-950 uppercase mt-1">CLOUD</span>
+                </div>
+
+                <!-- 4. PIXEL HEART -->
+                <div class="bg-white border-2 border-gray-950 p-2 rounded-xl flex flex-col items-center justify-center text-center shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:border-[#FF5500] transition-all cursor-pointer">
+                  <svg class="w-6 h-6 text-[#FF5500] fill-current" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <rect x="2" y="2" width="4" height="4" />
+                    <rect x="10" y="2" width="4" height="4" />
+                    <rect x="0" y="4" width="16" height="4" />
+                    <rect x="2" y="8" width="12" height="4" />
+                    <rect x="4" y="12" width="8" height="2" />
+                    <rect x="6" y="14" width="4" height="2" />
+                  </svg>
+                  <span class="font-mono text-[7.5px] font-black text-gray-950 uppercase mt-1">Build With Love</span>
+                </div>
+              </div>
+
+              <!-- HEAVY BRUTALIST DESCRIPTION TEXT BOX -->
+              <div class="bg-white border-2 border-gray-950 p-3 rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] z-10 relative">
+                <p class="font-mono text-xs text-gray-950 font-bold leading-relaxed border-l-4 border-[#FF5500] pl-2.5">
+                  Kumpulan proyek yang saya kembangkan solo development maupun  colaborative  developmet bersama orang orang hebat di luar sana.
+                </p>
+              </div>
+            </div>
+
+            <!-- GIANT PROJECTS TITLE AT BOTTOM RIGHT -->
+            <h2 class="neo-neon-glitch font-oswald text-5xl sm:text-7xl md:text-8xl lg:text-8xl text-gray-950 font-bold uppercase tracking-tighter leading-none inline-block">
               PROJECTS<span class="text-[#FF4D8D]">.</span>
             </h2>
           </div>
 
-          <div class="font-mono text-xs text-gray-800 max-w-md">
-            <p class="font-bold border-l-4 border-gray-900 pl-3 leading-relaxed">
-              Open-source software, high-performance services, low-level Rust tooling, dan aplikasi Android system-level.
-            </p>
-          </div>
         </div>
 
         <!-- ABSTRACT ASYMMETRIC BENTO COLLAGE GRID (8-4 & 5-7 SPANS) -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           {
             projects.map((proj, idx) => (
-              <div data-reveal style={`animation-delay:${idx * 80}ms`} class={`rigid-reveal bg-white border-2 border-gray-950 ${proj.borderTop} rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[14px_14px_0px_0px_rgba(0,0,0,1)] ${proj.tilt} hover:rotate-0 transition-all duration-300 flex flex-col justify-between relative overflow-visible group ${proj.span}`}>
+              <div style={`animation-delay:${idx * 80}ms`} class={`rigid-reveal bg-white border-2 border-gray-950 ${proj.borderTop} rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[14px_14px_0px_0px_rgba(0,0,0,1)] ${proj.tilt} hover:rotate-0 transition-all duration-300 flex flex-col justify-between relative overflow-visible group ${proj.span}`}>
                 
-                {/* ANIMATED PET GIF FOR RUST PROJECT: CRAB WALKING STANDING ON TOP OF CARD LEDGE */}
-                {idx === 0 && (
-                  <img src="/portofolio/pets/crab_walk.gif" alt="Rust Crab Walking" class="w-8 h-8 absolute -top-[30px] left-8 z-30 hover:scale-125 transition-transform cursor-pointer drop-shadow-md" />
-                )}
-
                 <!-- HALFTONE DOT MATRIX ACCENT -->
                 <div class="absolute right-4 top-4 w-20 h-20 halftone-dots opacity-20 pointer-events-none overflow-hidden rounded-3xl"></div>
 
@@ -158,9 +337,14 @@ const projects = [
                         {proj.phonetic}
                       </span>
                     </div>
-                    <span class="inline-block mt-3 font-mono text-[10px] sm:text-xs font-bold uppercase px-3 py-1 bg-gray-950 text-white rounded-full border-[1.5px] border-gray-950 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                      {proj.badge}
-                    </span>
+                    <div class="flex items-center gap-2 mt-3 flex-wrap">
+                      <span class="font-mono text-[10px] sm:text-xs font-bold uppercase px-3 py-1 bg-gray-950 text-white rounded-full border-[1.5px] border-gray-950 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                        {proj.badge}
+                      </span>
+                      <span data-repo-stars={`${proj.repoOwner}/${proj.repoName}`} class="font-mono text-[10px] sm:text-xs font-black uppercase px-2.5 py-1 bg-[#FACC15] text-gray-950 rounded-full border-[1.5px] border-gray-950 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center gap-1">
+                        ★ {proj.stars} STARS
+                      </span>
+                    </div>
                   </div>
 
                   <!-- DESCRIPTION -->
@@ -210,6 +394,44 @@ const projects = [
 <script>
   import { initProjectsAnimation } from "../scripts/projects-anim";
 
+  async function syncLiveGithubStars() {
+    const starBadges = document.querySelectorAll<HTMLElement>('[data-repo-stars]');
+    if (!starBadges.length) return;
+
+    let currentTotal = 0;
+    let successCount = 0;
+
+    for (const badge of starBadges) {
+      const repo = badge.dataset.repoStars;
+      if (!repo) continue;
+      try {
+        const res = await fetch(`https://api.github.com/repos/${repo}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (typeof data.stargazers_count === 'number') {
+            badge.textContent = `★ ${data.stargazers_count} STARS`;
+            currentTotal += data.stargazers_count;
+            successCount++;
+          }
+        }
+      } catch (e) {
+        // Fallback silently
+      }
+    }
+
+    if (successCount > 0) {
+      const totalEl = document.getElementById('total-stars-count');
+      if (totalEl) {
+        totalEl.textContent = `${currentTotal}`;
+      }
+    }
+  }
+
   initProjectsAnimation();
-  document.addEventListener("astro:page-load", initProjectsAnimation);
+  syncLiveGithubStars();
+
+  document.addEventListener("astro:page-load", () => {
+    initProjectsAnimation();
+    syncLiveGithubStars();
+  });
 </script>

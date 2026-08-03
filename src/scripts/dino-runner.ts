@@ -4,6 +4,8 @@ interface Obstacle {
   h: number;
   type: "cactus" | "bird";
   y: number;
+  sprite: number;
+  frame: number;
 }
 
 export function initDinoRunner(): void {
@@ -19,6 +21,32 @@ export function initDinoRunner(): void {
   if (!ctxEl) return;
   const ctx: CanvasRenderingContext2D = ctxEl;
 
+  const S = 0.5;
+  const GH = 26 * S;
+  const DW = 88 * S;
+  const DH = 94 * S;
+
+  const img = (src: string): HTMLImageElement => {
+    const i = new Image();
+    i.src = src;
+    return i;
+  };
+  const dinoRun = img("/portofolio/dino/dino-run.png");
+  const birdImg = img("/portofolio/dino/enemy-bird.png");
+  const groundImg = img("/portofolio/dino/ground.png");
+  const cloudImg = img("/portofolio/dino/cloud.png");
+  const moonImg = img("/portofolio/dino/moon.png");
+  const starsImg = img("/portofolio/dino/stars.png");
+  const cacti = ["1", "2", "3", "1", "2", "3"].map(
+    (n, i) => img(`/portofolio/dino/cactuses_${i < 3 ? "small" : "big"}_${n}.png`)
+  );
+  const CACTUS_W = [34, 68, 102, 50, 100, 150];
+  const CACTUS_H = [70, 70, 70, 96, 96, 98];
+
+  const all = [dinoRun, birdImg, groundImg, cloudImg, moonImg, starsImg, ...cacti];
+  let loaded = 0;
+  for (const i of all) i.onload = () => { if (++loaded === all.length) draw(); };
+
   let width = (canvas.width = wrapper.clientWidth);
   let height = (canvas.height = wrapper.clientHeight);
 
@@ -26,14 +54,13 @@ export function initDinoRunner(): void {
   let score = 0;
   let highScore = 420;
   let gameSpeed = 4.5;
+  let scroll = 0;
+  let groundY = height - GH;
   const gravity = 0.65;
-  let groundY = height - 24;
 
   const dino = {
     x: 35,
-    y: groundY - 26,
-    w: 22,
-    h: 26,
+    y: groundY - DH,
     dy: 0,
     jumpForce: -10.5,
     isGrounded: true,
@@ -43,11 +70,12 @@ export function initDinoRunner(): void {
 
   let obstacles: Obstacle[] = [];
   let spawnTimer = 0;
+  let cloudX = [width * 0.2, width * 0.55, width * 0.85];
 
   window.addEventListener("resize", () => {
     width = canvas.width = wrapper.clientWidth;
     height = canvas.height = wrapper.clientHeight;
-    groundY = height - 24;
+    groundY = height - GH;
   });
 
   function jump(): void {
@@ -69,7 +97,7 @@ export function initDinoRunner(): void {
     const cycle = Math.floor(score / 350) % 2;
     if (cycle === 1 && !isDark) {
       isDark = true;
-      wrapper.classList.remove("bg-[#F4F2EB]");
+      wrapper.classList.remove("bg-white");
       wrapper.classList.add("bg-[#111111]");
       if (themeBadge) {
         themeBadge.textContent = "NIGHT_MODE";
@@ -80,7 +108,7 @@ export function initDinoRunner(): void {
     } else if (cycle === 0 && isDark) {
       isDark = false;
       wrapper.classList.remove("bg-[#111111]");
-      wrapper.classList.add("bg-[#F4F2EB]");
+      wrapper.classList.add("bg-white");
       if (themeBadge) {
         themeBadge.textContent = "DAY_MODE";
         themeBadge.className = "bg-gray-950 text-white px-2 py-0.5 text-[8.5px] tracking-wider";
@@ -92,8 +120,8 @@ export function initDinoRunner(): void {
     dino.y += dino.dy;
     dino.dy += gravity;
 
-    if (dino.y >= groundY - dino.h) {
-      dino.y = groundY - dino.h;
+    if (dino.y >= groundY - DH) {
+      dino.y = groundY - DH;
       dino.dy = 0;
       dino.isGrounded = true;
     }
@@ -103,11 +131,17 @@ export function initDinoRunner(): void {
 
     spawnTimer++;
     if (spawnTimer > Math.max(50, 110 - gameSpeed * 5)) {
-      const type: "cactus" | "bird" = Math.random() > 0.75 ? "bird" : "cactus";
-      const h = type === "cactus" ? 22 + Math.random() * 12 : 16;
-      const w = type === "cactus" ? 14 + Math.random() * 10 : 20;
-      const y = type === "bird" ? groundY - 35 - Math.random() * 15 : groundY - h;
-      obstacles.push({ x: width + 20, w, h, type, y });
+      if (Math.random() > 0.75) {
+        const bw = 92 * S;
+        const bh = 77 * S;
+        const bottom = groundY - (6 + Math.random() * 8);
+        obstacles.push({ x: width + 20, w: bw, h: bh, y: bottom - bh, type: "bird", sprite: 0, frame: 0 });
+      } else {
+        const ci = Math.floor(Math.random() * cacti.length);
+        const w = CACTUS_W[ci] * S;
+        const h = CACTUS_H[ci] * S;
+        obstacles.push({ x: width + 20, w, h, y: groundY - h, type: "cactus", sprite: ci, frame: 0 });
+      }
       spawnTimer = 0;
     }
 
@@ -116,79 +150,63 @@ export function initDinoRunner(): void {
       obs.x -= gameSpeed;
 
       const distance = obs.x - dino.x;
-      if (distance > 0 && distance < 75 && dino.isGrounded) {
-        if (obs.type === "cactus" || (obs.type === "bird" && obs.y > groundY - 38)) jump();
-      }
+      if (distance > 0 && distance < 75 && dino.isGrounded) jump();
 
       if (obs.x + obs.w < 0) obstacles.splice(i, 1);
     }
 
     gameSpeed = 4.5 + Math.min(score / 500, 3);
+    scroll += gameSpeed;
+    for (let i = 0; i < cloudX.length; i++) {
+      cloudX[i] -= 0.3;
+      if (cloudX[i] < -50) cloudX[i] = width + 50;
+    }
   }
 
   function draw(): void {
     ctx.clearRect(0, 0, width, height);
 
-    const mainColor = isDark ? "#FFFFFF" : "#111111";
-
-    ctx.strokeStyle = mainColor;
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(0, groundY);
-    ctx.lineTo(width, groundY);
-    ctx.stroke();
-
-    ctx.fillStyle = mainColor;
-    for (let i = 0; i < width; i += 30) {
-      const dotX = (i - (score * 2) % 30 + width) % width;
-      ctx.fillRect(dotX, groundY + 4, 3, 2);
-      ctx.fillRect((dotX + 15) % width, groundY + 10, 2, 2);
-    }
-
-    ctx.fillStyle = mainColor;
-    ctx.fillRect(dino.x + 8, dino.y, 14, 8);
-    ctx.fillRect(dino.x + 14, dino.y + 2, 3, 3);
-    ctx.fillStyle = isDark ? "#111111" : "#FFFFFF";
-    ctx.fillRect(dino.x + 15, dino.y + 2, 2, 2);
-    ctx.fillStyle = mainColor;
-
-    ctx.fillRect(dino.x + 18, dino.y + 5, 4, 3);
-    ctx.fillRect(dino.x + 4, dino.y + 8, 14, 12);
-    ctx.fillRect(dino.x + 14, dino.y + 10, 4, 2);
-    ctx.fillRect(dino.x, dino.y + 8, 4, 6);
-
-    if (dino.isGrounded) {
-      if (dino.legState === 0) {
-        ctx.fillRect(dino.x + 6, dino.y + 20, 3, 6);
-        ctx.fillRect(dino.x + 13, dino.y + 20, 3, 4);
-      } else {
-        ctx.fillRect(dino.x + 6, dino.y + 20, 3, 4);
-        ctx.fillRect(dino.x + 13, dino.y + 20, 3, 6);
+    if (isDark) {
+      ctx.drawImage(moonImg, 0, 0, 20, 40, width - 92, 14, 20 * S, 40 * S);
+      const spots: Array<[number, number, number]> = [
+        [0.12, 0.18, 0],
+        [0.3, 0.1, 1],
+        [0.55, 0.22, 2],
+        [0.78, 0.12, 0],
+        [0.88, 0.3, 1],
+      ];
+      for (const [fx, fy, f] of spots) {
+        ctx.drawImage(starsImg, f * 9, 0, 9, 9, width * fx, height * fy, 9 * S, 9 * S);
       }
-    } else {
-      ctx.fillRect(dino.x + 6, dino.y + 20, 3, 5);
-      ctx.fillRect(dino.x + 12, dino.y + 20, 3, 5);
     }
+
+    for (let i = 0; i < cloudX.length; i++) {
+      ctx.drawImage(cloudImg, cloudX[i], 14 + i * 16, 92 * S, 27 * S);
+    }
+
+    const srcX = (scroll * 2) % 88;
+    for (let x = -44; x < width; x += 44) {
+      ctx.drawImage(groundImg, srcX, 0, 88, 26, x, groundY, 44, GH);
+    }
+
+    const dframe = dino.isGrounded ? (dino.legState === 0 ? 2 : 3) : 0;
+    ctx.drawImage(dinoRun, dframe * 88, 0, 88, 94, dino.x, dino.y, DW, DH);
 
     for (const obs of obstacles) {
       if (obs.type === "cactus") {
-        ctx.fillRect(obs.x + obs.w * 0.3, obs.y, obs.w * 0.4, obs.h);
-        ctx.fillRect(obs.x, obs.y + obs.h * 0.25, obs.w, obs.h * 0.25);
+        ctx.drawImage(cacti[obs.sprite], obs.x, obs.y, obs.w, obs.h);
       } else {
-        ctx.fillRect(obs.x, obs.y + 4, obs.w, 6);
-        ctx.fillRect(obs.x + 4, obs.y, 8, 4);
+        ctx.drawImage(birdImg, obs.frame * 92, 0, 92, 77, obs.x, obs.y, obs.w, obs.h);
+        obs.frame = obs.frame === 0 ? 1 : 0;
       }
     }
 
-    ctx.font = "bold 11px monospace";
-    ctx.fillStyle = mainColor;
-    const scoreStr = String(score).padStart(5, "0");
-    const hiStr = String(highScore).padStart(5, "0");
-    ctx.fillText(`HI ${hiStr}  ${scoreStr}`, width - 120, 18);
+    ctx.font = "bold 16px monospace";
+    ctx.fillStyle = isDark ? "#D0D0D0" : "#535353";
+    ctx.textAlign = "right";
+    ctx.fillText(`HI ${String(highScore).padStart(5, "0")}  ${String(score).padStart(5, "0")}`, width - 12, 20);
 
     update();
     requestAnimationFrame(draw);
   }
-
-  draw();
 }
