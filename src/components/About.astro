@@ -10,7 +10,7 @@ import GitHubMatrix from "./GitHubMatrix.astro";
     <div class="max-w-[98%] xl:max-w-[1500px] 2xl:max-w-[1700px] mx-auto px-2 sm:px-6 relative z-10">
         
         <!-- MAIN POSTER FRAME CONTAINER -->
-        <div class="neo-parallax-card relative w-full bg-white border-2 border-gray-950 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.95)] p-5 sm:p-8 md:p-12 flex flex-col justify-between overflow-hidden noise-overlay select-none">
+        <div data-reveal class="neo-parallax-card relative w-full bg-white border-2 border-gray-950 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.95)] p-5 sm:p-8 md:p-12 flex flex-col justify-between overflow-hidden noise-overlay">
             
             <!-- TOP HEADER GRID METADATA BAR -->
             <div class="w-full pb-4 sm:pb-6 border-b-2 border-gray-950 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 font-mono text-xs uppercase font-black text-gray-950">
@@ -39,14 +39,14 @@ import GitHubMatrix from "./GitHubMatrix.astro";
                     <!-- HALFTONE DOT MATRIX ACCENT -->
                     <div class="absolute right-4 top-4 w-32 h-32 halftone-dots opacity-20 pointer-events-none overflow-hidden rounded-3xl"></div>
 
+                    <!-- KANJUT CORNER FRAME TICKS -->
+                    <div class="corner-ticks z-10"></div>
+
                     <div class="space-y-4 relative z-10">
                         
                         <!-- BIO BADGES -->
                         <div class="flex items-center gap-2 flex-wrap">
-                            <span class="font-mono text-[9px] font-black uppercase tracking-widest bg-black text-white px-2.5 py-0.5 border border-gray-950">
-                                DEVELOPER PROFILE
-                            </span>
-                            <span class="bg-[#FACC15] text-gray-950 font-mono text-[9.5px] font-black uppercase px-3 py-1 border-1.5 border-gray-950 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] -rotate-1">
+                            <span class="bg-[#FACC15] text-gray-950 font-mono text-[9.5px] font-black uppercase px-3 py-1 border-[1.5px] border-gray-950 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] -rotate-1">
                                 INFORMATICS STUDENT
                             </span>
                         </div>
@@ -58,7 +58,7 @@ import GitHubMatrix from "./GitHubMatrix.astro";
                         
                         <!-- PARAGRAPH BIO -->
                         <p class="font-mono text-xs sm:text-sm text-gray-900 leading-relaxed font-medium max-w-4xl">
-                            Halo! Saya Dimas Dwi Ariyanto (dikenal sebagai <strong class="bg-[#A7F3D0] border border-gray-950 px-1 text-gray-950 font-bold">pavelc4</strong>), mahasiswa Teknik Informatika di Universitas Widyatama, Bandung. Fokus utama saya di <strong class="text-[#0038FF]">Golang</strong> dan <strong class="text-[#0038FF]">TypeScript</strong> untuk backend & web services, dengan <strong class="text-[#FF5500]">Rust</strong> sebagai eksplorasi sampingan serta pengulikan Arch Linux.
+                            Halo! Saya Dimas Dwi Ariyanto (dikenal sebagai <strong class="bg-[#A7F3D0] border border-gray-950 px-1 text-gray-950 font-bold">pavelc4</strong>), mahasiswa Teknik Informatika di Universitas Widyatama, Bandung. Fokus utama saya di <strong class="text-[#0038FF]">Golang</strong> dan <strong class="text-[#0038FF]">TypeScript</strong> untuk backend & web services, dengan <strong class="text-[#FF5500]">Rust</strong> sebagai eksplorasi — selalu terbuka untuk belajar dan berkembang sebagai junior developer.
                         </p>
 
                     </div>
@@ -88,8 +88,11 @@ import GitHubMatrix from "./GitHubMatrix.astro";
                         <!-- HALFTONE ACCENT -->
                         <div class="absolute right-2 top-2 w-28 h-28 halftone-dots opacity-20 pointer-events-none"></div>
 
+                        <!-- KANJUT CORNER FRAME TICKS -->
+                        <div class="corner-ticks z-10"></div>
+
                         <!-- STARBURST BADGE -->
-                        <div class="absolute top-4 right-4 bg-[#FACC15] text-gray-950 font-oswald text-xs font-black uppercase px-3 py-1 border-1.5 border-gray-950 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] rotate-6">
+                        <div class="absolute top-4 right-4 bg-[#FACC15] text-gray-950 font-oswald text-xs font-black uppercase px-3 py-1 border-[1.5px] border-gray-950 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] rotate-6">
                             GROW WITH ME!
                         </div>
 

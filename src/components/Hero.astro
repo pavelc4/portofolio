@@ -1,16 +1,28 @@
 ---
-import { Image } from "astro:assets";
-import anuImg from "../assets/pets/anu.jpg";
+import QRCode from "qrcode";
+
+const qrDataUrl = await QRCode.toDataURL("https://github.com/pavelc4", { margin: 1, width: 140 });
 ---
 
 <section
   id="hero"
   class="relative min-h-screen pt-20 md:pt-24 pb-8 md:pb-12 px-2 sm:px-6 lg:px-8 flex items-center justify-center overflow-hidden grid-blueprint-bg bg-[#FAFAFA]"
 >
+  <!-- KANJUT Y2K SPARKLES -->
+  <svg class="sparkle absolute top-28 right-5 w-6 h-6 text-[#FF4D8D] hidden md:block" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 0c.9 6.4 3.6 9.1 12 12-8.4 2.9-11.1 5.6-12 12-.9-6.4-3.6-9.1-12-12C8.4 9.1 11.1 6.4 12 0z"/>
+  </svg>
+  <svg class="sparkle absolute bottom-28 left-5 w-5 h-5 text-[#0038FF] hidden md:block" style="animation-delay:-0.9s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 0c.9 6.4 3.6 9.1 12 12-8.4 2.9-11.1 5.6-12 12-.9-6.4-3.6-9.1-12-12C8.4 9.1 11.1 6.4 12 0z"/>
+  </svg>
+
   <!-- Main Poster Frame with Neo-Brutalist Theme -->
   <div
-    class="neo-parallax-card relative w-full max-w-[98%] xl:max-w-[1500px] 2xl:max-w-[1700px] bg-white border-2 border-gray-950 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.95)] p-5 sm:p-8 md:p-12 flex flex-col justify-between overflow-hidden noise-overlay select-none"
+    class="neo-parallax-card relative w-full max-w-[98%] xl:max-w-[1500px] 2xl:max-w-[1700px] bg-white border-2 border-gray-950 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.95)] p-5 sm:p-8 md:p-12 flex flex-col justify-between overflow-hidden noise-overlay"
   >
+    <!-- KANJUT LINE GRID OVERLAY -->
+    <div class="absolute inset-0 kanjut-grid pointer-events-none z-0" aria-hidden="true"></div>
+
     <!-- TOP HEADER GRID METADATA BAR WITH 001 INDEX -->
     <div class="w-full pb-4 sm:pb-6 border-b-2 border-gray-950 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 font-mono text-xs uppercase font-black text-gray-950">
       <div class="flex items-center gap-3">
@@ -22,7 +34,7 @@ import anuImg from "../assets/pets/anu.jpg";
 
       <div class="text-left sm:text-right">
         <span class="bg-[#FACC15] text-gray-950 border border-gray-950 px-2.5 py-1 text-[9.5px] font-black uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rotate-1 inline-block">
-          BACKEND & LINUX DEV
+          BACKEND & WEB DEV
         </span>
       </div>
     </div>
@@ -32,20 +44,6 @@ import anuImg from "../assets/pets/anu.jpg";
       
       <!-- LEFT SIDE: RECTANGULAR KOTAK MEDIA CARD & KANJUT PRINTILAN WIDGETS -->
       <div class="lg:col-span-5 flex flex-col space-y-5">
-        
-        <!-- ABSTRACT TOP MICRO-ELEMENTS BAR WITH BORDER TICKS & SCOPE CROSSHAIR -->
-        <div class="flex items-center justify-between font-mono text-[10px] font-bold text-gray-950 uppercase px-1">
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse"></span>
-            <span class="tracking-wider">⊕ SYS.LOG // 0x7F</span>
-          </div>
-
-          <div class="flex items-center gap-2 font-mono text-[9px] text-gray-700">
-            <span>[GO & TS]</span>
-            <span class="text-gray-400">•</span>
-            <span>[RUST SIDE]</span>
-          </div>
-        </div>
 
         <!-- RECTANGULAR KOTAK HERO MEDIA FRAME WITH KANJUT MINI QR CODE & HEX DUMP -->
         <div class="relative w-full h-[220px] sm:h-[260px] md:h-[270px] bg-gray-950 rounded-2xl p-2.5 border-3 border-gray-950 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group">
@@ -56,43 +54,42 @@ import anuImg from "../assets/pets/anu.jpg";
           <!-- HALFTONE ACCENT INSIDE MEDIA CARD -->
           <div class="absolute right-2 top-2 w-20 h-20 halftone-dots opacity-30 z-10 pointer-events-none"></div>
 
-          <!-- KANJUT MINI QR CODE BADGE (TOP-RIGHT CORNER) -->
-          <div class="absolute top-4 right-4 z-30 bg-white p-1 rounded border border-gray-950 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center">
-            <svg class="w-7 h-7 text-gray-950" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm8-2h10v10H12V2zm2 2v6h6V4h-6zM2 12h10v10H2V12zm2 2v6h6v-6H4zm14-2h4v2h-4v-2zm-6 4h4v2h-4v-2zm4 0h4v6h-4v-6zm-4 4h4v2h-4v-2z"/>
-            </svg>
+          <!-- KANJUT MINI QR CODE BADGE (TOP-RIGHT CORNER) — EGG: SCAN → GITHUB -->
+          <a
+            href="https://github.com/pavelc4"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="scan → github.com/pavelc4"
+            class="absolute top-4 right-4 z-30 bg-white p-1 rounded border border-gray-950 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center hover:scale-110 transition-transform"
+          >
+            <img src={qrDataUrl} alt="QR — github.com/pavelc4" class="w-9 h-9" width="140" height="140" />
             <span class="font-mono text-[6.5px] font-black text-gray-950 mt-0.5">P4-QR</span>
-          </div>
+          </a>
+
+          <!-- KANJUT CORNER FRAME TICKS -->
+          <div class="corner-ticks z-20"></div>
 
           <!-- KOTAK INNER IMAGE WRAPPER -->
           <div class="relative w-full h-full rounded-xl overflow-hidden bg-gray-900 flex items-center justify-center">
-            <Image
-              src={anuImg}
-              alt="Dimas Dwi Ariyanto (pavelc4) Anime Artwork Banner"
+            <img
+              src="https://github.com/pavelc4.png"
+              alt="Dimas Dwi Ariyanto (pavelc4) Profile"
               loading="eager"
-              fetchpriority="high"
               decoding="async"
-              class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+              class="w-auto h-full max-w-full object-contain grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none"></div>
           </div>
 
-          <!-- FLOATING TOP-LEFT WIDGET CARD WITH CROSSHAIR SCOPE -->
-          <div class="absolute -top-5 left-4 sm:left-6 bg-white border-2 border-gray-950 p-2.5 sm:p-3 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-[180px] sm:max-w-[200px] -rotate-2 group-hover:rotate-0 transition-transform duration-300 z-30">
+          <!-- FLOATING TOP-LEFT WIDGET CARD: RANDOM ROTATING POLYGLOT TEXT (BESIDE DOG GIF) -->
+          <div class="absolute -top-4 left-6 z-40 bg-[#FF4D8D] text-white border-2 border-gray-950 p-2.5 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-[185px] rotate-2 group-hover:rotate-0 transition-transform duration-300">
             <div class="flex items-center justify-between mb-1">
-              <span class="font-mono text-[8px] font-black uppercase bg-[#A7F3D0] text-gray-950 px-2 py-0.5 border border-gray-950 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
-                PRIMARY STACK
-              </span>
-              <span class="font-mono text-[9px] font-bold text-gray-950">⊕</span>
+              <span class="font-mono text-[7px] font-black uppercase tracking-wider bg-black text-white px-1 py-0.5 rounded">P4-BABEL</span>
+              <span id="babel-tag" class="font-mono text-[7px] bg-white text-gray-950 px-1 py-0.5 rounded font-black">RUS</span>
             </div>
-            <div class="flex justify-between items-center mt-1">
-              <span class="font-oswald text-[11px] font-bold uppercase text-gray-950">
-                GO & TS (RUST SIDE)
-              </span>
-              <a href="#projects" class="bg-[#0038FF] text-white font-mono text-[8px] px-2 py-0.5 rounded-full font-bold border border-gray-950 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:bg-black transition-colors">
-                VIEW [->]
-              </a>
-            </div>
+            <p id="babel-phrase" class="font-mono text-[8.5px] leading-tight font-bold transition-opacity duration-300 min-h-[24px]">
+              Привет, мир!
+            </p>
           </div>
 
           <!-- FLOATING BOTTOM-RIGHT WIDGET CARD WITH HEX DUMP -->
@@ -130,10 +127,22 @@ import anuImg from "../assets/pets/anu.jpg";
             </a>
           </div>
 
-          <div class="bg-[#A7F3D0] text-gray-950 px-3 py-1 rounded-full border-1.5 border-gray-950 font-mono text-[9px] font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center gap-1.5">
+          <div class="bg-[#A7F3D0] text-gray-950 px-3 py-1 rounded-full border-[1.5px] border-gray-950 font-mono text-[9px] font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center gap-1.5">
             <span class="w-2 h-2 bg-emerald-600 border border-gray-950 rounded-full"></span>
             <span>01 • 1,420 COMMITS</span>
           </div>
+        </div>
+
+        <!-- RETRO AUTO-PLAY GAME CARD (below commits badge) -->
+        <div class="bg-[#0E1116] text-white border-2 border-gray-950 rounded-xl p-2.5 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+          <div class="flex items-center justify-between mb-1.5 px-0.5">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2 h-2 bg-[#FF5500] border border-gray-950 rounded-full animate-ping"></span>
+              <span class="font-mono text-[8px] font-black uppercase text-gray-200">P4-GAME // AUTO-PLAY</span>
+            </div>
+            <span class="font-mono text-[8px] font-black bg-[#FACC15] text-gray-950 px-1.5 py-0.5 rounded">8-BIT</span>
+          </div>
+          <canvas id="p4-game" class="w-full h-[90px] block" width="280" height="90"></canvas>
         </div>
 
       </div>
@@ -142,16 +151,23 @@ import anuImg from "../assets/pets/anu.jpg";
       <!-- RIGHT SIDE: ARTISTIC ABSTRACT STAGGERED TYPOGRAPHY -->
       <div class="lg:col-span-7 flex flex-col justify-between space-y-5 lg:pl-4 relative">
         
+        <!-- KANJUT ORBIT RINGS PRINTILAN -->
+        <div class="orbit-rings w-44 h-44 sm:w-56 sm:h-56 -top-2 -right-2 z-0 hidden lg:block" aria-hidden="true">
+          <div class="orbit-ring-solid"></div>
+          <div class="orbit-ring-dashed"></div>
+          <div class="orbit-dot"></div>
+        </div>
+
         <!-- HALFTONE DOT MATRIX PRINTILAN -->
         <div class="absolute right-0 top-0 w-28 h-28 halftone-dots opacity-25 pointer-events-none"></div>
 
-        <div>
+        <div class="relative z-10">
           <!-- TOP HUMBLE STICKER BADGE & JAPANESE TAG -->
           <div class="flex items-center gap-2 mb-3 flex-wrap">
             <span class="bg-[#FF4D8D] text-white font-mono text-[9px] font-black uppercase px-2.5 py-1 border border-gray-950 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] -rotate-2">
               DIMAS DWI ARIYANTO // STUDENT
             </span>
-            <span class="bg-[#F4F2EB] text-gray-950 font-mono text-[8.5px] font-bold px-2 py-0.5 border border-gray-950 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
+            <span class="bg-[#F4F2EB] text-gray-950 font-[Noto_Sans_JP] text-[8.5px] font-bold px-2 py-0.5 border border-gray-950 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
               学生 • BANDUNG
             </span>
             <span class="w-2.5 h-2.5 bg-[#FF5500] border border-gray-950 rounded-full inline-block"></span>
@@ -161,7 +177,7 @@ import anuImg from "../assets/pets/anu.jpg";
           <div class="flex flex-col space-y-2 mb-4">
             <!-- LINE 1: LEARNING & (SHIFTED LEFT) -->
             <div class="flex items-center gap-3">
-              <h1 class="font-oswald text-5xl sm:text-7xl md:text-8xl lg:text-[6.2rem] font-bold leading-[0.88] tracking-tighter text-gray-950 uppercase">
+              <h1 data-text="LEARNING &" class="glitch-title font-oswald text-5xl sm:text-7xl md:text-8xl lg:text-[6.2rem] font-bold leading-[0.88] tracking-tighter text-gray-950 uppercase">
                 LEARNING &
               </h1>
             </div>
@@ -191,7 +207,7 @@ import anuImg from "../assets/pets/anu.jpg";
                 LOC: BANDUNG, ID [6.9175° S]
               </span>
               <span class="font-mono text-[9px] font-extrabold uppercase bg-[#F4F2EB] text-gray-950 px-2 py-0.5 border border-gray-950 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
-                OS: ARCH LINUX
+                STACK: GO • TS • RUST
               </span>
               <span class="font-mono text-[9px] font-extrabold uppercase bg-[#A7F3D0] text-gray-950 px-2 py-0.5 border border-gray-950 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
                 ROLE: JUNIOR DEV
@@ -210,7 +226,7 @@ import anuImg from "../assets/pets/anu.jpg";
         <!-- AUTHENTIC HUMBLE BIO PARAGRAPH -->
         <div class="pt-3 border-t-2 border-gray-950 relative">
           <p class="font-mono text-xs sm:text-sm text-gray-900 leading-relaxed font-medium max-w-xl">
-            Halo! Saya Dimas Dwi Ariyanto (<strong class="bg-[#A7F3D0] border border-gray-950 px-1 font-bold">pavelc4</strong>), mahasiswa Teknik Informatika Universitas Widyatama, Bandung. Fokus utama saya di Golang & TypeScript, dengan eksplorasi Rust di waktu senggang serta pengulikan sistem Linux.
+            Halo! Saya Dimas Dwi Ariyanto (<strong class="bg-[#A7F3D0] border border-gray-950 px-1 font-bold">pavelc4</strong>), mahasiswa Teknik Informatika Universitas Widyatama, Bandung. Fokus utama saya di Golang & TypeScript untuk membangun backend & web services, dengan Rust sebagai eksplorasi — selalu belajar dan menulis kode yang bersih dan mudah dipahami.
           </p>
         </div>
 
@@ -229,18 +245,8 @@ import anuImg from "../assets/pets/anu.jpg";
 </section>
 
 <script>
-  import { animate, inView, stagger } from "motion";
-
-  function initHeroAnimation() {
-    inView("#hero", () => {
-      animate(
-        "#hero .rigid-reveal",
-        { opacity: 1, y: [20, 0], scale: [0.97, 1] },
-        { delay: stagger(0.08), duration: 0.35, easing: "ease-out" }
-      );
-    });
-  }
-
-  initHeroAnimation();
-  document.addEventListener("astro:page-load", initHeroAnimation);
+  import { initHeroRotator } from "../scripts/hero-rotator";
+  import { initMarioGame } from "../scripts/mario-run";
+  initHeroRotator();
+  initMarioGame("p4-game");
 </script>

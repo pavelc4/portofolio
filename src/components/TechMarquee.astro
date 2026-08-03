@@ -10,7 +10,6 @@ const stackRow1 = [
     { name: "PostgreSQL", icon: "skill-icons:postgresql-dark", tag: "DATABASE" },
     { name: "MongoDB", icon: "skill-icons:mongodb", tag: "NOSQL" },
     { name: "Linux", icon: "skill-icons:linux-dark", tag: "OS" },
-    { name: "Arch Linux", icon: "skill-icons:arch-dark", tag: "SYS ADMIN" },
     { name: "AWS", icon: "skill-icons:aws-dark", tag: "CLOUD" },
 ];
 
@@ -25,18 +24,18 @@ const stackRow2 = [
     { name: "Git & GitHub", icon: "skill-icons:github-dark", tag: "VCS" },
 ];
 
-const row1 = [...stackRow1, ...stackRow1, ...stackRow1];
-const row2 = [...stackRow2, ...stackRow2, ...stackRow2];
+const row1 = [...stackRow1, ...stackRow1];
+const row2 = [...stackRow2, ...stackRow2];
 ---
 
 <section
     id="skills"
-    class="py-16 md:py-24 bg-[#FAFAFA] border-t-2 border-gray-950 overflow-hidden relative grid-blueprint-bg"
+    class="py-16 md:py-24 bg-[#FAFAFA] border-t-2 border-gray-950 overflow-hidden relative"
 >
     <div class="max-w-[98%] xl:max-w-[1500px] 2xl:max-w-[1700px] mx-auto px-2 sm:px-6 relative z-10">
         
         <!-- MAIN POSTER FRAME CONTAINER (MATCHING HERO & ABOUT POSTER CARD STYLE) -->
-        <div class="neo-parallax-card relative w-full bg-white border-2 border-gray-950 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.95)] p-5 sm:p-8 md:p-12 flex flex-col justify-between overflow-hidden noise-overlay select-none">
+        <div data-reveal class="neo-parallax-card relative w-full bg-white border-2 border-gray-950 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.95)] p-5 sm:p-8 md:p-12 flex flex-col justify-between overflow-hidden noise-overlay">
             
             <!-- TOP HEADER GRID METADATA BAR -->
             <div class="w-full pb-4 sm:pb-6 border-b-2 border-gray-950 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 font-mono text-xs uppercase font-black text-gray-950">
@@ -71,6 +70,9 @@ const row2 = [...stackRow2, ...stackRow2, ...stackRow2];
                     
                     <!-- ANIMATED PET GIF: FOX WALKING STANDING ON TOP OF CARD LEDGE -->
                     <img src="/portofolio/pets/fox_walk.gif" alt="Fox Walking" class="w-8 h-8 absolute -top-[30px] right-10 z-30 hover:scale-125 transition-transform cursor-pointer drop-shadow-md" />
+                    
+                    <!-- KANJUT CORNER FRAME TICKS -->
+                    <div class="corner-ticks z-10"></div>
                     
                     <!-- MARQUEE ROW 1 (SCROLLING LEFT -> HOVER TO PAUSE) -->
                     <div class="w-full overflow-hidden flex whitespace-nowrap py-1 marquee-row">

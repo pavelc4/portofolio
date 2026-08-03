@@ -46,7 +46,7 @@ const logs = [
   <div class="max-w-[98%] xl:max-w-[1500px] 2xl:max-w-[1700px] mx-auto px-2 sm:px-6 relative z-10">
     
     <!-- MAIN POSTER FRAME CONTAINER (MATCHING ALL OTHER SECTIONS) -->
-    <div class="neo-parallax-card relative w-full bg-white border-2 border-gray-950 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.95)] p-5 sm:p-8 md:p-12 flex flex-col justify-between overflow-hidden noise-overlay select-none">
+    <div data-reveal class="neo-parallax-card relative w-full bg-white border-2 border-gray-950 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.95)] p-5 sm:p-8 md:p-12 flex flex-col justify-between overflow-hidden noise-overlay">
       
       <!-- TOP HEADER GRID METADATA BAR -->
       <div class="w-full pb-4 sm:pb-6 border-b-2 border-gray-950 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 font-mono text-xs uppercase font-black text-gray-950">
@@ -84,11 +84,14 @@ const logs = [
         <!-- CARDS GRID (EXACT ROUNDED 3XL NEO-BRUTALIST CARDS) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {
-            logs.map((log) => (
-              <div class="bg-white border-2 border-gray-950 rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[14px_14px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all flex flex-col justify-between relative overflow-hidden group">
+            logs.map((log, idx) => (
+              <div data-reveal style={`animation-delay:${idx * 80}ms`} class="bg-white border-2 border-gray-950 rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[14px_14px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all flex flex-col justify-between relative overflow-hidden group">
                 
                 <!-- HALFTONE DOT MATRIX ACCENT -->
                 <div class="absolute right-4 top-4 w-16 h-16 halftone-dots opacity-20 pointer-events-none"></div>
+
+                <!-- KANJUT CORNER FRAME TICKS -->
+                <div class="corner-ticks"></div>
 
                 <div>
                   <!-- TOP COLOR SWATCH & BADGE -->

@@ -1,6 +1,9 @@
 ---
 import Navbar from '../components/Navbar.astro';
-import '../styles/global.css';
+import '../styles/base.css';
+import '../styles/patterns.css';
+import '../styles/components.css';
+import '../styles/ornaments.css';
 
 interface Props {
   title?: string;
@@ -13,62 +16,13 @@ const { title = 'pavelc4' } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/portofolio/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet">
   </head>
   <body class="relative bg-[#FAFAFA] text-gray-950 overflow-x-hidden">
     
-    <!-- CHROME DINO RUN & CRASH PRELOADER OVERLAY -->
-    <div 
-      id="neo-dino-preloader" 
-      class="fixed inset-0 z-[100] bg-[#111111] text-white flex flex-col items-center justify-center p-4 noise-overlay select-none transition-transform duration-500 ease-in-out"
-    >
-      <div class="max-w-md w-full space-y-6 text-center">
-        
-        <!-- HEADER METADATA -->
-        <div class="flex items-center justify-between font-mono text-xs uppercase font-bold text-gray-400 border-b border-gray-800 pb-3">
-          <span class="flex items-center gap-2">
-            <span class="w-2 h-2 bg-[#22C55E] rounded-full animate-ping"></span>
-            <span class="text-white font-black">INITIALIZING SYSTEM</span>
-          </span>
-          <span id="dino-preloader-pct" class="text-[#FACC15] font-black">0%</span>
-        </div>
-
-        <!-- DINO RUNNING TRACK CONTAINER -->
-        <div class="relative w-full h-32 bg-gray-900 border-2 border-gray-700 rounded-2xl overflow-hidden flex items-end justify-between p-4 shadow-[6px_6px_0px_0px_rgba(255,255,255,0.1)]">
-          
-          <!-- RUNNING TRACK LINE -->
-          <div class="absolute bottom-4 left-0 right-0 h-0.5 bg-gray-700"></div>
-
-          <!-- DINO SPRITE -->
-          <div id="dino-runner-sprite" class="absolute bottom-4 left-4 transition-all duration-[1200ms] ease-linear flex items-center gap-1">
-            <svg class="w-10 h-10 text-[#FACC15] animate-bounce" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M22 2v2h-2v2h-2v2h-4V6h-2V4h-2V2H8v6h2v2h2v2H6v2H4v2H2v6h2v-2h2v-2h2v4h2v-2h2v2h2v-4h2v-2h2v-4h2V8h-2V6h2V4h2V2h-2z"/>
-            </svg>
-          </div>
-
-          <!-- CRASH OBSTACLE BLOCK -->
-          <div id="dino-obstacle-block" class="absolute bottom-4 right-6 bg-[#FF4D8D] text-white border-2 border-white px-3 py-1 font-mono text-xs font-black shadow-[3px_3px_0px_0px_rgba(255,255,255,0.3)]">
-            OBSTACLE [0x00]
-          </div>
-
-          <!-- FLASH IMPACT POPUP -->
-          <div id="dino-impact-popup" class="absolute inset-0 bg-[#FF4D8D] text-gray-950 font-oswald text-4xl sm:text-5xl font-black uppercase flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-150">
-            💥 BOOM! SYSTEM LOADED!
-          </div>
-
-        </div>
-
-        <!-- BOTTOM STATUS MESSAGE -->
-        <p class="font-mono text-xs text-gray-400 font-bold uppercase tracking-widest">
-          PAVELC4 // BACKEND & SYSTEM PORTFOLIO
-        </p>
-
-      </div>
-    </div>
-
-    <!-- BACKGROUND NOISE PATTERN -->
     <div 
       class="fixed inset-0 z-40 pointer-events-none opacity-[0.04]"
       style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E&quot;);"
@@ -81,89 +35,12 @@ const { title = 'pavelc4' } = Astro.props;
     </main>
 
     <script>
-      function initDinoRunPreloader() {
-        const preloader = document.getElementById("neo-dino-preloader");
-        const dino = document.getElementById("dino-runner-sprite");
-        const pctText = document.getElementById("dino-preloader-pct");
-        const impactPopup = document.getElementById("dino-impact-popup");
-
-        if (!preloader) return;
-
-        // Check if preloader already ran in current session
-        if (sessionStorage.getItem("neo_dino_preloader_done") === "true") {
-          preloader.style.display = "none";
-          return;
-        }
-
-        // Lock scroll during preloader
-        document.body.style.overflow = "hidden";
-
-        // Step 1: Start Dino Sprint & Counter
-        let pct = 0;
-        const counterInterval = setInterval(() => {
-          pct += 5;
-          if (pct > 100) pct = 100;
-          if (pctText) pctText.textContent = `${pct}%`;
-        }, 50);
-
-        setTimeout(() => {
-          if (dino) {
-            dino.style.left = "calc(100% - 110px)";
-          }
-        }, 100);
-
-        // Step 2: Crash Impact & Screen Erase Wipe
-        setTimeout(() => {
-          clearInterval(counterInterval);
-          if (pctText) pctText.textContent = "100%";
-          if (impactPopup) impactPopup.style.opacity = "1";
-
-          // Screen Shake Effect
-          preloader.style.transform = "translate(-4px, 4px)";
-          setTimeout(() => {
-            preloader.style.transform = "translate(4px, -4px)";
-          }, 50);
-
-          // Step 3: Curtain Slide Up Wipe
-          setTimeout(() => {
-            preloader.style.transform = "translateY(-100%)";
-            document.body.style.overflow = "auto";
-            sessionStorage.setItem("neo_dino_preloader_done", "true");
-
-            setTimeout(() => {
-              preloader.style.display = "none";
-            }, 600);
-          }, 450);
-
-        }, 1250);
-      }
-
-      initDinoRunPreloader();
-
-      // INTERACTIVE 3D SHADOW MOUSE PARALLAX ON CARDS
-      function initNeoBrutalistInteractions() {
-        const cards = document.querySelectorAll<HTMLElement>(".neo-parallax-card");
-        cards.forEach((card) => {
-          card.addEventListener("mousemove", (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            
-            const shadowX = Math.round(12 + x * 10);
-            const shadowY = Math.round(12 + y * 10);
-            card.style.boxShadow = `${shadowX}px ${shadowY}px 0px 0px rgba(0,0,0,0.95)`;
-          });
-
-          card.addEventListener("mouseleave", () => {
-            card.style.boxShadow = "12px 12px 0px 0px rgba(0,0,0,0.95)";
-          });
-        });
-      }
+      import { initNeoBrutalistInteractions, initScrollReveal } from "../scripts/neo-brutalist";
 
       initNeoBrutalistInteractions();
-      document.addEventListener("astro:page-load", () => {
-        initNeoBrutalistInteractions();
-      });
+      initScrollReveal();
+      document.addEventListener("astro:page-load", initNeoBrutalistInteractions);
+      document.addEventListener("astro:page-load", initScrollReveal);
     </script>
   </body>
 </html>

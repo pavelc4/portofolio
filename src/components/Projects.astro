@@ -71,10 +71,14 @@ const projects = [
   id="projects"
   class="py-16 md:py-24 bg-[#FAFAFA] border-t-2 border-gray-950 overflow-hidden relative grid-blueprint-bg"
 >
+  <!-- KANJUT Y2K SPARKLE -->
+  <svg class="sparkle absolute top-20 right-8 w-6 h-6 text-[#FACC15] hidden md:block" style="animation-delay:-1.5s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 0c.9 6.4 3.6 9.1 12 12-8.4 2.9-11.1 5.6-12 12-.9-6.4-3.6-9.1-12-12C8.4 9.1 11.1 6.4 12 0z"/>
+  </svg>
   <div class="max-w-[98%] xl:max-w-[1500px] 2xl:max-w-[1700px] mx-auto px-2 sm:px-6 relative z-10">
     
     <!-- MAIN POSTER FRAME CONTAINER -->
-    <div class="neo-parallax-card relative w-full bg-white border-2 border-gray-950 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.95)] p-5 sm:p-8 md:p-12 flex flex-col justify-between overflow-hidden noise-overlay select-none">
+    <div data-reveal class="neo-parallax-card relative w-full bg-white border-2 border-gray-950 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.95)] p-5 sm:p-8 md:p-12 flex flex-col justify-between overflow-hidden noise-overlay">
       
       <!-- TOP HEADER GRID METADATA BAR -->
       <div class="w-full pb-4 sm:pb-6 border-b-2 border-gray-950 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 font-mono text-xs uppercase font-black text-gray-950">
@@ -111,7 +115,7 @@ const projects = [
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           {
             projects.map((proj, idx) => (
-              <div class={`rigid-reveal bg-white border-2 border-gray-950 ${proj.borderTop} rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[14px_14px_0px_0px_rgba(0,0,0,1)] ${proj.tilt} hover:rotate-0 transition-all duration-300 flex flex-col justify-between relative overflow-visible group ${proj.span}`}>
+              <div data-reveal style={`animation-delay:${idx * 80}ms`} class={`rigid-reveal bg-white border-2 border-gray-950 ${proj.borderTop} rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[14px_14px_0px_0px_rgba(0,0,0,1)] ${proj.tilt} hover:rotate-0 transition-all duration-300 flex flex-col justify-between relative overflow-visible group ${proj.span}`}>
                 
                 {/* ANIMATED PET GIF FOR RUST PROJECT: CRAB WALKING STANDING ON TOP OF CARD LEDGE */}
                 {idx === 0 && (
@@ -120,6 +124,9 @@ const projects = [
 
                 <!-- HALFTONE DOT MATRIX ACCENT -->
                 <div class="absolute right-4 top-4 w-20 h-20 halftone-dots opacity-20 pointer-events-none overflow-hidden rounded-3xl"></div>
+
+                <!-- KANJUT CORNER FRAME TICKS -->
+                <div class="corner-ticks"></div>
 
                 <div>
                   <!-- TOP COLOR SWATCH & BADGE -->
@@ -151,7 +158,7 @@ const projects = [
                         {proj.phonetic}
                       </span>
                     </div>
-                    <span class="inline-block mt-3 font-mono text-[10px] sm:text-xs font-bold uppercase px-3 py-1 bg-gray-950 text-white rounded-full border-1.5 border-gray-950 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                    <span class="inline-block mt-3 font-mono text-[10px] sm:text-xs font-bold uppercase px-3 py-1 bg-gray-950 text-white rounded-full border-[1.5px] border-gray-950 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                       {proj.badge}
                     </span>
                   </div>
@@ -166,7 +173,7 @@ const projects = [
                 <div class="border-t-2 border-gray-900 pt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div class="flex flex-wrap gap-1.5">
                     {proj.tags.map((t) => (
-                      <span class="font-mono text-[9px] font-bold uppercase border-1.5 border-gray-950 rounded-full px-2.5 py-0.5 bg-[#F4F2EB] text-gray-950">
+                      <span class="font-mono text-[9px] font-bold uppercase border-[1.5px] border-gray-950 rounded-full px-2.5 py-0.5 bg-[#F4F2EB] text-gray-950">
                         {t}
                       </span>
                     ))}
@@ -201,17 +208,7 @@ const projects = [
 </section>
 
 <script>
-  import { animate, inView, stagger } from "motion";
-
-  function initProjectsAnimation() {
-    inView("#projects", () => {
-      animate(
-        "#projects .rigid-reveal",
-        { opacity: 1, y: [30, 0], scale: [0.96, 1] },
-        { delay: stagger(0.12), duration: 0.4, easing: "ease-out" }
-      );
-    });
-  }
+  import { initProjectsAnimation } from "../scripts/projects-anim";
 
   initProjectsAnimation();
   document.addEventListener("astro:page-load", initProjectsAnimation);

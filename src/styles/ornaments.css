@@ -1,0 +1,117 @@
+/* ============ KANJUT ORNAMENT KIT (referensi: /home/sineva/prjkt/web/kanjut) ============ */
+
+/* 1. LINE GRID — major 40px + minor 10px */
+.kanjut-grid {
+  background-image:
+    linear-gradient(rgba(17, 17, 17, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 17, 17, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(17, 17, 17, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 17, 17, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 10px 10px, 10px 10px;
+}
+
+/* 2. GLITCH TITLE — chromatic RGB-split burst every 6s */
+.glitch-title {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+.glitch-title::before,
+.glitch-title::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: inherit;
+}
+.glitch-title::before {
+  color: #0038FF;
+  z-index: -1;
+  animation: glitch-a 6s infinite steps(1);
+}
+.glitch-title::after {
+  color: #FF4D8D;
+  z-index: -2;
+  animation: glitch-b 6s infinite steps(1);
+}
+@keyframes glitch-a {
+  0%, 92.9%, 100% { clip-path: inset(0 0 100% 0); transform: none; }
+  93% { clip-path: inset(0 0 55% 0); transform: translate(-3px, 1px); }
+  95% { clip-path: inset(30% 0 30% 0); transform: translate(3px, -1px); }
+  97% { clip-path: inset(60% 0 0 0); transform: translate(-2px, 2px); }
+  99% { clip-path: inset(10% 0 60% 0); transform: translate(2px, 1px); }
+}
+@keyframes glitch-b {
+  0%, 92.9%, 100% { clip-path: inset(0 0 100% 0); transform: none; }
+  93% { clip-path: inset(50% 0 0 0); transform: translate(3px, -1px); }
+  95% { clip-path: inset(0 0 40% 0); transform: translate(-3px, 2px); }
+  97% { clip-path: inset(25% 0 35% 0); transform: translate(2px, -2px); }
+  99% { clip-path: inset(70% 0 0 0); transform: translate(-2px, -1px); }
+}
+
+/* 3. ORBIT RINGS + orbiting dot */
+@keyframes orbit-spin {
+  to { transform: rotate(360deg); }
+}
+.orbit-rings { position: absolute; border-radius: 50%; pointer-events: none; }
+.orbit-ring-solid {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 1.5px solid #0038FF; opacity: 0.35;
+}
+.orbit-ring-dashed {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 1px dashed #FF4D8D; opacity: 0.4;
+  animation: orbit-spin 24s linear infinite;
+}
+.orbit-dot {
+  position: absolute; inset: 0; border-radius: 50%;
+  animation: orbit-spin 24s linear infinite;
+}
+.orbit-dot::before {
+  content: ""; position: absolute; top: -3.5px; left: 50%;
+  width: 7px; height: 7px; margin-left: -3.5px; border-radius: 50%;
+  background: #FF5500; border: 1px solid #111111;
+}
+
+/* 4. Y2K SPARKLES — twinkle */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.6) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.1) rotate(25deg); }
+}
+.sparkle { animation: twinkle 2.4s ease-in-out infinite; }
+
+/* 5. CORNER TICKS — technical frame brackets */
+.corner-ticks {
+  position: absolute; inset: 10px; pointer-events: none;
+  background:
+    linear-gradient(#111111, #111111) 0 0 / 14px 2px,
+    linear-gradient(#111111, #111111) 0 0 / 2px 14px,
+    linear-gradient(#111111, #111111) 100% 0 / 14px 2px,
+    linear-gradient(#111111, #111111) 100% 0 / 2px 14px,
+    linear-gradient(#111111, #111111) 0 100% / 14px 2px,
+    linear-gradient(#111111, #111111) 0 100% / 2px 14px,
+    linear-gradient(#111111, #111111) 100% 100% / 14px 2px,
+    linear-gradient(#111111, #111111) 100% 100% / 2px 14px;
+  background-repeat: no-repeat;
+}
+
+/* 6. SCROLL REVEAL — neo-brutalist slam-in (dipicu Layout.astro via scroll listener) */
+[data-reveal] { opacity: 0; }
+[data-reveal].is-revealed {
+  opacity: 1;
+  animation: reveal-slam 0.5s cubic-bezier(0.22, 1.2, 0.36, 1);
+}
+@keyframes reveal-slam {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPECT REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  .glitch-title::before,
+  .glitch-title::after { display: none; }
+  .orbit-ring-dashed,
+  .orbit-dot,
+  .sparkle { animation: none !important; }
+  [data-reveal] { opacity: 1; }
+  [data-reveal].is-revealed { animation: none; }
+}
