@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import foxWalkGif from '../assets/pets/fox_walk.gif';
 
 const stackRow1 = [
     { name: "Golang", icon: "skill-icons:golang", tag: "PRIMARY" },
@@ -69,7 +70,7 @@ const row2 = [...stackRow2, ...stackRow2];
                 <div class="space-y-5 sm:space-y-6 border-2 border-gray-950 bg-[#F4F2EB] px-3 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 rounded-3xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
                     
                     <!-- ANIMATED PET GIF: FOX WALKING STANDING ON TOP OF CARD LEDGE -->
-                    <img src="/portofolio/pets/fox_walk.gif" alt="Fox Walking" class="w-8 h-8 absolute -top-[30px] right-10 z-30 hover:scale-125 transition-transform cursor-pointer drop-shadow-md" />
+                    <img src={foxWalkGif.src} alt="Fox Walking" class="w-8 h-8 absolute -top-[30px] right-10 z-30 hover:scale-125 transition-transform cursor-pointer drop-shadow-md" />
                     
                     <!-- KANJUT CORNER FRAME TICKS -->
                     <div class="corner-ticks z-10 pointer-events-none"></div>
