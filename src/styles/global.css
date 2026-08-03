@@ -71,15 +71,6 @@
   );
 }
 
-/* Acid Brutalist Stepped Pixel Containers */
-.filter-pixel-stroke {
-  filter: drop-shadow(2px 0 0 #111) drop-shadow(-2px 0 0 #111) drop-shadow(0 2px 0 #111) drop-shadow(0 -2px 0 #111);
-}
-
-.filter-pixel-stroke-lg {
-  filter: drop-shadow(3px 0 0 #111) drop-shadow(-3px 0 0 #111) drop-shadow(0 3px 0 #111) drop-shadow(0 -3px 0 #111) drop-shadow(6px 6px 0 rgba(0,0,0,0.15));
-}
-
 /* Crisp White Background with Kanjut Dot Grid Pattern */
 .grid-blueprint-bg {
   background-size: 18px 18px;
@@ -111,25 +102,45 @@
   animation-play-state: paused !important;
 }
 
-/* ANIMATED WALKING PETS ANIMATIONS */
-@keyframes walk-across {
-  0% { transform: translateX(-10%); }
-  50% { transform: translateX(100vw); }
-  50.01% { transform: translateX(100vw) scaleX(-1); }
-  100% { transform: translateX(-10%) scaleX(-1); }
+/* NEO-BRUTALIST MICRO-INTERACTION & EFEK PRESS BUTTON */
+.neo-press-btn {
+  transition: transform 0.1s cubic-bezier(0, 0, 0.2, 1), box-shadow 0.1s cubic-bezier(0, 0, 0.2, 1);
+}
+.neo-press-btn:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+}
+.neo-press-btn:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
 }
 
-@keyframes walk-reverse {
-  0% { transform: translateX(100vw) scaleX(-1); }
-  50% { transform: translateX(-10%) scaleX(-1); }
-  50.01% { transform: translateX(-10%); }
-  100% { transform: translateX(100vw); }
+/* HARD INVERSION COLOR CLASH ON HOVER */
+.neo-hard-invert {
+  transition: background-color 0s, color 0s, border-color 0s;
+}
+.neo-hard-invert:hover {
+  background-color: #111111 !important;
+  color: #FAFAFA !important;
+  border-color: #111111 !important;
 }
 
-.animate-walk-across {
-  animation: walk-across 35s linear infinite;
+/* GLITCH RETRO ANIMATION */
+@keyframes glitch-anim {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
 }
 
-.animate-walk-reverse {
-  animation: walk-reverse 40s linear infinite;
+.neo-glitch:hover {
+  animation: glitch-anim 0.2s steps(2) infinite;
+}
+
+/* RIGID STAGGER REVEAL INITIAL STATE */
+.rigid-reveal {
+  opacity: 0;
+  transform: translateY(24px) scale(0.97);
 }

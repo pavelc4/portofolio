@@ -111,7 +111,7 @@ const projects = [
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           {
             projects.map((proj, idx) => (
-              <div class={`bg-white border-2 border-gray-950 ${proj.borderTop} rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[14px_14px_0px_0px_rgba(0,0,0,1)] ${proj.tilt} hover:rotate-0 transition-transform duration-300 flex flex-col justify-between relative overflow-visible group ${proj.span}`}>
+              <div class={`rigid-reveal bg-white border-2 border-gray-950 ${proj.borderTop} rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[14px_14px_0px_0px_rgba(0,0,0,1)] ${proj.tilt} hover:rotate-0 transition-all duration-300 flex flex-col justify-between relative overflow-visible group ${proj.span}`}>
                 
                 {/* ANIMATED PET GIF FOR RUST PROJECT: CRAB WALKING STANDING ON TOP OF CARD LEDGE */}
                 {idx === 0 && (
@@ -162,7 +162,7 @@ const projects = [
                   </p>
                 </div>
 
-                <!-- FOOTER: PILL TAGS & ACTION BUTTON -->
+                <!-- FOOTER: PILL TAGS & ACTION BUTTON WITH PHYSICAL PRESS EFFECT -->
                 <div class="border-t-2 border-gray-900 pt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div class="flex flex-wrap gap-1.5">
                     {proj.tags.map((t) => (
@@ -176,7 +176,7 @@ const projects = [
                     href={proj.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class={`font-oswald text-xs sm:text-sm font-bold uppercase text-white ${proj.bgAccent} border-2 border-gray-950 px-5 py-2.5 rounded-full shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-950 hover:text-white transition-all text-center flex items-center justify-center gap-2`}
+                    class={`neo-press-btn font-oswald text-xs sm:text-sm font-bold uppercase text-white ${proj.bgAccent} border-2 border-gray-950 px-5 py-2.5 rounded-full shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-950 hover:text-white transition-all text-center flex items-center justify-center gap-2`}
                   >
                     <span>VIEW SOURCE</span>
                     <span class="font-mono text-xs font-bold">[->]</span>
@@ -199,3 +199,20 @@ const projects = [
 
   </div>
 </section>
+
+<script>
+  import { animate, inView, stagger } from "motion";
+
+  function initProjectsAnimation() {
+    inView("#projects", () => {
+      animate(
+        "#projects .rigid-reveal",
+        { opacity: 1, y: [30, 0], scale: [0.96, 1] },
+        { delay: stagger(0.12), duration: 0.4, easing: "ease-out" }
+      );
+    });
+  }
+
+  initProjectsAnimation();
+  document.addEventListener("astro:page-load", initProjectsAnimation);
+</script>
