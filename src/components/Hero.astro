@@ -24,16 +24,15 @@ const qrDataUrl = await QRCode.toDataURL("https://github.com/pavelc4", { margin:
     <div class="absolute inset-0 kanjut-grid pointer-events-none z-0" aria-hidden="true"></div>
 
     <!-- TOP HEADER GRID METADATA BAR WITH 001 INDEX -->
-    <div class="w-full pb-4 sm:pb-6 border-b-2 border-gray-950 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 font-mono text-xs uppercase font-black text-gray-950">
-      <div class="flex items-center gap-3">
-        <span class="bg-gray-950 text-white px-2.5 py-1 border border-gray-950 font-mono text-xs font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+    <div class="w-full pb-3 sm:pb-6 border-b-2 border-gray-950 flex flex-row justify-between items-center gap-2 font-mono text-xs uppercase font-black text-gray-950">
+      <div class="flex items-center gap-2">
+        <span class="bg-gray-950 text-white px-2 sm:px-2.5 py-1 border border-gray-950 font-mono text-[10px] sm:text-xs font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
           PAVELC4 // LANDING
         </span>
       </div>
 
-
-      <div class="text-left sm:text-right">
-        <span class="bg-[#FACC15] text-gray-950 border border-gray-950 px-2.5 py-1 text-[9.5px] font-black uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rotate-1 inline-block">
+      <div class="text-right">
+        <span class="bg-[#FACC15] text-gray-950 border border-gray-950 px-2 sm:px-2.5 py-1 text-[8.5px] sm:text-[9.5px] font-black uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rotate-1 inline-block">
           BACKEND & WEB DEV
         </span>
       </div>
@@ -82,7 +81,7 @@ const qrDataUrl = await QRCode.toDataURL("https://github.com/pavelc4", { margin:
           </div>
 
           <!-- FLOATING TOP-LEFT WIDGET CARD: RANDOM ROTATING POLYGLOT TEXT (BESIDE DOG GIF) -->
-          <div class="absolute -top-4 left-6 z-40 bg-[#FF4D8D] text-white border-2 border-gray-950 p-2 sm:p-2.5 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] w-[195px] h-[76px] flex flex-col justify-between rotate-2 group-hover:rotate-0 transition-transform duration-300">
+          <div class="absolute -top-4 left-3 sm:left-6 z-40 bg-[#FF4D8D] text-white border-2 border-gray-950 p-2 sm:p-2.5 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] w-[165px] sm:w-[195px] h-[72px] sm:h-[76px] flex flex-col justify-between rotate-2 group-hover:rotate-0 transition-transform duration-300">
             <div class="flex items-center justify-between shrink-0 mb-1">
               <span class="font-mono text-[7px] font-black uppercase tracking-wider bg-black text-white px-1 py-0.5 rounded">P4-BABEL</span>
               <span id="babel-tag" class="font-mono text-[7.5px] bg-white text-gray-950 px-1.5 py-0.5 rounded font-black border border-gray-950 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">RUS</span>
@@ -95,7 +94,7 @@ const qrDataUrl = await QRCode.toDataURL("https://github.com/pavelc4", { margin:
           </div>
 
           <!-- FLOATING BOTTOM-RIGHT WIDGET CARD WITH HEX DUMP -->
-          <div class="absolute -bottom-5 right-4 sm:right-6 bg-[#FACC15] text-gray-950 border-2 border-gray-950 p-2.5 sm:p-3 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-[190px] sm:max-w-[220px] rotate-2 group-hover:rotate-0 transition-transform duration-300 z-30">
+          <div class="absolute -bottom-5 right-2 sm:right-6 bg-[#FACC15] text-gray-950 border-2 border-gray-950 p-2 sm:p-3 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-[165px] sm:max-w-[220px] rotate-2 group-hover:rotate-0 transition-transform duration-300 z-30">
             <div class="flex items-center justify-between mb-1">
               <div class="flex items-center gap-1.5">
                 <span class="w-2 h-2 bg-[#FF5500] border border-gray-950 rounded-full animate-ping"></span>
@@ -114,16 +113,16 @@ const qrDataUrl = await QRCode.toDataURL("https://github.com/pavelc4", { margin:
 
         <!-- ACTION BUTTONS & COMMITS TAG -->
         <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2 sm:gap-3">
             <a
               href="#about"
-              class="bg-white text-gray-950 border-2 border-gray-950 px-4 py-1.5 rounded-full font-oswald text-xs font-bold uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-100 transition-all"
+              class="bg-white text-gray-950 border-2 border-gray-950 px-3.5 py-1.5 sm:px-4 rounded-full font-oswald text-xs font-bold uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-100 transition-all"
             >
               ABOUT ME
             </a>
             <a
               href="#projects"
-              class="bg-[#FF5500] text-white border-2 border-gray-950 px-4 py-1.5 rounded-full font-oswald text-xs font-bold uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-950 transition-all"
+              class="bg-[#FF5500] text-white border-2 border-gray-950 px-3.5 py-1.5 sm:px-4 rounded-full font-oswald text-xs font-bold uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-950 transition-all"
             >
               VIEW PROJECTS
             </a>
@@ -160,24 +159,24 @@ const qrDataUrl = await QRCode.toDataURL("https://github.com/pavelc4", { margin:
           <div class="flex flex-col space-y-2 mb-4">
             <!-- LINE 1: LEARNING & (SHIFTED LEFT) -->
             <div class="flex items-center gap-3">
-              <h1 data-text="LEARNING &" class="glitch-title font-oswald text-5xl sm:text-7xl md:text-8xl lg:text-[6.2rem] font-bold leading-[0.88] tracking-tighter text-gray-950 uppercase">
+              <h1 data-text="LEARNING &" class="glitch-title font-oswald text-4xl sm:text-7xl md:text-8xl lg:text-[6.2rem] font-bold leading-[0.88] tracking-tighter text-gray-950 uppercase">
                 LEARNING &
               </h1>
             </div>
 
             <!-- LINE 2: BUILDING (YELLOW BADGE - SHIFTED RIGHT) -->
             <div class="flex justify-start sm:pl-6">
-              <span class="bg-[#FACC15] text-gray-950 font-oswald text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold uppercase px-4 py-1 border-2 border-gray-950 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -rotate-1 inline-block">
+              <span class="bg-[#FACC15] text-gray-950 font-oswald text-3xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold uppercase px-3 py-0.5 sm:px-4 sm:py-1 border-2 border-gray-950 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -rotate-1 inline-block">
                 BUILDING
               </span>
             </div>
 
             <!-- LINE 3: BACKEND SYSTEMS . (PINK BADGE - SHIFTED CENTER) -->
-            <div class="flex items-center gap-3 pt-1 flex-wrap">
-              <span class="bg-[#FF4D8D] text-white font-oswald text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold uppercase px-4 py-1 border-2 border-gray-950 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rotate-2 inline-block">
+            <div class="flex items-center gap-2 sm:gap-3 pt-1 flex-wrap">
+              <span class="bg-[#FF4D8D] text-white font-oswald text-3xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold uppercase px-3 py-0.5 sm:px-4 sm:py-1 border-2 border-gray-950 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rotate-2 inline-block">
                 BACKEND
               </span>
-              <span class="font-oswald text-5xl sm:text-7xl md:text-8xl lg:text-[6rem] font-bold tracking-tighter text-gray-950 uppercase">
+              <span class="font-oswald text-4xl sm:text-7xl md:text-8xl lg:text-[6rem] font-bold tracking-tighter text-gray-950 uppercase">
                 SYSTEMS<span class="text-[#FF5500] animate-pulse">.</span>
               </span>
             </div>
@@ -186,13 +185,13 @@ const qrDataUrl = await QRCode.toDataURL("https://github.com/pavelc4", { margin:
           <!-- PRINTILAN MICRO PILLS STRIP -->
           <div class="flex flex-wrap items-center justify-between gap-2 border-t border-b border-gray-300 py-2.5 mb-2">
             <div class="flex flex-wrap items-center gap-2">
-              <span class="font-mono text-[9px] font-extrabold uppercase bg-[#F4F2EB] text-gray-950 px-2 py-0.5 border border-gray-950 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
+              <span class="font-mono text-[8.5px] sm:text-[9px] font-extrabold uppercase bg-[#F4F2EB] text-gray-950 px-2 py-0.5 border border-gray-950 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
                 LOC: BANDUNG, ID [6.9175° S]
               </span>
-              <span class="font-mono text-[9px] font-extrabold uppercase bg-[#F4F2EB] text-gray-950 px-2 py-0.5 border border-gray-950 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
+              <span class="font-mono text-[8.5px] sm:text-[9px] font-extrabold uppercase bg-[#F4F2EB] text-gray-950 px-2 py-0.5 border border-gray-950 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
                 STACK: GO • TS • RUST
               </span>
-              <span class="font-mono text-[9px] font-extrabold uppercase bg-[#A7F3D0] text-gray-950 px-2 py-0.5 border border-gray-950 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
+              <span class="font-mono text-[8.5px] sm:text-[9px] font-extrabold uppercase bg-[#A7F3D0] text-gray-950 px-2 py-0.5 border border-gray-950 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
                 ROLE: JUNIOR DEV
               </span>
             </div>
