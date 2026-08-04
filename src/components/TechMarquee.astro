@@ -1,6 +1,5 @@
 ---
 import { Icon } from 'astro-icon/components';
-import foxWalkGif from '../assets/pets/fox_walk.gif';
 
 const stackRow1 = [
     { name: "Golang", icon: "skill-icons:golang", tag: "PRIMARY" },
@@ -34,10 +33,10 @@ const row2 = [...stackRow2, ...stackRow2];
     class="py-16 md:py-24 bg-[#FAFAFA] border-t-2 border-gray-950 overflow-hidden relative"
 >
     <div class="max-w-[98%] xl:max-w-[1500px] 2xl:max-w-[1700px] mx-auto px-2 sm:px-6 relative z-10">
-        
+
         <!-- MAIN POSTER FRAME CONTAINER (MATCHING HERO & ABOUT POSTER CARD STYLE) -->
         <div data-reveal class="neo-parallax-card relative w-full bg-white border-2 border-gray-950 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.95)] p-5 sm:p-8 md:p-12 flex flex-col justify-between overflow-hidden noise-overlay">
-            
+
             <!-- TOP HEADER GRID METADATA BAR -->
             <div class="w-full pb-4 sm:pb-6 border-b-2 border-gray-950 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 font-mono text-xs uppercase font-black text-gray-950">
                 <div class="flex items-center gap-3">
@@ -55,35 +54,32 @@ const row2 = [...stackRow2, ...stackRow2];
 
             <!-- TITLE & MARQUEE SECTION -->
             <div class="w-full my-6 sm:my-10 space-y-8">
-                
+
                 <!-- SECTION TITLE WITH NEON PULSE GLITCH -->
                 <div>
                     <h2 class="neo-neon-glitch font-oswald text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-tight text-gray-950 leading-none inline-block">
                         TECH STACK<span class="text-[#0038FF]">.</span>
                     </h2>
                     <p class="font-mono text-xs sm:text-sm text-gray-600 font-medium mt-2">
-                        Hover pada icon untuk pause animasi & melihat warna asli stack.
+                        TECH STACK Yang sedang di palajari
                     </p>
                 </div>
 
                 <!-- MARQUEE STREAMS CONTAINER WITH HOVER PAUSE -->
                 <div class="space-y-5 sm:space-y-6 border-2 border-gray-950 bg-[#F4F2EB] px-3 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 rounded-3xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
-                    
-                    <!-- ANIMATED PET GIF: FOX WALKING STANDING ON TOP OF CARD LEDGE -->
-                    <img src={foxWalkGif.src} alt="Fox Walking" class="w-8 h-8 absolute -top-[30px] right-10 z-30 hover:scale-125 transition-transform cursor-pointer drop-shadow-md" />
-                    
+
                     <!-- KANJUT CORNER FRAME TICKS -->
                     <div class="corner-ticks z-10 pointer-events-none"></div>
-                    
+
                     <!-- MARQUEE ROW 1 (SCROLLING LEFT -> HOVER TO PAUSE) -->
                     <div class="w-full overflow-hidden flex whitespace-nowrap py-2.5 sm:py-3 marquee-row">
                         <div class="flex items-center gap-4 md:gap-6 pr-4 md:pr-6 w-max animate-marquee-left">
                             {
                                 row1.map((item) => (
                                     <div class="flex-shrink-0 flex items-center gap-3 bg-white border-2 border-gray-950 px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:border-[#0038FF] hover:shadow-[6px_6px_0px_0px_rgba(0,56,255,1)] hover:-translate-y-1 transition-all cursor-pointer group">
-                                        <Icon 
-                                            name={item.icon} 
-                                            class="w-6 h-6 md:w-8 md:h-8 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300" 
+                                        <Icon
+                                            name={item.icon}
+                                            class="w-6 h-6 md:w-8 md:h-8 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300"
                                         />
                                         <span class="font-oswald text-xl md:text-2xl font-bold uppercase tracking-tight text-gray-950 group-hover:text-[#0038FF] transition-colors">
                                             {item.name}
@@ -103,9 +99,9 @@ const row2 = [...stackRow2, ...stackRow2];
                             {
                                 row2.map((item) => (
                                     <div class="flex-shrink-0 flex items-center gap-3 bg-gray-950 border-2 border-gray-950 px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:border-[#FF5500] hover:shadow-[6px_6px_0px_0px_rgba(255,85,0,1)] hover:-translate-y-1 transition-all cursor-pointer group">
-                                        <Icon 
-                                            name={item.icon} 
-                                            class="w-6 h-6 md:w-8 md:h-8 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300" 
+                                        <Icon
+                                            name={item.icon}
+                                            class="w-6 h-6 md:w-8 md:h-8 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300"
                                         />
                                         <span class="font-oswald text-xl md:text-2xl font-bold uppercase tracking-tight text-white group-hover:text-[#FF5500] transition-colors">
                                             {item.name}

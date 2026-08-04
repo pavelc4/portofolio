@@ -98,7 +98,7 @@ const rawProjects: ProjectItem[] = [
   },
 ];
 
-// Fetch real-time GitHub stars during build/SSR
+// Fetch real-time GitHub stars during build/SSR concurrently
 const projects = await Promise.all(
   rawProjects.map(async (p) => {
     try {

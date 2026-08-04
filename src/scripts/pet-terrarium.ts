@@ -14,9 +14,19 @@ class PetTerrariumComponent extends HTMLElement {
   private terrariumElement: HTMLElement | null = null;
   private lastTime = 0;
 
+  private containerWidth = 0;
+
   connectedCallback(): void {
     this.terrariumElement = this.querySelector<HTMLElement>("#pet-terrarium-container");
     if (!this.terrariumElement) return;
+
+    this.containerWidth = this.terrariumElement.clientWidth || window.innerWidth;
+    const updateWidth = (): void => {
+      if (this.terrariumElement) {
+        this.containerWidth = this.terrariumElement.clientWidth || window.innerWidth;
+      }
+    };
+    window.addEventListener("resize", updateWidth, { passive: true });
 
     const pets = this.querySelectorAll<HTMLElement>(".pet-container");
 
@@ -24,8 +34,7 @@ class PetTerrariumComponent extends HTMLElement {
       const speed = parseFloat(pet.getAttribute("data-speed") || "25");
       let dir = parseInt(pet.getAttribute("data-direction") || "1");
 
-      const containerWidth = this.terrariumElement!.clientWidth || 400;
-      let x = Math.random() * (containerWidth - 60);
+      let x = Math.random() * (this.containerWidth - 60);
 
       const img = pet.querySelector<HTMLImageElement>("img");
       if (!img) return;
@@ -121,15 +130,15 @@ class PetTerrariumComponent extends HTMLElement {
     const dt = Math.min((time - this.lastTime) / 1000, 0.1);
     this.lastTime = time;
 
-    const containerWidth = this.terrariumElement.clientWidth || window.innerWidth;
+    const width = this.containerWidth || window.innerWidth;
 
     this.state.forEach((s) => {
       if (!s || s.isDragging) return;
 
       s.x += s.speed * s.dir * dt;
 
-      if (s.x > containerWidth + 60) s.x = -60;
-      else if (s.x < -100) s.x = containerWidth + 50;
+      if (s.x > width + 60) s.x = -60;
+      else if (s.x < -100) s.x = width + 50;
 
       s.el.style.left = `${s.x}px`;
       this.updateFace(s);
