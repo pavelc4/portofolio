@@ -14,9 +14,9 @@
   "dependencies": {
     "@astrojs/check": "^0.9.10",
     "@astrojs/sitemap": "^3.7.3",
-    "@astrojs/svelte": "^8.1.2",
+    "@astrojs/svelte": "^9.0.1",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^6.4.8",
+    "astro": "^7.1.6",
     "astro-icon": "^1.1.5",
     "motion": "^12.43.0",
     "qrcode": "^1.5.4",
