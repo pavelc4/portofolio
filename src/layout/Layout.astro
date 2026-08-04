@@ -1,5 +1,6 @@
 ---
 import Navbar from '../components/Navbar.astro';
+import BaseHead from '../components/BaseHead.astro';
 import '../styles/base.css';
 import '../styles/patterns.css';
 import '../styles/components.css';
@@ -7,16 +8,14 @@ import '../styles/ornaments.css';
 
 interface Props {
   title?: string;
+  description?: string;
 }
-const { title = 'pavelc4' } = Astro.props;
+const { title = 'pavelc4 — Dimas Dwi Ariyanto', description } = Astro.props;
 ---
 <!doctype html>
 <html lang="id">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <link rel="icon" type="image/gif" href="/favicon.gif" />
+    <BaseHead title={title} description={description} />
   </head>
   <body class="relative bg-[#FAFAFA] text-gray-950 overflow-x-hidden">
     

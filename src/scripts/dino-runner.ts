@@ -120,8 +120,6 @@ export function initDinoRunner(): void {
         themeBadge.textContent = "NIGHT_MODE";
         themeBadge.className = "bg-emerald-500 text-black px-2 py-0.5 text-[8.5px] font-bold tracking-wider";
       }
-      if (statusText)
-        statusText.className = "absolute bottom-2 left-2 text-gray-300 font-mono text-[8px] font-bold uppercase tracking-widest pointer-events-none";
     } else if (cycle === 0 && isDark) {
       isDark = false;
       wrapper.classList.remove("bg-[#111111]");
@@ -130,8 +128,6 @@ export function initDinoRunner(): void {
         themeBadge.textContent = "DAY_MODE";
         themeBadge.className = "bg-gray-950 text-white px-2 py-0.5 text-[8.5px] tracking-wider";
       }
-      if (statusText)
-        statusText.className = "absolute bottom-2 left-2 text-gray-700 font-mono text-[8px] font-bold uppercase tracking-widest pointer-events-none";
     }
 
     dino.y += dino.dy;
@@ -224,6 +220,8 @@ export function initDinoRunner(): void {
     ctx.fillText(`HI ${String(highScore).padStart(5, "0")}  ${String(score).padStart(5, "0")}`, width - 16, 22);
 
     update();
-    requestAnimationFrame(draw);
+    if (document.getElementById("dinoCanvas")) {
+      requestAnimationFrame(draw);
+    }
   }
 }
