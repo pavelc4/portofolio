@@ -25,9 +25,12 @@ jobs:
         run: bun run build
 
       - name: Deploy to Cloudflare Pages
-        run: bunx wrangler pages deploy dist --project-name=pavelc4 --commit-dirty=true
-        env:
-          CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
-          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -n "${{ secrets.CLOUDFLARE_API_KEY }}" ]; then
+            export CLOUDFLARE_EMAIL="${{ secrets.CLOUDFLARE_EMAIL }}"
+            export CLOUDFLARE_API_KEY="${{ secrets.CLOUDFLARE_API_KEY }}"
+          else
+            export CLOUDFLARE_API_TOKEN="${{ secrets.CLOUDFLARE_API_TOKEN }}"
+          fi
+          export CLOUDFLARE_ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
+          bunx wrangler pages deploy dist --project-name=pavelc4 --commit-dirty=true
