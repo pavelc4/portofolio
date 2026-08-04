@@ -47,10 +47,10 @@ const qrDataUrl = await QRCode.toDataURL("https://github.com/pavelc4", { margin:
       <div class="lg:col-span-5 flex flex-col space-y-5">
 
         <!-- RECTANGULAR KOTAK HERO MEDIA FRAME WITH KANJUT MINI QR CODE & HEX DUMP -->
-        <div class="relative w-full h-[220px] sm:h-[260px] md:h-[270px] bg-gray-950 rounded-2xl p-2.5 border-3 border-gray-950 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group">
+        <div class="relative w-full h-[220px] sm:h-[260px] md:h-[270px] bg-gray-950 rounded-2xl p-2.5 border-3 border-gray-950 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group mt-8 mb-6 sm:mt-0 sm:mb-0">
           
           <!-- ANIMATED PET GIF: WALKING DOG STANDING ON TOP OF CARD LEDGE -->
-          <img src={dogWalkGif.src} alt="Dog Walking" width="32" height="32" class="w-8 h-8 absolute -top-[44px] left-10 z-50 hover:scale-125 transition-transform cursor-pointer drop-shadow-md" />
+          <img src={dogWalkGif.src} alt="Dog Walking" width="32" height="32" class="w-8 h-8 absolute -top-[44px] left-10 z-50 hover:scale-125 transition-transform cursor-pointer drop-shadow-md hidden sm:block" />
 
           <!-- HALFTONE ACCENT INSIDE MEDIA CARD -->
           <div class="absolute right-2 top-2 w-20 h-20 halftone-dots opacity-30 z-10 pointer-events-none"></div>
@@ -86,7 +86,7 @@ const qrDataUrl = await QRCode.toDataURL("https://github.com/pavelc4", { margin:
           </div>
 
           <!-- FLOATING TOP-LEFT WIDGET CARD: RANDOM ROTATING POLYGLOT TEXT (BESIDE DOG GIF) -->
-          <div class="absolute -top-4 left-3 sm:left-6 z-40 bg-[#FF4D8D] text-white border-2 border-gray-950 p-2 sm:p-2.5 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] w-[165px] sm:w-[195px] h-[72px] sm:h-[76px] flex flex-col justify-between rotate-2 group-hover:rotate-0 transition-transform duration-300">
+          <div class="absolute -top-6 -left-2 sm:-top-4 sm:left-6 z-40 bg-[#FF4D8D] text-white border-2 border-gray-950 p-2 sm:p-2.5 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] w-[165px] sm:w-[195px] h-[72px] sm:h-[76px] flex flex-col justify-between rotate-2 group-hover:rotate-0 transition-transform duration-300">
             <div class="flex items-center justify-between shrink-0 mb-1">
               <span class="font-mono text-[7px] font-black uppercase tracking-wider bg-black text-white px-1 py-0.5 rounded">P4-BABEL</span>
               <span id="babel-tag" class="font-mono text-[7.5px] bg-white text-gray-950 px-1.5 py-0.5 rounded font-black border border-gray-950 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">RUS</span>
@@ -99,7 +99,7 @@ const qrDataUrl = await QRCode.toDataURL("https://github.com/pavelc4", { margin:
           </div>
 
           <!-- FLOATING BOTTOM-RIGHT WIDGET CARD WITH HEX DUMP -->
-          <div class="absolute -bottom-5 right-2 sm:right-6 bg-[#FACC15] text-gray-950 border-2 border-gray-950 p-2 sm:p-3 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-[165px] sm:max-w-[220px] rotate-2 group-hover:rotate-0 transition-transform duration-300 z-30">
+          <div class="absolute -bottom-8 -right-2 sm:-bottom-5 sm:right-6 bg-[#FACC15] text-gray-950 border-2 border-gray-950 p-2 sm:p-3 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-[165px] sm:max-w-[220px] -rotate-2 group-hover:rotate-0 transition-transform duration-300 z-30">
             <div class="flex items-center justify-between mb-1">
               <div class="flex items-center gap-1.5">
                 <span class="w-2 h-2 bg-[#FF5500] border border-gray-950 rounded-full animate-ping"></span>
