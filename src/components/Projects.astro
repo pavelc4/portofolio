@@ -96,6 +96,25 @@ const rawProjects: ProjectItem[] = [
     span: "lg:col-span-7",
     tilt: "-rotate-1",
   },
+  {
+    id: "05",
+    name: "RvSystem Monitor",
+    phonetic: "(rv-sys-tem)",
+    slug: "rv-system-monitor",
+    badge: "Android App",
+    repoOwner: "Rve27",
+    repoName: "RvSystem-Monitor",
+    fallbackStars: 131,
+    swatches: ["kotlin", "rust", "compose", "monitor"],
+    description:
+      "A modern Android system monitoring app built with Jetpack Compose and Rust. Provides real-time device metrics, Material 3 expressive UI, and low-level performance data collection. Open source — built collaboratively.",
+    tags: ["KOTLIN", "RUST", "JETPACK COMPOSE", "ANDROID"],
+    github: "https://github.com/Rve27/RvSystem-Monitor",
+    bgAccent: "bg-[#7C3AED]",
+    borderTop: "border-t-4 border-t-[#7C3AED]",
+    span: "lg:col-span-12",
+    tilt: "rotate-1",
+  },
 ];
 
 // Fetch real-time GitHub stars during build/SSR concurrently
@@ -138,7 +157,7 @@ const totalStars = projects.reduce((sum, p) => sum + (p.stars || 0), 0);
       <div class="-mx-5 sm:-mx-8 md:-mx-12 px-5 sm:px-8 md:px-12 pb-3 sm:pb-6 border-b-2 border-gray-950 flex flex-row justify-between items-center gap-2 sm:gap-4 font-mono text-xs uppercase font-black text-gray-950">
         <div class="flex items-center gap-2">
           <span class="bg-gray-950 text-white px-2 sm:px-2.5 py-1 border border-gray-950 font-mono text-[9.5px] sm:text-xs font-black shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)] sm:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-            004 // EXHIBITION CATALOG
+            005 // EXHIBITION CATALOG
           </span>
         </div>
 
@@ -172,7 +191,7 @@ const totalStars = projects.reduce((sum, p) => sum + (p.stars || 0), 0);
               <div class="bg-white border-2 border-gray-950 p-2.5 sm:p-3 rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center gap-3">
                 <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full shrink-0"></span>
                 <div class="space-y-0.5">
-                  <div class="font-oswald text-lg font-bold leading-none text-gray-950">04 REPOS</div>
+                  <div class="font-oswald text-lg font-bold leading-none text-gray-950">05 REPOS</div>
                   <div class="font-mono text-[8px] text-gray-500 font-extrabold uppercase tracking-wider">PUBLIC REPOS</div>
                 </div>
               </div>
@@ -220,7 +239,7 @@ const totalStars = projects.reduce((sum, p) => sum + (p.stars || 0), 0);
               <div class="flex flex-wrap items-center gap-2 mb-3.5 z-10 relative">
                 <span class="bg-gray-950 text-white font-mono text-[9px] font-black uppercase px-2.5 py-1 rounded-md border border-gray-950 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center gap-1.5">
                   <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full inline-block"></span>
-                  04 SPEC BUILDS
+                  05 SPEC BUILDS
                 </span>
                 <span class="bg-[#FF4D8D] text-gray-950 font-mono text-[9px] font-black uppercase px-2.5 py-1 rounded-md border border-gray-950 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rotate-1">
                   ★ OPEN SOURCE
@@ -317,7 +336,7 @@ const totalStars = projects.reduce((sum, p) => sum + (p.stars || 0), 0);
                       </div>
                     </div>
                     <span class="font-mono text-xs font-black text-gray-900 tracking-wider">
-                      §{proj.id}/04
+                      §{proj.id}/05
                     </span>
                   </div>
 
@@ -376,7 +395,7 @@ const totalStars = projects.reduce((sum, p) => sum + (p.stars || 0), 0);
 
       <!-- BOTTOM METADATA BAR -->
       <div class="-mx-5 sm:-mx-8 md:-mx-12 px-5 sm:px-8 md:px-12 pt-4 border-t-2 border-gray-950 flex flex-col sm:flex-row justify-between items-center gap-4 font-mono text-[10px] sm:text-xs font-black uppercase text-gray-950">
-        <span class="bg-gray-950 text-white px-2.5 py-0.5 border border-gray-950">004 // EXHIBITION CATALOG</span>
+        <span class="bg-gray-950 text-white px-2.5 py-0.5 border border-gray-950">005 // EXHIBITION CATALOG</span>
         <span>BANDUNG, INDONESIA</span>
       </div>
 
